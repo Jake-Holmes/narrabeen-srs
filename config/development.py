@@ -1,6 +1,6 @@
 #---META INFO---#
-AUTHOR = 'Group One'
-VERSION = '0.0.1-dev'
+__author__ = 'Group One'
+__version__ = '0.0.1-dev'
 
 
 #---DB PARAMETERS---#
