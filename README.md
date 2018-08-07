@@ -21,8 +21,8 @@
 
 	Version 0.0.1-dev:
 	* Includes a static web page being served but this is purely for development purposes. The final project will NOT be serving webpages through Python/flask.
-	* This version also includes a development server. The full production server will now be the flask built in server.
-	* A simple verison of getting the API menu and getting all possible dishes has been implemented.
+	* This version also includes a development server. The full production server will not be the flask built in server.
+	* A simple verison of getting the API menu and getting all dishes has been implemented.
 
 
 3. Directory Structure
