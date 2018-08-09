@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 from config import development as conf
 from src import menu_engine as me
 
 app = Flask(__name__)
 app.debug = True
+app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy   dog'
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+cors = CORS(app, resources={r"/foo": {"origins": "http://localhost:port"}})
 
 @app.route('/')
 def root():
@@ -18,11 +23,13 @@ def root():
 	return webpage
 
 @app.route('/api/menu', methods=['GET'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def route_menu():
 
 	return jsonify(me.get_menu(conf))
 	
 @app.route('/api/items', methods=['GET'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def route_dishes():
 	
 	return jsonify(me.get_all_dishes(conf))
