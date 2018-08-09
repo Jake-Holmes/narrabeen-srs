@@ -1,3 +1,13 @@
+# BEFORE RUNNING #
+Make sure on latest version of Npm and node
+
+Run the fullowing in command line: npm install -g @angular/cli
+Cd into the frontend folder
+Run the following in command line: npm install 
+Ensure node_modules folder is created
+Follow the below
+
+
 # Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.2.
