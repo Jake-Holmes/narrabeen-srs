@@ -14,6 +14,7 @@
 	
 	Third party Python libraries used (Please update if you add more):
 	* flask
+	* flask-cors
  
 2. Overview
 
