@@ -1,0 +1,12 @@
+<h1>Menu</h1>
+
+<ul>
+  <li *ngFor="let item of menu$">
+    <a routerLink="/item/{{item.ItemId}}">{{ item.Name }}</a>
+
+    <ul>
+      <li>{{ item.Price }}</li>
+      <li>ITEM DESCRIPTION SHOULD BE HERE</li>
+    </ul>
+  </li>
+</ul>

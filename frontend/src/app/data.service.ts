@@ -7,4 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
 
   constructor(private http: HttpClient) { }
+
+  getMenu() {
+    return this.http.get('http://localhost:5000/api/menu')
+  }
 }
