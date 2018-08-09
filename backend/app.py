@@ -5,7 +5,6 @@ from src import menu_engine as me
 
 app = Flask(__name__)
 app.debug = True
-app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy   dog'
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 cors = CORS(app, resources={r"/foo": {"origins": "http://localhost:port"}})

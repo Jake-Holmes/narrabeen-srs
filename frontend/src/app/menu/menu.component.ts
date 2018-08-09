@@ -10,6 +10,13 @@ import { Observable } from 'rxjs';
 export class MenuComponent implements OnInit {
 
   menu$: Object;
+  today = new Date();
+
+  typeOfMeals = [
+    {'id': 0, 'name': "APPETIZERS"},
+    {'id': 1, 'name': "MAINS"},
+    {'id': 2, 'name': "EXTRAS"}
+  ];
 
   constructor(private data: DataService) { }
 

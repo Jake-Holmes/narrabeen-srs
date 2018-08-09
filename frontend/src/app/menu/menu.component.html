@@ -1,12 +1,21 @@
-<h1>Menu</h1>
+<div class="header">
+  <h1><span>Narrabeen</span><span>Pizza</span></h1>
+</div>
 
-<ul>
-  <li *ngFor="let item of menu$">
-    <a routerLink="/item/{{item.ItemId}}">{{ item.Name }}</a>
+<div class="container">
+  <h1>Specials for {{ today | date }}</h1>
+  
+  <div *ngFor="let type of typeOfMeals">
+    <h2> {{ type.name }} </h2>
+    <div class="appetizers row" *ngFor="let item of menu$">
+      <div class="item col-md-9">
+        <h3 class="name"> {{ item.Name}} </h3>
+        <p class="description">Mozzarella, tomatoes, basil, balsmac glaze</p>
+      </div>
+      <div class="price col-md-3">
+        <p class="price"> {{ item.Price | currency }}</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <ul>
-      <li>{{ item.Price }}</li>
-      <li>ITEM DESCRIPTION SHOULD BE HERE</li>
-    </ul>
-  </li>
-</ul>
