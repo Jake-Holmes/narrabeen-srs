@@ -1,5 +1,7 @@
 # Robot Development Environment Setup
 
+![ipal](https://user-images.githubusercontent.com/21124793/43989519-b262c104-9d8e-11e8-81d7-ce913c64b103.PNG)
+
 ## Hardware Profile
 * CPU: 3.40GHz dual-core or higher
 * Resolution: 1920x1080
