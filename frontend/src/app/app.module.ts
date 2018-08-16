@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MenuComponent } from './menu/menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MenuComponent } from './menu/menu.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
