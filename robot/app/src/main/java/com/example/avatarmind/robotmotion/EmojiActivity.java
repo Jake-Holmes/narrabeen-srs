@@ -37,6 +37,7 @@ public class EmojiActivity extends Activity implements OnClickListener {
 
         initView();
         initListener();
+        //learning how to use github branches
     }
 
     private void initView() {
