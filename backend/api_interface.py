@@ -7,8 +7,6 @@ app = Flask(__name__)
 app.debug = True
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-cors = CORS(app, resources={r"/foo": {"origins": "http://localhost:port"}})
-
 @app.route('/')
 def root():
 	# Dev method. If this is a static file, it is always best served via a web server.
@@ -28,10 +26,9 @@ def route_menu():
 	return jsonify(me.get_menu(conf))
 	
 @app.route('/api/items', methods=['GET'])
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def route_dishes():
 	
 	return jsonify(me.get_all_dishes(conf))
 
 if __name__ == "__main__":
-	app.run()
+	app.run(host='0.0.0.0', port=5000)

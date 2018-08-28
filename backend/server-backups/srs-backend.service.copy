@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI instance to serve the Narrabeen SRS backend API
+After=network.target
+
+[Service]
+User=pi
+Group=www-data
+WorkingDirectory=/home/pi/workspace/narrabeen-srs/backend
+Environment="PATH=/home/pi/workspace/narrabeen-srs/backend/backendenv/bin"
+ExecStart=/home/pi/workspace/narrabeen-srs/backend/backendenv/bin/uwsgi --ini srs-backend.ini
+
+[Install]
+WantedBy=multi-user.target
