@@ -17,14 +17,15 @@ class UserAcc(Base):
 	#maps python object to columns in the database
 	UserID = Column(Integer, primary_key=True)
 	FristName = Column(String, nullable=False)
+	LastName = Column(String, nullable=False)
 	UserName = Column(String, nullable=False)
 	UserPassword = Column(Binary, nullable=False)
+	AccessLevel = Column(Enum)
 	Email = Column(String, nullable=False)
+	
 	#StaffID = Column(Integer, ForeignKey('staff.StaffID'))
-	#CustomerID = Column(Integer, ForeignKey('customer.CustomerID'))
-	#TableID = Column(Integer, ForeignKey('table.TableID'))
 	#staff = relationship(Staff)
-	#customer = relationship(Customer)
+	#TableID = Column(Integer, ForeignKey('table.TableID'))
 	#table = relationship(Table)
 	
 	
@@ -32,29 +33,49 @@ class Staff(Base):
 	__tablename__ = 'staff'
 	#maps python object to columns in the database
 	StaffID = Column(Integer, primary_key=True)
-	AccessLevel = Column(Enum)
-	
+	StaffRole = Column(String, nullable=False)
 	UserID = Column(ForeignKey('useracc.UserID'))
 	useracc = relationship(UserAcc)
+	
+class TakeAway(Base):
+	__tablename__ = 'takeaway'
+	#maps python object to columns in the database
+	TakeAwayID = Column(Integer, primary_key=True)
+	PickupTime = Column(DateTime, nullable=False)
+	#CustomerID = Column(Integer, ForeignKey('customer.CustomerID'))
+	#customer = relationship(Customer)	
 	
 class Customer(Base):
 	__tablename__ = 'customer'
 	#maps python object to columns in the database
 	CustomerID = Column(Integer, primary_key=True)
+	CustPhone = Column(String, nullable=False)
+	CustomerFirstName = Column(String, nullable=False)
+	CustomerLastName = Column(String, nullable=False)
+	IsBanned = Column(Boolean, nullable=True)
+	TimeSlotID = Column(Integer, nullable=True)
+	TakeAwayID = Column(Integer, ForeignKey('takeaway.TakeAwayID'))
+	takeaway = relationship(TakeAway)	
 	
-	UserID = Column(Integer, ForeignKey('useracc.UserID'))
-	useracc = relationship(UserAcc)
+class TimeSlot(Base):
+	__tablename__ = 'timeslot'
+	#maps python object to columns in the database
+	TimeSlotID = Column(Integer, primary_key=True)
+	StartTime = Column(Integer, nullable=True)
+	Duration = Column(Integer, nullable=True)
+	
+	CustomerID = Column(Integer, ForeignKey('customer.CustomerID'))
+	customer = relationship(Customer)
 	
 class Table(Base):
 	__tablename__ = 'table'
 	#maps python object to columns in the database
 	TableID = Column(Integer, primary_key=True)
+	TableNumber = Column(Integer, nullable=False)
 	NumberSeats = Column(Integer, nullable=True)
 	
-	UserID = Column(Integer, ForeignKey('useracc.UserID'))
-	useracc = relationship(UserAcc)
-	
-	
+	UserID = Column(Integer, ForeignKey('timeslot.TimeSlotID'))
+	timeslot = relationship(TimeSlot)
 	
 class Order(Base):
 	__tablename__ = 'order'
@@ -66,9 +87,9 @@ class Order(Base):
 	IsPaid = Column(Boolean, nullable=True)
 	QR = Column(String, nullable=True)
 
-	CustomerID = Column(Integer, ForeignKey('customer.CustomerID'))
+	TakeAwayID = Column(Integer, ForeignKey('takeaway.TakeAwayID'))
 	#Create a variable called lowercase customer which is the relationship between my class Customer.
-	customer = relationship(Customer)
+	takeaway = relationship(TakeAway)
 	
 	TableID = Column(Integer, ForeignKey('table.TableID'))
 	table = relationship(Table)
