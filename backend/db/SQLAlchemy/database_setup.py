@@ -55,8 +55,7 @@ class Customer(Base):
 	IsBanned = Column(Boolean, nullable=True)
 	TimeSlotID = Column(Integer, nullable=True)
 	TakeAwayID = Column(Integer, ForeignKey('takeaway.TakeAwayID'))
-	takeaway = relationship(TakeAway)
-	
+	takeaway = relationship(TakeAway)	
 	
 class TimeSlot(Base):
 	__tablename__ = 'timeslot'
@@ -67,7 +66,6 @@ class TimeSlot(Base):
 	
 	CustomerID = Column(Integer, ForeignKey('customer.CustomerID'))
 	customer = relationship(Customer)
-
 	
 class Table(Base):
 	__tablename__ = 'table'
