@@ -16,11 +16,11 @@ class UserAcc(Base):
 	__tablename__ = 'useracc'
 	#maps python object to columns in the database
 	UserID = Column(Integer, primary_key=True)
-	FristName = Column(String, nullable=False)
+	FirstName = Column(String, nullable=False)
 	LastName = Column(String, nullable=False)
 	UserName = Column(String, nullable=False)
 	UserPassword = Column(Binary, nullable=False)
-	AccessLevel = Column(Enum)
+	AccessLevel = Column(Enum, nullable=True)
 	Email = Column(String, nullable=False)
 	
 	#StaffID = Column(Integer, ForeignKey('staff.StaffID'))
@@ -112,7 +112,7 @@ class MenuDish(Base):
 	DishID = Column(Integer, primary_key=True)
 	DishName = Column(String, nullable=False)
 	DishDescrption = Column(String, nullable=True)
-	DishImage = Column(String, nullable=False)
+	DishImage = Column(String, nullable=True)
 	Price = Column(Float)
 	OrderDishID = Column(Integer, ForeignKey('orderdish.OrderDishID'))
 	orderdish= relationship(OrderDish)
