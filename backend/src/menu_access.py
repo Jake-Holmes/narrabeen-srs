@@ -1,8 +1,9 @@
 import sqlite3
+from config import active
 
 # Menu module for puling data from the database
 
-def query_active_menu(conf):
+def query_active_menu():
 	'''Get all dishes in the active menu'''
 
 	# Parameters to be pulled from db table
@@ -20,14 +21,14 @@ def query_active_menu(conf):
 		status='Active'
 	)
 	
-	response = execute_query(conf, query)
+	response = execute_query(query)
 
 	# Map database response to a dictionary using select params as keys
 	response_array = response_to_array(response, select_params)
 	
 	return response_array
 	
-def query_all_dishes(conf):
+def query_all_dishes():
 	'''Get all dishes from the db regardless of status'''
 	
 	# Init parameters to be pulled from db table
@@ -43,14 +44,14 @@ def query_all_dishes(conf):
 		table=conf.MENU_TABLE
 	)
 	
-	response = execute_query(conf, query)
+	response = execute_query(query)
 
 	# Map database response to an array of dictionaries using select params as keys
 	response_array = response_to_array(response, select_params)
 		
 	return response_array
 
-def execute_query(conf, query):
+def execute_query(query):
 	'''Execute a given query on the database determined by the provided config'''
 	
 	with sqlite3.connect(conf.DB) as conn:
