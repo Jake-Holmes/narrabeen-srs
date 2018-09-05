@@ -20,15 +20,19 @@ session = DBSession()
 
 
 # Customer User Accounts:
-CustomerAcc1 = UserAcc(FirstName="Wallace",LastName="Alaswad", UserName="alaswaw", UserPassword="123", Email="wallace.alaswad@gmail.com")
+#CustomerAcc1 = UserAcc(FirstName="Wallace",LastName="Alaswad", UserName="alaswaw", UserPassword="123", Email="wallace.alaswad@gmail.com")
+#session.add(CustomerAcc1)
+#session.commit()
 
-session.add(CustomerAcc1)
+#CustomerAcc2 = UserAcc(FirstName="Corey",LastName="Stidston", UserName="stidc", UserPassword="123", Email="corey.stidston@student.uts.edu.au")
+#session.add(CustomerAcc2)
+#session.commit()
+
+
+# MenuDishes
+
+item = MenuDish(DishName="Chocolate Cake", DishDescrption="fresh baked and served with ice cream", Price="3.99")
+session.add(item)
 session.commit()
-
-CustomerAcc2 = UserAcc(FirstName="Corey",LastName="Stidston", UserName="stidc", UserPassword="123", Email="corey.stidston@student.uts.edu.au")
-
-session.add(CustomerAcc2)
-session.commit()
-
 
 print "added menu items!"

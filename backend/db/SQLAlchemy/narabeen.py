@@ -36,7 +36,7 @@ app = Flask(__name__)
 #So if either of these routes get sent from the browser, the function that we define here gets executed.
 '''
 Just know that this @app.route piece of code will call the function that follows it whenever the web server receives a request with a URL that matches its argument.
-So in this case, if we visit the root of my site at local host port 5000 or local host port 5000/hello, the function Narrabeen will be invoked.
+So in this case, if we visit the root of my site at local host port 5000 or local host port 5000/narrabeen, the function Narrabeen will be invoked.
 '''
 @app.route('/')
 @app.route('/narrabeen')
@@ -46,6 +46,8 @@ So in this case, if we visit the root of my site at local host port 5000 or loca
 #I'll also add a break line tag to make my output a bit easier to read.
 #I will return this output string so that my user sees it from the browser.
 def Narrabeen():
+	#return "Welcome to Narrabeen Resturant"
+
     menudishes = session.query(MenuDish).all()
     output = ''
     for menudish in menudishes:
@@ -54,9 +56,8 @@ def Narrabeen():
         output += '</br>'
     return output
 
-
 	
-#Used the run function to run the local server with our application.
+#Use the run function to run the local server with our application.
 '''
 The if statement here makes sure
 the server only runs if the script is executed directly from the Python interpreter, and not used as an imported module.
