@@ -2,8 +2,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from config import active as conf
 from src import menu_engine as me
-from src import testing_purposes as test
-
+from db.schemas.user import User, UserSchema
+from base import session_factory
 
 app = Flask(__name__)
 app.debug = True
@@ -41,6 +41,20 @@ def route_test():
 	x = int(request.args.get('x'))
 	y = int(request.args.get('y'))
 	return jsonify(test.add_numbers(x, y))
-	
+
+
+@app.route('/api/users', methods=['GET'])
+def get_user():
+	session = session_factory()
+	user_objects = session.query(User).all()
+	schema = UserSchema(many=True)
+	users = schema.dump(user_objects)
+	session.close()
+	return jsonify(users)
+
+@app.route('/api/users', methods=['POST'])
+def add_user():
+	return jsonify("complete me"), 200
+
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=5000)
