@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="srs.example.com.srsrobot">
+    package="com.example.avatarmind.robotmotion">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -16,8 +15,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HasBooking" />
-        <activity android:name=".HasValidBooking"></activity>
+        <activity
+            android:name=".MotorsActivity"
+            android:label="@string/title_activity_motors" >
+        </activity>
+        <activity
+            android:name=".HeadActivity"
+            android:label="@string/title_activity_head" >
+        </activity>
+        <activity
+            android:name=".WheelActivity"
+            android:label="@string/title_activity_wheel" >
+        </activity>
+        <activity
+            android:name=".EmojiActivity"
+            android:label="@string/title_activity_emoji" >
+        </activity>
     </application>
 
 </manifest>
