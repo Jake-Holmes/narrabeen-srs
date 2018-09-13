@@ -1,5 +1,5 @@
 import sqlite3
-from config import active
+from config import active as conf
 
 # Menu module for puling data from the database
 
@@ -26,6 +26,32 @@ def query_active_menu():
 	# Map database response to a dictionary using select params as keys
 	response_array = response_to_array(response, select_params)
 	
+	return response_array
+
+
+def query_id_menu(id):
+	'''Get all dishes in the active menu'''
+
+	# Parameters to be pulled from db table
+	select_params = ['Name', 'Price', 'Status']
+
+	# Build the database query
+	query = '''
+	SELECT {select_params}
+	FROM {table}
+	WHERE ItemId='{itemid}'
+	;
+	'''.format(
+		select_params=','.join(select_params),
+		table=conf.MENU_TABLE,
+		itemid=id
+	)
+
+	response = execute_query(query)
+
+	# Map database response to a dictionary using select params as keys
+	response_array = response_to_array(response, select_params)
+
 	return response_array
 	
 def query_all_dishes():

@@ -1,5 +1,4 @@
 from . import menu_access as ma
-from config import active as conf
 
 # Menu module to implement business logic
 
@@ -15,7 +14,13 @@ def get_all_dishes():
 	
 	# Logic to restrict this call to a manager goes here
 	
-	
 	items = ma.query_all_dishes()
 	
 	return items
+
+def get_by_itemid(id):
+	'''Get specific menu item by the ID'''
+
+	item = ma.query_id_menu(id)
+
+	return item
