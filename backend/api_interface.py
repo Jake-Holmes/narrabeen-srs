@@ -1,8 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from src import menu_engine as me
-from db.schemas.user import User, UserSchema
-from base import session_factory
+from src import administration as admin
 import mock_data
 
 app = Flask(__name__)
@@ -52,32 +51,12 @@ def route_item():
 
 @app.route('/api/users', methods=['GET'])
 def get_user():
-	session = session_factory()
-	user_objects = session.query(User).all()
-	schema = UserSchema(many=True)
-	users = schema.dump(user_objects)[0]
-	session.close()
-	return jsonify(users)
+	return admin.get_user()
 
 
 @app.route('/api/users', methods=['POST'])
 def add_user():
-
-	try:
-		user_data = request.get_json()
-		schema = UserSchema()
-		user = schema.load(user_data)[0]
-	except:
-		return jsonify("Error: Failed to decode user object"), 422
-
-	session = session_factory() # Open db session
-	session.add(user) # Add user row
-	session.commit() # Commit changes
-
-	new_user = schema.dump(user).data # Return created user
-
-	session.close() # Close session
-	return jsonify(new_user), 201
+	return admin.add_user(request)
 
 
 @app.route('/api/orders/admin', methods=['GET'])
