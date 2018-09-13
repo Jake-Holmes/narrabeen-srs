@@ -41,3 +41,49 @@ order_items_data = [
 			"order_id": 2
         }
     ]
+
+order_kitchen_data = [
+        {
+            "id": 1,
+            "slot": 1,
+            "price": 10.90,
+            "name": "Chicken",
+            "description": "some description",
+            "status": "ordered",
+            "details": "Gluten free",
+			"order_id": 1789
+        },
+		{
+            "id": 2,
+            "slot": 2,
+            "price": 22.40,
+            "name": "Beef",
+            "description": "some description",
+            "status": "ordered",
+            "details": "Gluten free",
+			"order_id": 2
+        }
+    ]
+
+order_ready_data = [
+        {
+            "id": 1,
+            "slot": 1,
+            "price": 10.90,
+            "name": "Chicken",
+            "description": "some description",
+            "status": "ready",
+            "details": "Gluten free",
+			"order_id": 1789
+        },
+		{
+            "id": 2,
+            "slot": 2,
+            "price": 22.40,
+            "name": "Beef",
+            "description": "some description",
+            "status": "ready",
+            "details": "Gluten free",
+			"order_id": 2
+        }
+    ]
