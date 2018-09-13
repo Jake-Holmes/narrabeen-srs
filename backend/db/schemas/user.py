@@ -1,5 +1,5 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, Binary, Enum
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, post_load
 import enum
 import sys
 sys.path.insert(0, '../../')
@@ -24,14 +24,21 @@ class User(Base):
 		self.lastname = lastname
 		self.username = username
 		self.password = password.encode('utf-8')
-		self.access_level = AccessLevel[access_level]
+		self.access_level = AccessLevel[access_level] # String to enum, customer -> AccessLevel.customer
 		self.email_address = email_address
 
+	def __repr__(self):
+		return '<User(name={self.firstname!r})>'.format(self=self)
+
 class UserSchema(Schema):
-	id = fields.Integer()
+	id = fields.Integer(dump_only=True) # Ignore id field when deserializing object
 	firstname = fields.Str()
 	lastname = fields.Str()
 	username = fields.Str()
 	password = fields.Str()
-	access_level = fields.Str()
+	access_level = fields.Str() # Should probably replace with Enum
 	email_address = fields.Str()
+
+	@post_load
+	def make_user(self, data):
+		return User(**data) # Creates User object post schema.load()
