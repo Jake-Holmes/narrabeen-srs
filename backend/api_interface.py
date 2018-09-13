@@ -4,6 +4,7 @@ from config import active as conf
 from src import menu_engine as me
 from db.schemas.user import User, UserSchema
 from base import session_factory
+import mock_data
 
 app = Flask(__name__)
 app.debug = True
@@ -55,6 +56,14 @@ def get_user():
 @app.route('/api/users', methods=['POST'])
 def add_user():
 	return jsonify("complete me"), 200
+
+@app.route('/api/orders', methods=['GET'])
+def get_orders():
+	return(jsonify(mock_data.orders_data)), 200
+
+@app.route('/api/orderitems', methods=['GET'])
+def get_order_items():
+	return(jsonify(mock_data.order_items_data)), 200
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=5000)
