@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { MenuService } from '../menu.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,16 +13,20 @@ export class MenuComponent implements OnInit {
   today = new Date();
 
   typeOfMeals = [
-    {'id': 0, 'name': "APPETIZERS"},
-    {'id': 1, 'name': "MAINS"},
-    {'id': 2, 'name': "EXTRAS"}
+    {'id': 0, 'name': 'APPETIZERS'},
+    {'id': 1, 'name': 'MAINS'},
+    {'id': 2, 'name': 'EXTRAS'}
   ];
 
-  constructor(private data: DataService) { }
+  constructor(private menuService: MenuService) { }
 
   ngOnInit() {
-    this.data.getMenu().subscribe(
-      data => this.menu$ = data 
+    this.GetMenu();
+  }
+
+  GetMenu(): void {
+    this.menuService.GetMenu().subscribe(
+      data => this.menu$ = data
     );
   }
 
