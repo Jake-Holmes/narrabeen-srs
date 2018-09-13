@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
-from config import active as conf
 from src import menu_engine as me
 from db.schemas.user import User, UserSchema
 from base import session_factory
@@ -23,25 +22,32 @@ def root():
 	return webpage
 
 
-@app.route('/api/menu', methods=['GET'])
+@app.route('/api/menu/all', methods=['GET'])
+def route_dishes():
+	return jsonify(mock_data.menu_item)
+	#return jsonify(me.get_all_dishes())
+
+
+@app.route('/api/menu/active', methods=['GET'])
 @cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def route_menu():
-	
-	return jsonify(me.get_menu(conf))
+	response = []
+	for item in mock_data.menu_item:
+		if item['status'] == 'active':
+			response.append(item)
+
+	return jsonify(response)
+	#return jsonify(me.get_menu())
 
 
-@app.route('/api/items', methods=['GET'])
-def route_dishes():
+@app.route('/api/menu/dish', methods=['GET'])
+def route_item():
+	for item in mock_data.menu_item:
+		if item['id'] == int(request.args.get('id')):
+			return jsonify(item)
 
-	return jsonify(me.get_all_dishes(conf))
-
-
-@app.route('/api/test', methods=['GET'])
-def route_test():
-	
-	x = int(request.args.get('x'))
-	y = int(request.args.get('y'))
-	return jsonify(test.add_numbers(x, y))
+	return jsonify("Does not exist"), 400
+	#return jsonify(me.get_by_itemid(request.args.get('id')))
 
 
 @app.route('/api/users', methods=['GET'])
