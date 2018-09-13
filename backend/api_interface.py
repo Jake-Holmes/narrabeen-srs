@@ -53,17 +53,31 @@ def get_user():
 	session.close()
 	return jsonify(users)
 
+
 @app.route('/api/users', methods=['POST'])
 def add_user():
 	return jsonify("complete me"), 200
 
-@app.route('/api/orders', methods=['GET'])
-def get_orders():
+
+@app.route('/api/orders/admin', methods=['GET'])
+def get_orders_admin():
 	return(jsonify(mock_data.orders_data)), 200
+
 
 @app.route('/api/orderitems', methods=['GET'])
 def get_order_items():
 	return(jsonify(mock_data.order_items_data)), 200
+
+
+@app.route('/api/orders/kitchen', methods=['GET'])
+def get_orders_kitchen():
+	return(jsonify(mock_data.order_kitchen_data)), 200
+
+
+@app.route('/api/orders/ready', methods=['GET'])
+def get_orders_ready():
+	return(jsonify(mock_data.order_ready_data)), 200
+
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=5000)
