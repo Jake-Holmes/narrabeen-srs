@@ -49,6 +49,32 @@ def route_item():
 	#return jsonify(me.get_by_itemid(request.args.get('id')))
 
 
+@app.route('/api/menu/add', methods=['GET'])
+def add_item():
+	item = {
+		"id": int(request.args.get('id')),
+		"name": request.args.get('name'),
+		"type": request.args.get('type'),
+		"description": request.args.get('desc'),
+		"image": request.args.get('img'),
+		"base_price": float(request.args.get('base')),
+		"status": request.args.get('stat')
+	}
+
+	mock_data.menu_item.append(item)
+	return jsonify(mock_data.menu_item)
+
+
+@app.route('/api/menu/remove', methods=['GET'])
+def remove_item():
+	for item in mock_data.menu_item:
+		if item['id'] == int(request.args.get('id')):
+			mock_data.menu_item.remove(item)
+			return jsonify(mock_data.menu_item)
+
+	return jsonify("Does not exist"), 400
+
+
 @app.route('/api/users', methods=['GET'])
 def get_user():
 	return admin.get_user()
