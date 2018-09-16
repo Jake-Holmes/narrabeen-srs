@@ -179,7 +179,8 @@ public class WheelActivity extends Activity implements OnClickListener {
 
                     //double turnDegrees = get_new_direction_in_degrees(currentCell, nextCell);
                     double turnDegrees = logicalGetDirection(currentCell, nextCell); //absolute degrees from 0
-                    double turnAngle = Math.abs(turnDegrees - currentHeading);
+                    double turnAngle = turnDegrees - currentHeading;
+                    turnAngle += turnAngle < 0 ? 360 : 0; //normalise negative angle;
 
                     if (turnDegrees != currentHeading) {
                         Log.d(TAG, "turning angle: " + turnAngle);
