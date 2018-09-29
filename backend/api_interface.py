@@ -105,5 +105,29 @@ def get_orders_ready():
 	return(jsonify(mock_data.order_ready_data)), 200
 
 
+#all reservations
+@app.route('/api/reservations/all', methods=['GET'])
+def get_reservations_all():
+	return(jsonify(mock_data.reservation_data)), 200
+
+
+#reservations for the next 2 weeks
+@app.route('/api/reservations/upcoming', methods=['GET'])
+def get_reservations_all():
+	return(jsonify(mock_data.reservation_data)), 200
+
+
+#make reservation
+@app.route('/api/reservations/all', methods=['GET'])
+def get_reservations_all():
+	return(jsonify(mock_data.reservation_data)), 200
+
+
+#delete reservation
+@app.route('/api/reservations/all', methods=['GET'])
+def get_reservations_all():
+	return(jsonify(mock_data.reservation_data)), 200
+
+
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=5000)
