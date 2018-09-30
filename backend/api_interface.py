@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from src import menu_engine as me
-from src import administration as admin
+from src import user as UserFacade
+from src import order as OrderFacade
 import mock_data
 
 app = Flask(__name__)
@@ -77,12 +78,22 @@ def remove_item():
 
 @app.route('/api/users', methods=['GET'])
 def get_user():
-	return admin.get_user()
+	return UserFacade.get_users(request)
 
 
 @app.route('/api/users', methods=['POST'])
 def add_user():
-	return admin.add_user(request)
+	return UserFacade.add_user(request)
+
+
+@app.route('/api/orders', methods=['GET'])
+def get_orders():
+	return OrderFacade.get_orders(request)
+
+
+@app.route('/api/orders/<orderId>', methods=['GET'])
+def get_order(orderId):
+	return OrderFacade.get_order(request, orderId)
 
 
 @app.route('/api/orders/admin', methods=['GET'])
@@ -104,6 +115,20 @@ def get_orders_kitchen():
 def get_orders_ready():
 	return(jsonify(mock_data.order_ready_data)), 200
 
+@app.route('/api/example/<path_param>', methods=['GET','POST','PUT','DELETE'])
+def example_route(path_param):
+	# Make the call http://0.0.0.0:5000/api/example/recipes?query_param_1=soup&query_param_2=tasty
+	#
+	# query_param_1 and query_param_2 are passed as 'query strings'
+	# query strings are used to 'query' a resource
+	#
+	# 'recipes' is a path parameter (passed as a method parameter of the route)
+	# path parameters are used to represent resources and subresources, like a file system
+	# e.g. '/Documents/users.csv' resembles '/api/users'
+
+	query_param_1 = request.args.get("query_param_1", None) # where None is the default value
+	query_param_2 = request.args.get("query_param_2", None)
+	return(jsonify([query_param_1, query_param_2, path_param]), 200)
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=5000)
