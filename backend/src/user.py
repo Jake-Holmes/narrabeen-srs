@@ -4,7 +4,7 @@ from .decorators import error_handler
 from db.schemas.user import User, UserSchema
 
 @error_handler
-def get_user():
+def get_users(request):
     session = session_factory()
     user_objects = session.query(User).all()
     schema = UserSchema(many=True)
