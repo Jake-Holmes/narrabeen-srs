@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { Observable } from 'rxjs';
+import { MenuItem } from './menu';
 
 @Component({
   selector: 'app-menu',
@@ -9,14 +10,9 @@ import { Observable } from 'rxjs';
 })
 export class MenuComponent implements OnInit {
 
-  menu$: Object;
+  menu$: MenuItem[];
+  menuTypes: String[] = [];
   today = new Date();
-
-  typeOfMeals = [
-    {'id': 0, 'name': 'APPETIZERS'},
-    {'id': 1, 'name': 'MAINS'},
-    {'id': 2, 'name': 'EXTRAS'}
-  ];
 
   constructor(private menuService: MenuService) { }
 
@@ -25,9 +21,22 @@ export class MenuComponent implements OnInit {
   }
 
   GetMenu(): void {
-    this.menuService.GetMenu().subscribe(
-      data => this.menu$ = data
-    );
+    this.menuService.GetMenu().subscribe(data => {
+      this.menu$ = data;
+      this.menuTypes = this.GetMenuTypes(data);
+    });
+  }
+
+  GetMenuTypes(data): String[] {
+    const typeList: String[] = [];
+
+    data.map((menuItem: MenuItem) => menuItem.type).forEach(element => {
+      if (this.menuTypes.indexOf(element)) {
+        typeList.push(element);
+      }
+    });
+
+    return typeList;
   }
 
 }

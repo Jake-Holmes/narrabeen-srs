@@ -5,24 +5,24 @@
 <div class="container">
   <h1>Specials for {{ today | date }}</h1>
   
-  <div *ngFor="let type of typeOfMeals">
-    <h2> {{ type.name }} </h2>
+  <div *ngFor="let type of menuTypes">
+    <h2> {{ type }} </h2>
     <mat-grid-list cols=4 rowHeight="250px" gutterSize="6px" class="appetizers" >
-      <mat-grid-tile class="item" *ngFor="let item of menu$"
+      <mat-grid-tile class="item" *ngFor="let item of menu$" 
       [colspan]="1"
       [rowspan]="1">
 
-        <mat-card class="menu-item">
+        <mat-card class="menu-item" *ngIf="item.type == type">
           <mat-card-header>
-            <mat-card-title>{{ item.Name }}</mat-card-title>
+            <mat-card-title>{{ item.name }}</mat-card-title>
           </mat-card-header>
 
           <mat-card-content>
               <p>
-                  Mozzarella, tomatoes, basil, balsmac glaze, pineapple
+                  {{ item.description }}
               </p>
               <div class="price">
-                <p class="price"> {{ item.Price | currency }}</p>
+                <p class="price"> {{ item.price | currency }}</p>
               </div>
             </mat-card-content>
             

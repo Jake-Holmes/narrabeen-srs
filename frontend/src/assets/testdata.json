@@ -1,0 +1,38 @@
+[
+    {
+      "base_price": 13.5, 
+      "description": "spicy", 
+      "id": 101, 
+      "image": "chicken", 
+      "name": "chicken", 
+      "status": "active", 
+      "type": "poultry"
+    }, 
+    {
+      "base_price": 16.5, 
+      "description": "non-spicy", 
+      "id": 102, 
+      "image": "fish", 
+      "name": "fish", 
+      "status": "active", 
+      "type": "seafood"
+    }, 
+    {
+      "base_price": 17.9, 
+      "description": "non-spicy", 
+      "id": 103, 
+      "image": "beef", 
+      "name": "beef", 
+      "status": "active", 
+      "type": "meat"
+    }, 
+    {
+      "base_price": 6.5, 
+      "description": "sweet", 
+      "id": 104, 
+      "image": "apple pie", 
+      "name": "apple pie", 
+      "status": "inactive", 
+      "type": "dessert"
+    }
+  ]
