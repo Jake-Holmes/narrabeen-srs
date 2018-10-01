@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { Observable } from 'rxjs';
-import { MenuItem } from './menu';
+import { MenuItem } from '../menu';
 
 @Component({
   selector: 'app-menu',

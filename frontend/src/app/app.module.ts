@@ -11,12 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
+import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    MenuComponent
+    MenuComponent,
+    MenuItemDetailsComponent
   ],
   imports: [
     BrowserModule,

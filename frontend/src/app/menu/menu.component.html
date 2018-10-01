@@ -10,16 +10,15 @@
         <div *ngFor="let item of menu$">
           <mat-card class="menu-item" *ngIf="item.type == type">
             <mat-card-header>
-              <mat-card-title>{{ item.name }}</mat-card-title>
+              <mat-card-title><a routerLink='/menu-item/{{item.id}}'>{{ item.name }}</a></mat-card-title>
             </mat-card-header>
   
             <mat-card-content>
                 <p>
                     {{ item.description }}
                 </p>
-                <div class="price">
-                  <p class="price"> {{ item.price | currency }}</p>
-                </div>
+                
+                <p> {{ item.base_price | currency }}</p>
               </mat-card-content>
               
               <mat-card-actions>
