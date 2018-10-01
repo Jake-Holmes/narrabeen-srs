@@ -24,10 +24,10 @@ class Order(Base):
     status = Column(Enum(OrderStatus))
     order_type = Column(Enum(OrderType))
     order_items = relationship("OrderItem")
+    table_id = Column(Integer, ForeignKey('tables.id'))
+    # takeaway_id, create relationship
     date_created = Column(DateTime)
-    date_modified = Column(DateTime)
-    #TableId
-    #TakeawayId
+    date_modified = Column(DateTime) 
 
     def __init__(self, status, order_type):
         self.status = OrderStatus[status]
