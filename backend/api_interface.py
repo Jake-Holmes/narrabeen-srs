@@ -3,6 +3,7 @@ from flask_cors import CORS, cross_origin
 from src import menu_engine as me
 from src import user as UserFacade
 from src import order as OrderFacade
+from src import reservation as ReservationFacade
 import mock_data
 
 app = Flask(__name__)
@@ -133,7 +134,7 @@ def example_route(path_param):
 #all reservations
 @app.route('/api/reservations', methods=['GET'])
 def get_reservations_all():
-	return(jsonify(mock_data.reservation_data)), 200
+	return ReservationFacade.get_reservations(request)
 
 
 

@@ -32,4 +32,16 @@ class Reservation(Base):
 		self.date_created = now
 		self.date_modified = now
 
+class ReservationSchema(Schema):
+	id = fields.Integer(dump_only=True)
+	start_time = fields.DateTime()
+	end_time = fields.DateTime()
+	duration = fields.Integer()
+	table_id = fields.Integer()
+	customer_id = fields.Integer()
+
+	@post_load
+	def make_reservation(self, data):
+		return Reservation(**data)  # Creates Order object post schema.load()
+
 # todo: add object schema
