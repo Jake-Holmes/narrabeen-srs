@@ -9,6 +9,15 @@
       "type": "poultry"
     }, 
     {
+      "base_price": 14.5, 
+      "description": "spicy", 
+      "id": 101, 
+      "image": "duck", 
+      "name": "duck", 
+      "status": "active", 
+      "type": "poultry"
+    },
+    {
       "base_price": 16.5, 
       "description": "non-spicy", 
       "id": 102, 

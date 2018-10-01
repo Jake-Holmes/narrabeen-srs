@@ -11,6 +11,9 @@ import { MenuItem } from './menu';
 export class MenuComponent implements OnInit {
 
   menu$: MenuItem[];
+
+  // TODO Convert this into an order with a list of items or something
+  selectedMenuItems: MenuItem[] = [];
   menuTypes: String[] = [];
   today = new Date();
 
@@ -37,6 +40,10 @@ export class MenuComponent implements OnInit {
     });
 
     return typeList;
+  }
+
+  SelectMenuItem(menuItem: MenuItem): void {
+    this.selectedMenuItems.push(menuItem);
   }
 
 }
