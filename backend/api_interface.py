@@ -130,5 +130,29 @@ def example_route(path_param):
 	query_param_2 = request.args.get("query_param_2", None)
 	return(jsonify([query_param_1, query_param_2, path_param]), 200)
 
+#all reservations
+@app.route('/api/reservations/all', methods=['GET'])
+def get_reservations_all():
+	return(jsonify(mock_data.reservation_data)), 200
+
+
+#reservations for the next 2 weeks
+@app.route('/api/reservations/upcoming', methods=['GET'])
+def get_reservations_all():
+	return(jsonify(mock_data.reservation_data)), 200
+
+
+#make reservation
+@app.route('/api/reservations/all', methods=['GET'])
+def get_reservations_all():
+	return(jsonify(mock_data.reservation_data)), 200
+
+
+#delete reservation
+@app.route('/api/reservations/all', methods=['GET'])
+def get_reservations_all():
+	return(jsonify(mock_data.reservation_data)), 200
+
+
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=5000)

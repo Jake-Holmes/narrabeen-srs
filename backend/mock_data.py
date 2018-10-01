@@ -127,3 +127,42 @@ menu_item = [
     }
 ]
 
+table_data = [
+    {
+        "id": 1,
+        "table_number": 1,
+        "seats": 4,
+        "qr_code": 783743234,
+        "passcode": 4123,
+        "status": True
+    },
+    {
+        "id": 2,
+        "table_number": 2,
+        "seats": 10,
+        "qr_code": 537569364,
+        "passcode": 6978,
+        "status": False
+    }
+]
+
+reservation_data = [
+    {
+        "id": 1,
+        "date": "1/1/2018",
+        "start_time": "12:00",
+        "end_time": "01:00",
+        "duration": 60,
+        "table_id": 1,
+        "customer_id": 123
+    },
+    {
+        "id": 2,
+        "date": "1/1/2018",
+        "start_time": "01:00",
+        "end_time": "02:00",
+        "duration": 60,
+        "table_id": 2,
+        "customer_id": 123
+    }
+]
