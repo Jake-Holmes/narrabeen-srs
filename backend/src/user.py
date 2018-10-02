@@ -1,7 +1,8 @@
 from flask import jsonify
 from base import session_factory
 from .decorators import error_handler
-from db.schemas.user import User, UserSchema
+from db.schemas.user import User
+from interface.schemas.user import UserSchema
 
 @error_handler
 def get_users(request):

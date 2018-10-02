@@ -13,7 +13,7 @@ class Customer(Base):
 	firstname = Column(String)
 	lastname = Column(String)
 	status = Column(Boolean)
-	#TakeAway
+	# todo: TakeAway relationship
 	date_created = Column(DateTime)
 	date_modified = Column(DateTime)
 
@@ -26,15 +26,3 @@ class Customer(Base):
 		now = datetime.datetime.utcnow()
 		self.date_created = now
 		self.date_modified = now
-
-class CustomerSchema(Schema):
-	id = fields.Integer(dump_only=True) # Ignore id field when deserializing object
-	phone = fields.Str()
-	firstname = fields.Str()
-	lastname = fields.Str()
-	username = fields.Str()
-	status = fields.Boolean()
-
-	@post_load
-	def make_customer(self, data):
-		return Customer(**data) # Creates Customer object post schema.load()

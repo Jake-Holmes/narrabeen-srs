@@ -78,7 +78,7 @@ def remove_item():
 
 
 @app.route('/api/users', methods=['GET'])
-def get_user():
+def get_users():
 	return UserFacade.get_users(request)
 
 
@@ -129,7 +129,8 @@ def example_route(path_param):
 
 	query_param_1 = request.args.get("query_param_1", None) # where None is the default value
 	query_param_2 = request.args.get("query_param_2", None)
-	return(jsonify([query_param_1, query_param_2, path_param]), 200)
+
+	return(jsonify([query_param_1, query_param_2, path_param, request.method]), 200)
 
 #all reservations
 @app.route('/api/reservations', methods=['GET'])

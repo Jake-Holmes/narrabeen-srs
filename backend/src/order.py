@@ -1,7 +1,8 @@
 from flask import jsonify
 from base import session_factory
 from .decorators import error_handler
-from db.schemas.order import Order, OrderSchema
+from db.schemas.order import Order
+from interface.schemas.order import OrderSchema
 
 @error_handler
 def get_orders(request):

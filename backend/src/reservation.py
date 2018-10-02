@@ -1,7 +1,8 @@
 from flask import jsonify
 from base import session_factory
 from .decorators import error_handler
-from db.schemas.reservation import Reservation, ReservationSchema
+from db.schemas.reservation import Reservation
+from interface.schemas.reservation import ReservationSchema
 
 @error_handler
 def get_reservations(request):

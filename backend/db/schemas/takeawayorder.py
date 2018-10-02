@@ -22,14 +22,3 @@ class TakeAwayOrder(Base):
 		now = datetime.datetime.utcnow()
 		self.date_created = now
 		self.date_modified = now
-
-class TakeAwayOrderSchema(Schema):
-	id = fields.Integer(dump_only=True) # Ignore id field when deserializing object
-	pickup_time = fields.DateTime()
-	customer_id = fields.Int()
-	date_created = fields.DateTime(dump_only=True)
-	date_modified = fields.DateTime()
-	
-	@post_load
-	def make_takeawayorder(self, data):
-		return TakeAwayOrder(**data) # Creates TakeAwayOrder object post schema.load()

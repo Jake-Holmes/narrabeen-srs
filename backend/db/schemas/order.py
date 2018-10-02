@@ -1,6 +1,5 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, Binary, Enum, DateTime
 from sqlalchemy.orm import relationship
-from marshmallow import Schema, fields, post_load
 import enum
 import sys
 import datetime
@@ -25,7 +24,7 @@ class Order(Base):
     order_type = Column(Enum(OrderType))
     order_items = relationship("OrderItem")
     table_id = Column(Integer, ForeignKey('tables.id'))
-    # takeaway_id, create relationship
+    # todo: takeaway_id, create relationship
     date_created = Column(DateTime)
     date_modified = Column(DateTime) 
 
@@ -35,15 +34,3 @@ class Order(Base):
         now = datetime.datetime.utcnow()
         self.date_created = now
         self.date_modified = now
-
-class OrderSchema(Schema):
-	id = fields.Integer(dump_only=True) # Ignore id field when deserializing object
-	status = fields.Str()
-	order_type = fields.Str()
-	#  order_items = 
-	date_created = fields.DateTime(dump_only=True)
-	date_modified = fields.DateTime()
-
-	@post_load
-	def make_order(self, data):
-		return Order(**data) # Creates Order object post schema.load()

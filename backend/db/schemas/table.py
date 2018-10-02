@@ -23,5 +23,3 @@ class Table(Base):
 		self.qr_code = qr_code
 		self.passcode = passcode
 		self.status = status
-
-# todo: add object schema

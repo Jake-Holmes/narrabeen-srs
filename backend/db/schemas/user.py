@@ -32,18 +32,3 @@ class User(Base):
 		now = datetime.datetime.utcnow()
 		self.date_created = now
 		self.date_modified = now
-
-class UserSchema(Schema):
-	id = fields.Integer(dump_only=True) # Ignore id field when deserializing object
-	firstname = fields.Str()
-	lastname = fields.Str()
-	username = fields.Str()
-	password = fields.Str(load_only=True)
-	access_level = fields.Str() # Should probably replace with Enum
-	email_address = fields.Str()
-	date_created = fields.DateTime(dump_only=True)
-	date_modified = fields.DateTime()
-
-	@post_load
-	def make_user(self, data):
-		return User(**data) # Creates User object post schema.load()

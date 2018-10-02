@@ -1,0 +1,16 @@
+from marshmallow import Schema, fields, post_load
+import sys
+sys.path.insert(0, '../../')
+from db.schemas.customer import Customer
+
+class CustomerSchema(Schema):
+	id = fields.Integer(dump_only=True) # Ignore id field when deserializing object
+	phone = fields.Str()
+	firstname = fields.Str()
+	lastname = fields.Str()
+	username = fields.Str()
+	status = fields.Boolean()
+
+	@post_load
+	def make_customer(self, data):
+		return Customer(**data) # Creates Customer object post schema.load()
