@@ -31,3 +31,6 @@ class Reservation(Base):
 		now = datetime.datetime.utcnow()
 		self.date_created = now
 		self.date_modified = now
+	
+	def __repr__(self):
+		return "<Reservation(id='{}', customer_id='{}', table_id='{}')>".format(self.id, self.customer_id, self.table_id)

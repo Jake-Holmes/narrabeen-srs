@@ -8,9 +8,7 @@ class ReservationSchema(Schema):
 	start_time = fields.DateTime()
 	end_time = fields.DateTime()
 	duration = fields.Integer()
-	table_id = fields.Integer()
-	customer_id = fields.Integer()
-
-	@post_load
-	def make_reservation(self, data):
-		return Reservation(**data)  # Creates Reservation object post schema.load()
+	table_id = fields.Integer(dump_only=True) # Ignore table_id when loading data to object
+	customer_id = fields.Integer(dump_only=True) # Ignore customer_idwhen loading data to object
+	date_created = fields.DateTime(dump_only=True) # Ignore date_created when loading data to object
+	date_modified = fields.DateTime(dump_only=True) # Ignore data_modified when loading data to object

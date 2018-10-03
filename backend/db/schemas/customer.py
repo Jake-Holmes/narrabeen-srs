@@ -26,3 +26,6 @@ class Customer(Base):
 		now = datetime.datetime.utcnow()
 		self.date_created = now
 		self.date_modified = now
+
+	def __repr__(self):
+		return "<Customer(id='{}', firstname='{}', lastname='{}')>".format(self.id, self.firstname, self.lastname)

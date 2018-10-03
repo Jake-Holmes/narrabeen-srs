@@ -13,8 +13,4 @@ class OrderSchema(Schema):
     # or maybe something like:
     # fields.Dict(values=fields.Float(), keys=fields.Str())
 	date_created = fields.DateTime(dump_only=True) # Ignore date_created when loading data to object
-	date_modified = fields.DateTime()
-
-	@post_load
-	def make_order(self, data):
-		return Order(**data) # Creates Order object post schema.load()
+	date_modified = fields.DateTime(dump_only=True) # Ignore data_modified when loading data to object

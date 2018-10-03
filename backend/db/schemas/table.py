@@ -23,3 +23,6 @@ class Table(Base):
 		self.qr_code = qr_code
 		self.passcode = passcode
 		self.status = status
+
+	def __repr__(self):
+		return "<Table(id='{}', table_number='{}', qr_code='{}')>".format(self.id, self.table_number, self.qr_code)

@@ -9,8 +9,6 @@ class CustomerSchema(Schema):
 	firstname = fields.Str()
 	lastname = fields.Str()
 	username = fields.Str()
-	status = fields.Boolean()
-
-	@post_load
-	def make_customer(self, data):
-		return Customer(**data) # Creates Customer object post schema.load()
+	status = fields.Boolean(dump_only=True) # Ignore status field when loading data to objects
+	date_created = fields.DateTime(dump_only=True) # Ignore date_created when loading data to object
+	date_modified = fields.DateTime(dump_only=True) # Ignore data_modified when loading data to object

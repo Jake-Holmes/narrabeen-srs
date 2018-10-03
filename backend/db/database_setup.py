@@ -16,9 +16,9 @@ dbfile="narrabeen2.db"
 # Delete database file
 if os.path.isfile(dbfile):
 	os.remove(dbfile)
-	print("File: %s removed" % dbfile)
+	print("File: %s removed\n" % dbfile)
 else:
-	print("Note: %s database file not found" % dbfile)
+	print("Note: %s database file not found\n" % dbfile)
 
 session = session_factory()
 
@@ -47,9 +47,17 @@ reservation1 = Reservation(1.5, table1, customer1, start, end)
 
 session.add_all([table1, corey, wallace, steak, orderItem1, order1, customer1, reservation1])
 
+# Perform some queries
+# Refer to: https://docs.sqlalchemy.org/en/latest/orm/tutorial.html
+
+for reservation in session.query(Reservation).filter(Reservation.customer_id == 1):
+	print(str(reservation))
+	print(str(reservation.customer))
+	print(str(reservation.table))
+
 # Commit and close session
 
 session.commit()
 session.close()
 
-print("New database file created")
+print("\nNew database file created")

@@ -8,12 +8,8 @@ class UserSchema(Schema):
 	firstname = fields.Str()
 	lastname = fields.Str()
 	username = fields.Str()
-	password = fields.Str(load_only=True) # Ignore field when dumping object to data
-	access_level = fields.Str() # Should probably replace with Enum
+	password = fields.Str(load_only=True) # Ignore password when dumping object to data
+	access_level = fields.Str() # Should probably replace with Enum so we can validate data
 	email_address = fields.Str()
-	date_created = fields.DateTime(dump_only=True) # Ignore field when loading data to object
-	date_modified = fields.DateTime()
-
-	@post_load
-	def make_user(self, data):
-		return User(**data) # Creates User object post schema.load()
+	date_created = fields.DateTime(dump_only=True) # Ignore date created when loading data to object
+	date_modified = fields.DateTime(dump_only=True) # Ignore date modified when loading data to object
