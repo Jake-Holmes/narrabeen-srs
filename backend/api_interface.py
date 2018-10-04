@@ -25,7 +25,7 @@ def route_edit_order():
 
 
 @app.route('/order/all', methods=['GET'])
-def route_get_order():
+def route_get_all_order():
         response_body, response_code = order_engine.get_all_orders(request.form)
         return jsonify(response_body), response_code
 
