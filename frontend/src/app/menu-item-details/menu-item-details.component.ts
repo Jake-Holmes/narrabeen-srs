@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MenuItem } from '../menu';
 import { MenuService } from '../menu.service';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-menu-item-details',
@@ -16,6 +17,7 @@ export class MenuItemDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private menuService: MenuService,
+    private cartService: CartService,
     private location: Location
   ) { }
 
@@ -30,8 +32,11 @@ export class MenuItemDetailsComponent implements OnInit {
     this.menuService.getMenuItem(id).subscribe(menuItem => this.item = menuItem.find(mItem => mItem.id === id));
   }
 
+  AddToOrder(item: MenuItem): void {
+    this.cartService.AddItem(item);
+  }
+
   GoBack(): void {
     this.location.back();
   }
-
 }

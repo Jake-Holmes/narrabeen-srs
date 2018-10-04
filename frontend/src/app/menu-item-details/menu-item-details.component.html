@@ -1,4 +1,6 @@
-<button (click)="GoBack()">go back</button>
-<p *ngIf="item">
-  {{ item.name }}
-</p>
+<button mat-raised-button (click)="GoBack()">go back</button>
+<div *ngIf="item">
+  <h2>{{ item.name }}</h2>
+  <p>{{ item.base_price }}</p>
+  <button mat-raised-button (click)="AddToOrder(item)">Add to order</button>
+</div>
