@@ -3,4 +3,10 @@ import sys
 sys.path.insert(0, '../../')
 from db.schemas.table import Table
 
-# todo: add Table object schema
+class TableSchema():
+	id = field.Integer(dump_only=True)
+	table_number = fields.Int()
+	seats = fields.Int()
+	qr_code = fields.Str(dump_only=True)
+	passcode = fields.Str()
+	status = fields.Bool()
