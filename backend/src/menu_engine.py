@@ -5,14 +5,14 @@ from . import menu_access as ma
 def set_menu(data):
 	return "Okay", 200
 
-def get_menu_item():
+def get_menu_item(data):
 	return "Okay", 200
 
-def edit_menu_item():
+def edit_menu_item(data):
 	return "Okay", 200
 
-def get_all_menu():
+def get_all_menu(data):
 	return "Okay", 200
 
-def set_menu():
+def set_menu(data):
 	return "Okay", 200

@@ -5,10 +5,10 @@ def get_order(data):
 	return "Okay", 200
 
 
-def edit_order():
+def edit_order(data):
 	return "Okay", 200
 
 
-def get_all_order():
+def get_all_order(data):
 	return "Okay", 200
 
