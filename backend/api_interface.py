@@ -49,15 +49,9 @@ def route_edit_menu_item():
         return jsonify(response_body), response_code
 
 
-@app.route('/menu/all', methods=['POST'])
+@app.route('/menu/all', methods=['GET'])
 def route_get_all_menu():
         response_body, response_code = menu_engine.get_all_menu(request.form)
-        return jsonify(response_body), response_code
-
-
-@app.route('/menu', methods=['POST'])
-def route_set_menu():
-        response_body, response_code = menu_engine.set_menu(request.form)
         return jsonify(response_body), response_code
 
 
