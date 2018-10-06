@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields, post_load
+from marshmallow import Schema, fields
 import sys
 sys.path.insert(0, '../../')
 from db.schemas.user import User

@@ -19,16 +19,18 @@ class MenuItem(Base):
     name = Column(String)
     description = Column(String)
     menu_item_type = Column(Enum(MenuItemType))
-    price = Column(Float)
+    base_price = Column(Float)
+    #image
     active = Column(Boolean)
     date_created = Column(DateTime)
     date_modified = Column(DateTime)
 
-    def __init__(self, name, description, menu_item_type, price, active):
+    def __init__(self, name, description, menu_item_type, base_price, active):
         self.name = name
         self.description = description
         self.menu_item_type = MenuItemType[menu_item_type]
-        self.price = price
+        self.base_price = base_price
+        #image
         self.active = active
         now = datetime.datetime.utcnow()
         self.date_created = now
