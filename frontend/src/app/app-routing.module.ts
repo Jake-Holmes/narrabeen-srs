@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.component';
 import { TablemanagementComponent } from "./tablemanagement/tablemanagement.component";
+import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,11 @@ const routes: Routes = [
   {
     path: 'tablemanagement',
     component: TablemanagementComponent
-  }
+  },
+  {
+    path: 'kitchen-view',
+    component: KitchenViewComponent
+  },
 ];
 
 @NgModule({

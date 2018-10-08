@@ -13,6 +13,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
 import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.component';
 import { TablemanagementComponent } from './tablemanagement/tablemanagement.component';
+import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TablemanagementComponent } from './tablemanagement/tablemanagement.comp
     SidebarComponent,
     MenuComponent,
     MenuItemDetailsComponent,
-    TablemanagementComponent
+    TablemanagementComponent,
+    KitchenViewComponent
   ],
   imports: [
     BrowserModule,
