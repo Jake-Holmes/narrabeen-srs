@@ -7,6 +7,7 @@ from db.schemas.order import Order
 from db.schemas.menu_item import MenuItem
 from db.schemas.order_item import OrderItem
 from db.schemas.table import Table
+from db.schemas.takeawayorder import TakeAwayOrder
 from db.schemas.customer import Customer
 from db.schemas.reservation import Reservation
 from db.base import session_factory
@@ -31,7 +32,7 @@ wallace = User("Wallace", "Alaswad", "alaswaw", "123", "staff", "wallace.alaswad
 
 steak = MenuItem("Steak", "Serious steak for a serious steak lover", "main", 19.99, True)
 
-orderItem1 = OrderItem(1, 19.99, "confirmed", "dinein", steak) # OrderItem1 has an association with menu item Steak
+orderItem1 = OrderItem(1, 19.99, "confirmed", steak) # OrderItem1 has an association with menu item Steak
 
 order1 = Order("confirmed", "dinein")
 table1.order = order1 # Table1 links to Order1
@@ -53,7 +54,11 @@ session.add_all([table1, corey, wallace, steak, orderItem1, order1, customer1, r
 for reservation in session.query(Reservation).filter(Reservation.customer_id == 1):
 	print(str(reservation))
 	print(str(reservation.customer))
+	print(str(reservation.customer.reservations))
 	print(str(reservation.table))
+
+for customer in session.query(Customer).all():
+	print(str(customer.takeawayorders))
 
 # Commit and close session
 

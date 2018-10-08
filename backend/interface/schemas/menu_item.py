@@ -8,7 +8,7 @@ class MenuItemSchema(Schema):
     name = fields.Str()
     menu_item_type = fields.Str()
     description = fields.Str()
-    # image = fields.Str()
+    image = fields.Str(dump_only=True)
     base_price = fields.Float()
     active = fields.Boolean()
     date_created = fields.DateTime(dump_only=True) # Ignore date_created when loading data to object

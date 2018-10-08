@@ -20,7 +20,7 @@ class MenuItem(Base):
     description = Column(String)
     menu_item_type = Column(Enum(MenuItemType))
     base_price = Column(Float)
-    #image
+    image = Column(String)
     active = Column(Boolean)
     date_created = Column(DateTime)
     date_modified = Column(DateTime)
@@ -30,8 +30,8 @@ class MenuItem(Base):
         self.description = description
         self.menu_item_type = MenuItemType[menu_item_type]
         self.base_price = base_price
-        #image
         self.active = active
+        self.image = "images/food.jpg" # todo: Change this on implementation
         now = datetime.datetime.utcnow()
         self.date_created = now
         self.date_modified = now

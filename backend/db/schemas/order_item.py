@@ -6,13 +6,8 @@ import sys
 import datetime
 sys.path.insert(0, '../../')
 from db.base import Base
-from db.schemas.menu_item import MenuItem
 
 # Should we move all enums to a separate file?
-# This enum is present in order.py
-class OrderType(enum.Enum):
-    dinein = 1
-    takeaway = 2
 
 class OrderItemStatus(enum.Enum):
     confirmed = 1
@@ -26,18 +21,17 @@ class OrderItem(Base):
     slot = Column(Integer)
     price = Column(Float)
     status = Column(Enum(OrderItemStatus))
-    order_type = Column(Enum(OrderType))
     menu_item_id = Column(Integer, ForeignKey('menuitems.id'))
-    menu_item = relationship("MenuItem")
+    menu_item = relationship("MenuItem", uselist=False)
     order_id = Column(Integer, ForeignKey('orders.id'))
+    order = relationship("Order", uselist=False)
     date_created = Column(DateTime)
     date_modified = Column(DateTime)
 
-    def __init__(self, slot, price, status, order_type, menu_item):
+    def __init__(self, slot, price, status, menu_item):
         self.slot = slot
         self.price = price
         self.status = OrderItemStatus[status]
-        self.order_type = OrderType[order_type]
         self.menu_item = menu_item
         now = datetime.datetime.utcnow()
         self.date_created = now

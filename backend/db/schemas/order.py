@@ -6,6 +6,7 @@ import datetime
 sys.path.insert(0, '../../')
 from db.base import Base
 from db.schemas.order_item import OrderItem
+from db.schemas.takeawayorder import TakeAwayOrder
 
 class OrderType(enum.Enum):
     dinein = 1
@@ -24,7 +25,9 @@ class Order(Base):
     order_type = Column(Enum(OrderType))
     order_items = relationship("OrderItem")
     table_id = Column(Integer, ForeignKey('tables.id'))
-    # todo: takeaway_id, create relationship
+    table = relationship("Table", uselist=False)
+    takeaway_id = Column(Integer, ForeignKey('takeawayorders.id'))
+    takeaway = relationship("TakeAwayOrder", uselist=False)
     date_created = Column(DateTime)
     date_modified = Column(DateTime) 
 

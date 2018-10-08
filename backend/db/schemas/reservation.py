@@ -16,9 +16,9 @@ class Reservation(Base):
 	end_time = Column(DateTime)
 	duration = Column(Float)
 	table_id = Column(Integer, ForeignKey('tables.id'))
-	table = relationship("Table")
+	table = relationship("Table", uselist=False)
 	customer_id = Column(Integer, ForeignKey('customers.id'))
-	customer = relationship("Customer")
+	customer = relationship("Customer", uselist=False)
 	date_created = Column(DateTime)
 	date_modified = Column(DateTime)
 
@@ -31,6 +31,6 @@ class Reservation(Base):
 		now = datetime.datetime.utcnow()
 		self.date_created = now
 		self.date_modified = now
-	
+
 	def __repr__(self):
 		return "<Reservation(id='{}', customer_id='{}', table_id='{}')>".format(self.id, self.customer_id, self.table_id)

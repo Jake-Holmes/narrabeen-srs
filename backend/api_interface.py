@@ -54,13 +54,13 @@ def route_get_all_menu():
 
 
 ###----------USER----------###
-@app.route('/api/user/all', methods=['GET'])
+@app.route('/user/all', methods=['GET'])
 def get_all_users():
     response_body, response_code = user_engine.get_all_users(request)
     return jsonify(response_body), response_code
 
 
-@app.route('/api/user', methods=['POST'])
+@app.route('/user', methods=['POST'])
 def add_user():
     response_body, response_code = user_engine.add_user(request)
     return jsonify(response_body), response_code

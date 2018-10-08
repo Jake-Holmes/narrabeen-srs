@@ -1,10 +1,10 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, Binary, Enum, DateTime, Boolean
+from sqlalchemy.orm import relationship
 from marshmallow import Schema, fields, post_load
 import sys
 import datetime
 sys.path.insert(0, '../../')
 from db.base import Base
-
 
 class Customer(Base):
 	__tablename__ = 'customers'
@@ -13,7 +13,8 @@ class Customer(Base):
 	firstname = Column(String)
 	lastname = Column(String)
 	status = Column(Boolean)
-	# todo: TakeAway relationship
+	takeawayorders = relationship("TakeAwayOrder")
+	reservations = relationship("Reservation")
 	date_created = Column(DateTime)
 	date_modified = Column(DateTime)
 
