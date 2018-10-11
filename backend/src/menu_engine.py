@@ -27,10 +27,30 @@ def add_menu_item(request):
     return new_menu_item, 201
 
 def get_menu_item(data):
-	return "Okay", 200
+    return "Okay", 200
 
 def edit_menu_item(data):
-	return "Okay", 200
+    return "Okay", 200
 
-def get_all_menu(data):
-	return "Okay", 200
+def get_all_menu(request):
+    active = request.args.get("active")
+
+    session = session_factory()
+
+    # Check active status
+    if active in (1, True, "True", "true"):
+        active_objects = session.query(MenuItem).filter(MenuItem.active == True)
+        schema = MenuItemSchema(many=True)
+        menuitems, errors = schema.dump(active_objects)
+    elif active in (0, False, "False", "false"):
+        menu_objects = session.query(MenuItem).filter(MenuItem.active == False)
+        schema = MenuItemSchema(many=True)
+        menuitems, errors = schema.dump(menu_objects)
+    else:
+        active_objects = session.query(MenuItem).all()
+        schema = MenuItemSchema(many=True)
+        menuitems, errors = schema.dump(active_objects)
+
+    session.close()
+
+    return menuitems, 200

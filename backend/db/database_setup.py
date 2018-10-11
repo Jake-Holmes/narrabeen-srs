@@ -31,6 +31,7 @@ corey = User("Corey", "Stidston", "cstidston", "password", "manager", "corey@mai
 wallace = User("Wallace", "Alaswad", "alaswaw", "123", "staff", "wallace.alaswad@gmail.com")
 
 steak = MenuItem("Steak", "Serious steak for a serious steak lover", "main", 19.99, True)
+fish = MenuItem("Fish", "Fish is delish", "main", 24.99, False)
 
 orderItem1 = OrderItem(1, 19.99, "confirmed", steak) # OrderItem1 has an association with menu item Steak
 
@@ -46,7 +47,7 @@ reservation1 = Reservation(1.5, table1, customer1, start, end)
 
 # Add given instances to the session
 
-session.add_all([table1, corey, wallace, steak, orderItem1, order1, customer1, reservation1])
+session.add_all([table1, corey, wallace, steak, fish, orderItem1, order1, customer1, reservation1])
 
 # Perform some queries
 # Refer to: https://docs.sqlalchemy.org/en/latest/orm/tutorial.html
