@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import {MatCardModule} from '@angular/material/card';
 import { MenuService } from '../menu.service';
 import { Observable } from 'rxjs';
 import { MenuItem } from '../menu';
 import { CartService } from '../cart.service';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  selector: 'app-kitchen-view',
+  templateUrl: './kitchen-view.component.html',
+  styleUrls: ['./kitchen-view.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class KitchenViewComponent implements OnInit {
 
   menu$: MenuItem[];
 
@@ -18,12 +19,12 @@ export class MenuComponent implements OnInit {
   menuTypes: String[] = [];
   today = new Date();
 
-  constructor(
+  constructor(    
     private menuService: MenuService,
     private cartService: CartService
-    ) { }
+  ) { }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.GetMenu();
     this.cartService.items$.subscribe(i => this.selectedMenuItems = i);
   }

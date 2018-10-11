@@ -1,0 +1,31 @@
+<div>
+<ul>
+  <li>
+  <h1><span>Narrabeen</span><span>Pizza</span></h1>
+</li>
+  <li><a href="#home">Waiting Orders</a></li>
+  <li><a href="#news">All Orders</a></li>
+  <li><a href="#contact">By Table</a></li>
+  <li><a href="#about">By Time</a></li>
+</ul>
+</div>
+<div *ngIf="selectedMenuItems">
+<mat-card class="example-card">
+    <mat-card-header class="font">
+      <mat-card-title>Table 1</mat-card-title>
+      <mat-card-subtitle>Time: 05:45 </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div>
+            <div *ngFor="let item of selectedMenuItems">
+              <p>1 X {{ item.type }}, {{ item.name }}, {{ item.description }}</p>
+            </div>
+          </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Done</button>
+      <button mat-button>Expand</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
