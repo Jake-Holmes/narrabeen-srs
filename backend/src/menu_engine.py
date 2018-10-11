@@ -35,7 +35,6 @@ def edit_menu_item(data):
 def get_all_menu(request):
     active = request.args.get("active")
 
-    print(active)
     session = session_factory()
 
     # Check active status
