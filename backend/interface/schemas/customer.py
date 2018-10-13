@@ -6,13 +6,13 @@ from interface.schemas.reservation import ReservationSchema
 from interface.schemas.takeawayorder import TakeAwayOrderSchema
 
 class CustomerSchema(Schema):
-	id = fields.Integer(dump_only=True) # Ignore id field when deserializing object
-	phone = fields.Str()
-	firstname = fields.Str()
-	lastname = fields.Str()
-	username = fields.Str()
-	status = fields.Boolean(dump_only=True) # Ignore status field when loading data to objects
+	id = fields.Integer(dump_only=True, required=True) # Ignore id field when deserializing object
+	phone = fields.Str(required=True)
+	firstname = fields.Str(required=True)
+	lastname = fields.Str(required=True)
+	username = fields.Str(required=True)
+	status = fields.Boolean(dump_only=True, required=True) # Ignore status field when loading data to objects
 	reservations = fields.Nested(ReservationSchema, many=True)
 	takeaway_orders = fields.Nested(TakeAwayOrderSchema, many=True)
-	date_created = fields.DateTime(dump_only=True) # Ignore date_created when loading data to object
-	date_modified = fields.DateTime(dump_only=True) # Ignore data_modified when loading data to object
+	date_created = fields.DateTime(dump_only=True, required=True) # Ignore date_created when loading data to object
+	date_modified = fields.DateTime(dump_only=True, required=True) # Ignore data_modified when loading data to object
