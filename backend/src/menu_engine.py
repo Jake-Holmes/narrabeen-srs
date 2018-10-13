@@ -3,6 +3,7 @@ from base import session_factory
 from .decorators import error_handler
 from db.schemas.menu_item import MenuItem
 from interface.schemas.menu_item import MenuItemSchema
+from .common_functions import string_to_bool
 
 # Menu module to implement business logic
 
@@ -32,25 +33,19 @@ def get_menu_item(data):
 def edit_menu_item(data):
     return "Okay", 200
 
-def get_all_menu(request):
-    active = request.args.get("active")
-
+@error_handler
+def get_all_menu_items(request):
+    active = string_to_bool(request.args.get("active", None))
+    
     session = session_factory()
+    schema = MenuItemSchema(many=True)
 
-    # Check active status
-    if active in (1, True, "True", "true"):
-        active_objects = session.query(MenuItem).filter(MenuItem.active == True)
-        schema = MenuItemSchema(many=True)
-        menuitems, errors = schema.dump(active_objects)
-    elif active in (0, False, "False", "false"):
-        menu_objects = session.query(MenuItem).filter(MenuItem.active == False)
-        schema = MenuItemSchema(many=True)
-        menuitems, errors = schema.dump(menu_objects)
+    if active != None:
+        menu_objects = session.query(MenuItem).filter(MenuItem.active == active)
     else:
-        active_objects = session.query(MenuItem).all()
-        schema = MenuItemSchema(many=True)
-        menuitems, errors = schema.dump(active_objects)
+        menu_objects = session.query(MenuItem).all()
+
+    menu_items, errors = schema.dump(menu_objects)    
 
     session.close()
-
-    return menuitems, 200
+    return menu_items, 200

@@ -48,8 +48,8 @@ def route_edit_menu_item():
 
 
 @app.route('/menu/all', methods=['GET'])
-def route_get_all_menu():
-    response_body, response_code = menu_engine.get_all_menu(request)
+def route_get_all_menu_items():
+    response_body, response_code = menu_engine.get_all_menu_items(request)
     return jsonify(response_body), response_code
 
 
