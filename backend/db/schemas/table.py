@@ -10,11 +10,11 @@ from db.base import Base
 class Table(Base):
 	__tablename__ = 'tables'
 	id = Column(Integer, primary_key=True)
-	table_number = Column(Integer)
-	seats = Column(Integer)
+	table_number = Column(Integer, nullable=False)
+	seats = Column(Integer, nullable=False)
 	qr_code = Column(String)
-	passcode = Column(String)
-	status = Column(Boolean)
+	passcode = Column(String, nullable=False)
+	status = Column(Boolean, nullable=False)
 	order = relationship("Order", uselist=False)
 
 	def __init__(self, table_number, seats, qr_code, passcode, status):

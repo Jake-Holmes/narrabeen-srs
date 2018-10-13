@@ -19,14 +19,14 @@ class OrderItem(Base):
     __tablename__ = 'orderitems'
     id = Column(Integer, primary_key=True)
     slot = Column(Integer)
-    price = Column(Float)
-    status = Column(Enum(OrderItemStatus))
-    menu_item_id = Column(Integer, ForeignKey('menuitems.id'))
+    price = Column(Float, nullable=False)
+    status = Column(Enum(OrderItemStatus), nullable=False)
+    menu_item_id = Column(Integer, ForeignKey('menuitems.id'), nullable=False)
     menu_item = relationship("MenuItem", uselist=False)
-    order_id = Column(Integer, ForeignKey('orders.id'))
+    order_id = Column(Integer, ForeignKey('orders.id'), nullable=False)
     order = relationship("Order", uselist=False)
-    date_created = Column(DateTime)
-    date_modified = Column(DateTime)
+    date_created = Column(DateTime, nullable=False)
+    date_modified = Column(DateTime, nullable=False)
 
     def __init__(self, slot, price, status, menu_item):
         self.slot = slot

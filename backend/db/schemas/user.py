@@ -13,14 +13,14 @@ class AccessLevel(enum.Enum):
 class User(Base):
 	__tablename__ = 'users'
 	id = Column(Integer, primary_key=True)
-	firstname = Column(String)
-	lastname = Column(String)
-	username = Column(String)
-	password = Column(String)
-	access_level = Column(Enum(AccessLevel))
-	email_address = Column(String)
-	date_created = Column(DateTime)
-	date_modified = Column(DateTime)
+	firstname = Column(String, nullable=False)
+	lastname = Column(String, nullable=False)
+	username = Column(String, unique=True)
+	password = Column(String, nullable=False)
+	access_level = Column(Enum(AccessLevel), nullable=False)
+	email_address = Column(String, nullable=False)
+	date_created = Column(DateTime, nullable=False)
+	date_modified = Column(DateTime, nullable=False)
 
 	def __init__(self, firstname, lastname, username, password, access_level, email_address):
 		self.firstname = firstname

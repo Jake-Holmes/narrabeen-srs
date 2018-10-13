@@ -21,15 +21,15 @@ class OrderStatus(enum.Enum):
 class Order(Base):
     __tablename__ = 'orders'
     id = Column(Integer, primary_key=True)
-    status = Column(Enum(OrderStatus))
-    order_type = Column(Enum(OrderType))
+    status = Column(Enum(OrderStatus), nullable=False)
+    order_type = Column(Enum(OrderType), nullable=False)
     order_items = relationship("OrderItem")
     table_id = Column(Integer, ForeignKey('tables.id'))
     table = relationship("Table", uselist=False)
     takeaway_id = Column(Integer, ForeignKey('takeawayorders.id'))
     takeaway = relationship("TakeAwayOrder", uselist=False)
-    date_created = Column(DateTime)
-    date_modified = Column(DateTime) 
+    date_created = Column(DateTime, nullable=False)
+    date_modified = Column(DateTime, nullable=False) 
 
     def __init__(self, status, order_type):
         self.status = OrderStatus[status]

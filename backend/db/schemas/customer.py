@@ -9,14 +9,14 @@ from db.base import Base
 class Customer(Base):
 	__tablename__ = 'customers'
 	id = Column(Integer, primary_key=True)
-	phone = Column(String)
-	firstname = Column(String)
-	lastname = Column(String)
-	status = Column(Boolean)
+	phone = Column(String, nullable=False)
+	firstname = Column(String, nullable=False)
+	lastname = Column(String, nullable=False)
+	status = Column(Boolean, nullable=False)
 	takeawayorders = relationship("TakeAwayOrder")
 	reservations = relationship("Reservation")
-	date_created = Column(DateTime)
-	date_modified = Column(DateTime)
+	date_created = Column(DateTime, nullable=False)
+	date_modified = Column(DateTime, nullable=False)
 
 	def __init__(self, phone, firstname, lastname, username, status):
 		self.phone = phone

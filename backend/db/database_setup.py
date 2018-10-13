@@ -48,6 +48,7 @@ reservation1 = Reservation(1.5, table1, customer1, start, end)
 # Add given instances to the session
 
 session.add_all([table1, corey, wallace, steak, fish, orderItem1, order1, customer1, reservation1])
+session.commit()
 
 # Perform some queries
 # Refer to: https://docs.sqlalchemy.org/en/latest/orm/tutorial.html
@@ -63,7 +64,6 @@ for customer in session.query(Customer).all():
 
 # Commit and close session
 
-session.commit()
 session.close()
 
 print("\nNew database file created")
