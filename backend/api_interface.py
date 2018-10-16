@@ -18,15 +18,19 @@ def route_get_order():
     
 @app.route('/order', methods=['PUT'])
 def route_edit_order():
-    response_body, response_code = order_engine.edit_order(request.form)
+    response_body, response_code = order_engine.edit_order(request)
     return jsonify(response_body), response_code
 
 
 @app.route('/order/all', methods=['GET'])
 def route_get_all_order():
-    response_body, response_code = order_engine.get_all_orders(request.form)
+    response_body, response_code = order_engine.get_all_orders(request)
     return jsonify(response_body), response_code
 
+@app.route('/order/items/all', methods=['GET'])
+def route_get_all_order_items():
+    response_body, response_code = order_engine.get_all_order_items(request)
+    return jsonify(response_body), response_code
 
 ###----------MENU----------###
 @app.route('/menu', methods=['POST'])

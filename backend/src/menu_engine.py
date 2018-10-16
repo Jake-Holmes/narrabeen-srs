@@ -9,16 +9,14 @@ from .common_functions import string_to_bool
 
 @error_handler
 def add_menu_item(request):
-    try:
-        menu_data = request.get_json()
-        schema = MenuItemSchema()
-        valid_menu_item, errors = schema.load(menu_data)
-        if errors:
-            return ("Error: unable to map object", 422)
-    except Exception as error:
-        return (error)
+    menu_data = request.get_json()
+    schema = MenuItemSchema()
+    valid_menu_item, errors = schema.load(menu_data)
+    if errors:
+        return ("Error: unable to map object", 422)
 
     menu_item = MenuItem(**valid_menu_item)
+    
     session = session_factory()
     session.add(menu_item)
     session.commit()
