@@ -44,4 +44,19 @@ def get_all_orders(request):
 
 @error_handler
 def get_all_order_items(request):
-	return "get all orders items", 200
+	status = request.args.get("status", None)
+	session = session_factory()
+
+	order_objects = session.query(Order).all()
+	schema = OrderSchema(many=True)
+	orders, errors = schema.dump(order_objects)
+
+	if status != None:
+		order_objects = session.query(OrderItem).filter(Order.status == status)
+	else:
+		order_objects = session.query(OrderItem).all()
+
+	orders, errors = schema.dump(order_objects)
+
+	session.close()
+	return orders, 200
