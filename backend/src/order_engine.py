@@ -31,17 +31,15 @@ def get_all_orders(request):
 	session = session_factory()
 
 	order_objects = session.query(Order).all()
-	schema = OrderSchema(many=True)
+	schema = OrderSchema(many=True, exclude=("order_items",))
 	orders, errors = schema.dump(order_objects)
-
+	
 	if status != None:
-		order_objects = session.query(OrderItem).filter(Order.status == status)
+		order_objects = session.query(Order).filter(Order.status == status)
 	else:
-		order_objects = session.query(OrderItem).all()
+		order_objects = session.query(Order).all()
 
 	orders, errors = schema.dump(order_objects)
-
-	session.close()
 	return orders, 200
 
 @error_handler
