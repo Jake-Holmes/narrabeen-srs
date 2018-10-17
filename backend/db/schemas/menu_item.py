@@ -16,14 +16,14 @@ class MenuItemType(enum.Enum):
 class MenuItem(Base):
     __tablename__ = 'menuitems'
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    description = Column(String)
-    menu_item_type = Column(Enum(MenuItemType))
-    base_price = Column(Float)
+    name = Column(String, nullable=False)
+    description = Column(String, nullable=False)
+    menu_item_type = Column(Enum(MenuItemType), nullable=False)
+    base_price = Column(Float, nullable=False)
     image = Column(String)
-    active = Column(Boolean)
-    date_created = Column(DateTime)
-    date_modified = Column(DateTime)
+    active = Column(Boolean, nullable=False)
+    date_created = Column(DateTime, nullable=False)
+    date_modified = Column(DateTime, nullable=False)
 
     def __init__(self, name, description, menu_item_type, base_price, active):
         self.name = name

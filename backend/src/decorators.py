@@ -7,5 +7,5 @@ def error_handler(func):
             return func(*args, **kwargs)
         except Exception as error:
             print(repr(error))
-            return ("Oops, something went wrong", 500)
+            return ("Error: Bad Request", 400)
     return wrapper_handler

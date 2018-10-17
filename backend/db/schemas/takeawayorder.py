@@ -10,12 +10,12 @@ from db.schemas.customer import Customer
 class TakeAwayOrder(Base):
 	__tablename__ = 'takeawayorders'
 	id = Column(Integer, primary_key=True)
-	pickup_time = Column(DateTime)
-	customer_id = Column(Integer, ForeignKey('customers.id'))
+	pickup_time = Column(DateTime, nullable=False)
+	customer_id = Column(Integer, ForeignKey('customers.id'), nullable=False)
 	customer = relationship("Customer", uselist=False)
 	order = relationship("Order", uselist=False)
-	date_created = Column(DateTime)
-	date_modified = Column(DateTime)
+	date_created = Column(DateTime, nullable=False)
+	date_modified = Column(DateTime, nullable=False)
 
 	def __init__(self, pickup_time):
 		self.pickup_time = pickup_time

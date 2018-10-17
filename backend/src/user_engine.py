@@ -1,36 +1,40 @@
 from base import session_factory
+from sqlalchemy import exists
 from .decorators import error_handler
 from db.schemas.user import User
 from interface.schemas.user import UserSchema
 
 @error_handler
 def get_all_users(request):
-    session = session_factory() # Open db session
+    session = session_factory()
 
-    user_objects = session.query(User).all() # Query all Users
+    user_objects = session.query(User).all()
     schema = UserSchema(many=True)
-    users, errors = schema.dump(user_objects) # Dump user db objects to schema
+    users, errors = schema.dump(user_objects)
 
     session.close()
     return users, 200
 
 @error_handler
 def add_user(request):
-    try:
-        user_data = request.get_json()
-        schema = UserSchema()
-        valid_user, errors = schema.load(user_data)
-        if errors:
-            return ("Error: unable to map object", 422)
-    except Exception as error:
-        return (error)
+    user_data = request.get_json()
+    schema = UserSchema()
+    valid_user, errors = schema.load(user_data)
+    if errors:
+        return ("Error: unable to map object", 422)
 
-    user = User(**valid_user) # Map valid user data to User db object
-    session = session_factory() # Open db session
-    session.add(user) # Add user row
-    session.commit() # Commit changes
+    user = User(**valid_user)
 
-    new_user = schema.dump(user).data # Return created user
+    session = session_factory()
+    
+    if session.query(exists().where(User.username==user.username)).scalar():
+        session.close()
+        return ("Error: Username taken", 400)
+
+    session.add(user)
+    session.commit()
+
+    new_user = schema.dump(user).data
 
     session.close()
     return new_user, 201
