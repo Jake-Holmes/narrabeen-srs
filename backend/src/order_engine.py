@@ -29,10 +29,7 @@ def edit_order(data):
 def get_all_orders(request):
 	status = request.args.get("status", None)
 	session = session_factory()
-
-	order_objects = session.query(Order).all()
 	schema = OrderSchema(many=True, exclude=("order_items",))
-	orders, errors = schema.dump(order_objects)
 	
 	if status != None:
 		order_objects = session.query(Order).filter(Order.status == status)
@@ -46,13 +43,10 @@ def get_all_orders(request):
 def get_all_order_items(request):
 	status = request.args.get("status", None)
 	session = session_factory()
-
-	order_objects = session.query(Order).all()
-	schema = OrderSchema(many=True)
-	orders, errors = schema.dump(order_objects)
+	schema = OrderItemSchema(many=True)
 
 	if status != None:
-		order_objects = session.query(OrderItem).filter(Order.status == status)
+		order_objects = session.query(OrderItem).filter(OrderItem.status == status)
 	else:
 		order_objects = session.query(OrderItem).all()
 
