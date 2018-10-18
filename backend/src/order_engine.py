@@ -46,11 +46,11 @@ def get_all_order_items(request):
 	schema = OrderItemSchema(many=True)
 
 	if status != None:
-		order_objects = session.query(OrderItem).filter(OrderItem.status == status)
+		order_item_objects = session.query(OrderItem).filter(OrderItem.status == status)
 	else:
-		order_objects = session.query(OrderItem).all()
+		order_item_objects = session.query(OrderItem).all()
 
-	orders, errors = schema.dump(order_objects)
+	order_items, errors = schema.dump(order_item_objects)
 
 	session.close()
-	return orders, 200
+	return order_items, 200
