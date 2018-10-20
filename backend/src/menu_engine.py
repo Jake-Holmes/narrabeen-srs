@@ -3,7 +3,7 @@ from base import session_factory
 from .decorators import error_handler
 from db.schemas.menu_item import MenuItem
 from interface.schemas.menu_item import MenuItemSchema
-from .common_functions import string_to_bool
+from .common_functions import string_to_bool, session_scope
 
 # Menu module to implement business logic
 
@@ -17,12 +17,10 @@ def add_menu_item(request):
 
     menu_item = MenuItem(**valid_menu_item)
     
-    session = session_factory()
-    session.add(menu_item)
-    session.commit()
+    with session_scope() as session:
+        session.add(menu_item)
+        new_menu_item = schema.dump(menu_item).data
 
-    new_menu_item = schema.dump(menu_item).data
-    session.close()
     return new_menu_item, 201
 
 def get_menu_item(data):
@@ -34,16 +32,14 @@ def edit_menu_item(data):
 @error_handler
 def get_all_menu_items(request):
     active = string_to_bool(request.args.get("active", None))
-    
-    session = session_factory()
     schema = MenuItemSchema(many=True)
 
-    if active != None:
-        menu_objects = session.query(MenuItem).filter(MenuItem.active == active)
-    else:
-        menu_objects = session.query(MenuItem).all()
+    with session_scope() as session:
+        if active != None:
+            menu_objects = session.query(MenuItem).filter(MenuItem.active == active)
+        else:
+            menu_objects = session.query(MenuItem).all()
 
-    menu_items, errors = schema.dump(menu_objects)    
+        menu_items, errors = schema.dump(menu_objects)    
 
-    session.close()
     return menu_items, 200
