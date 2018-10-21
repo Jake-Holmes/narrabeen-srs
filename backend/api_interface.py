@@ -75,6 +75,10 @@ def add_table():
     response_body, response_code = table_engine.add_table(request)
     return jsonify(response_body), response_code
 
+@app.route('/table/all', methods=['GET'])
+def get_all_tables():
+    response_body, response_code = table_engine.get_all_tables(request)
+    return jsonify(response_body), response_code
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

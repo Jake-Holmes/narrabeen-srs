@@ -1,6 +1,7 @@
 from sqlalchemy import exists
 from .decorators import error_handler
 from db.schemas.table import Table
+from db.schemas.order import OrderStatus
 from interface.schemas.table import TableSchema
 from .common_functions import session_scope
 
@@ -22,3 +23,13 @@ def add_table(request):
         new_table = schema.dump(table).data
 
     return new_table, 201
+
+@error_handler
+def get_all_tables(request):
+    schema = TableSchema(many=True, exclude=("qr_code","passcode"))
+
+    with session_scope() as session:
+        table_objects = session.query(Table).all()
+        tables, errors = schema.dump(table_objects)
+
+    return tables, 200
