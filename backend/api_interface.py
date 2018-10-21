@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
-from src import menu_engine, order_engine, user_engine
+from src import menu_engine, order_engine, user_engine, table_engine
 from src import reservation as ReservationFacade
 import mock_data
 
@@ -67,6 +67,12 @@ def get_all_users():
 @app.route('/user', methods=['POST'])
 def add_user():
     response_body, response_code = user_engine.add_user(request)
+    return jsonify(response_body), response_code
+
+###----------TABLE----------###
+@app.route('/table', methods=['POST'])
+def add_table():
+    response_body, response_code = table_engine.add_table(request)
     return jsonify(response_body), response_code
 
 

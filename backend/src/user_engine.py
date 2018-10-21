@@ -1,4 +1,3 @@
-from base import session_factory
 from sqlalchemy import exists
 from .decorators import error_handler
 from db.schemas.user import User

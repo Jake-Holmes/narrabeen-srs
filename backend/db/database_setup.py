@@ -25,7 +25,7 @@ session = session_factory()
 
 # Generate some instances of the classes and persist to the database
 
-table1 = Table(1, 4, "SomeQrCode", "passcode", True)
+table1 = Table(1, 4, 1234, True)
 
 corey = User("Corey", "Stidston", "cstidston", "password", "manager", "corey@mail.com")
 wallace = User("Wallace", "Alaswad", "alaswaw", "123", "staff", "wallace.alaswad@gmail.com")

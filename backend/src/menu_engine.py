@@ -1,5 +1,4 @@
 from . import menu_access as ma
-from base import session_factory
 from .decorators import error_handler
 from db.schemas.menu_item import MenuItem
 from interface.schemas.menu_item import MenuItemSchema

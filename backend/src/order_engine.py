@@ -1,4 +1,3 @@
-from base import session_factory
 from .decorators import error_handler
 from .common_functions import string_to_bool, session_scope
 from db.schemas.order import Order
