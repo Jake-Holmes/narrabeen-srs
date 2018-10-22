@@ -4,7 +4,7 @@ sys.path.insert(0, '../../')
 from db.schemas.menu_item import MenuItem
 
 class MenuItemSchema(Schema):
-    id = fields.Integer(dump_only=True, required=True) # Ignore id when loading data to object
+    id = fields.Integer(required=True)
     name = fields.Str(required=True)
     menu_item_type = fields.Str(required=True)
     description = fields.Str(required=True)
