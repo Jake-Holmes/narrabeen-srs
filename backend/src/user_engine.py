@@ -1,18 +1,17 @@
-from base import session_factory
 from sqlalchemy import exists
 from .decorators import error_handler
 from db.schemas.user import User
 from interface.schemas.user import UserSchema
+from .common_functions import session_scope
 
 @error_handler
 def get_all_users(request):
-    session = session_factory()
-
-    user_objects = session.query(User).all()
     schema = UserSchema(many=True)
-    users, errors = schema.dump(user_objects)
 
-    session.close()
+    with session_scope() as session:
+        user_objects = session.query(User).all()
+        users, errors = schema.dump(user_objects)
+
     return users, 200
 
 @error_handler
@@ -25,16 +24,11 @@ def add_user(request):
 
     user = User(**valid_user)
 
-    session = session_factory()
-    
-    if session.query(exists().where(User.username==user.username)).scalar():
-        session.close()
-        return ("Error: Username taken", 400)
+    with session_scope() as session:
+        if session.query(exists().where(User.username==user.username)).scalar():
+            return ("Error: Username taken", 400)
 
-    session.add(user)
-    session.commit()
+        session.add(user)
+        new_user = schema.dump(user).data
 
-    new_user = schema.dump(user).data
-
-    session.close()
     return new_user, 201

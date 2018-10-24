@@ -13,14 +13,13 @@ class Table(Base):
 	table_number = Column(Integer, nullable=False)
 	seats = Column(Integer, nullable=False)
 	qr_code = Column(String)
-	passcode = Column(String, nullable=False)
+	passcode = Column(Integer, nullable=False)
 	status = Column(Boolean, nullable=False)
 	order = relationship("Order", uselist=False)
 
-	def __init__(self, table_number, seats, qr_code, passcode, status):
+	def __init__(self, table_number, seats, passcode, status):
 		self.table_number = table_number
 		self.seats = seats
-		self.qr_code = qr_code
 		self.passcode = passcode
 		self.status = status
 
