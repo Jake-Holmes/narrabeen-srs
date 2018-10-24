@@ -25,7 +25,7 @@ session = session_factory()
 
 # Generate some instances of the classes and persist to the database
 
-table1 = Table(1, 4, "SomeQrCode", "passcode", True)
+table1 = Table(1, 4, 1234, True)
 
 corey = User("Corey", "Stidston", "cstidston", "password", "manager", "corey@mail.com")
 wallace = User("Wallace", "Alaswad", "alaswaw", "123", "staff", "wallace.alaswad@gmail.com")
@@ -35,9 +35,14 @@ fish = MenuItem("Fish", "Fish is delish", "main", 24.99, False)
 
 orderItem1 = OrderItem(1, 19.99, "confirmed", steak) # OrderItem1 has an association with menu item Steak
 
-order1 = Order("confirmed", "dinein")
-table1.order = order1 # Table1 links to Order1
-order1.order_items = [orderItem1] # Order1 has is associated with a collection of order items
+order1 = Order("paid", "dinein")
+table1.order = order1
+
+session.add(order1)
+
+order2 = Order("confirmed", "dinein")
+table1.order = order2 # Table1 links to Order1
+order2.order_items = [orderItem1] # Order1 has is associated with a collection of order items
 
 customer1 = Customer("911", "Joe", "Smith", "JSmith", True)
 
@@ -47,7 +52,7 @@ reservation1 = Reservation(1.5, table1, customer1, start, end)
 
 # Add given instances to the session
 
-session.add_all([table1, corey, wallace, steak, fish, orderItem1, order1, customer1, reservation1])
+session.add_all([table1, corey, wallace, steak, fish, orderItem1, order2, customer1, reservation1])
 session.commit()
 
 # Perform some queries
