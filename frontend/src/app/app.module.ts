@@ -15,6 +15,7 @@ import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.
 import { TablemanagementComponent } from './tablemanagement/tablemanagement.component';
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
