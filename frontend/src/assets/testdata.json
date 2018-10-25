@@ -3,7 +3,7 @@
       "base_price": 13.5, 
       "description": "spicy", 
       "id": 101, 
-      "image": "chicken", 
+      "image": "https://www.goodfood.com.au/content/dam/images/g/z/s/3/z/6/image.related.wideLandscape.940x529.gzs3gz.png/1520825988811.jpg", 
       "name": "chicken", 
       "status": "active", 
       "type": "poultry"
