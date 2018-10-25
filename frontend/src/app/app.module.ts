@@ -16,6 +16,9 @@ import { TablemanagementComponent } from './tablemanagement/tablemanagement.comp
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { NoProductsFoundComponent } from './shared/no-products-found/no-products-found.component';
+import { CartCalculatorComponent } from './cart-calculator/cart-calculator.component';
+
+import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { NoProductsFoundComponent } from './shared/no-products-found/no-products
     TablemanagementComponent,
     KitchenViewComponent,
     ShoppingCartComponent,
-    NoProductsFoundComponent
+    NoProductsFoundComponent,
+    CartCalculatorComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,7 @@ import { NoProductsFoundComponent } from './shared/no-products-found/no-products
     MatButtonModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
