@@ -1,0 +1,3 @@
+<div *ngFor="let menuItem of menuList">
+  <h3><a routerLink='/menu-item-create-edit/{{menuItem.id}}'>{{ menuItem.name | titlecase }}</a></h3>
+</div>

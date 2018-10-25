@@ -14,6 +14,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.component';
 import { TablemanagementComponent } from './tablemanagement/tablemanagement.component';
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
+import { MenuAdminComponent } from './menu-admin/menu-admin.component';
+import { MenuItemAdminComponent } from './menu-item-admin/menu-item-admin.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
     MenuComponent,
     MenuItemDetailsComponent,
     TablemanagementComponent,
-    KitchenViewComponent
+    KitchenViewComponent,
+    MenuAdminComponent,
+    MenuItemAdminComponent
   ],
   imports: [
     BrowserModule,

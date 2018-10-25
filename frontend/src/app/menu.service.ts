@@ -18,4 +18,8 @@ export class MenuService {
     // TODO implement this using actual api route
     return this.http.get<MenuItem[]>('assets/testdata.json');
   }
+
+  // createMenuItem(menuItem: MenuItem) {
+  //   this.http.post('')
+  // }
 }
