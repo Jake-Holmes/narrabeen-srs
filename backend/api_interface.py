@@ -5,7 +5,7 @@ import mock_data
 
 app = Flask(__name__)
 app.debug = True
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
 
 
 ###----------ORDERS----------###
