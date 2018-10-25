@@ -25,6 +25,22 @@ def add_table(request):
     return new_table, 201
 
 @error_handler
+def get_table(request):
+    id = request.args.get("id")
+    schema = TableSchema()
+
+    with session_scope() as session:
+        table_object = session.query(Table).get(id)
+        table, errors = schema.dump(table_object)
+
+    return table, 200
+
+
+
+
+
+
+@error_handler
 def get_all_tables(request):
     schema = TableSchema(many=True, exclude=("qr_code","passcode"))
 

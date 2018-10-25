@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from src import menu_engine, order_engine, user_engine, table_engine, reservation_engine
-from src import reservation as ReservationFacade
 import mock_data
 
 app = Flask(__name__)
