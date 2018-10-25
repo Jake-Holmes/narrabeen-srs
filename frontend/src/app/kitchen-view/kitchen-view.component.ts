@@ -3,7 +3,9 @@ import {MatCardModule} from '@angular/material/card';
 import { MenuService } from '../menu.service';
 import { Observable } from 'rxjs';
 import { MenuItem } from '../menu';
-import { CartService } from '../cart.service';
+import { OrderService } from '../order.service';
+import { OrderItem } from '../order';  
+
 
 @Component({
   selector: 'app-kitchen-view',
@@ -12,39 +14,31 @@ import { CartService } from '../cart.service';
 })
 export class KitchenViewComponent implements OnInit {
 
-  menu$: MenuItem[];
 
-  // TODO Convert this into an order with a list of items or something
-  selectedMenuItems: MenuItem[] = [];
-  menuTypes: String[] = [];
-  today = new Date();
+  order$: OrderItem[];
+
+
 
   constructor(    
-    private menuService: MenuService,
-    private cartService: CartService
+    private orderService: OrderService
   ) { }
 
   ngOnInit() {    
-    this.GetMenu();
-    this.cartService.items$.subscribe(i => this.selectedMenuItems = i);
+    this.GetOrder();
   }
 
-  GetMenu(): void {
-    this.menuService.GetMenu().subscribe(data => {
-      this.menu$ = data;
-      this.menuTypes = this.GetMenuTypes(data);
+  GetOrder(): void {
+    this.orderService.GetOrder().subscribe(data => {
+      this.order$ = data;
     });
   }
 
-  GetMenuTypes(data): String[] {
-    const typeList = data.map((menuItem: MenuItem) => menuItem.type);
+  GetOrderId(data): String[] {
+    const typeList = data.map((orderItem: OrderItem) => orderItem.id);
 
     // Unique Type List
     return typeList.filter((value, index, self) => self.indexOf(value) === index);
   }
 
-  SelectMenuItem(menuItem: MenuItem): void {
-    this.cartService.AddItem(menuItem);
-  }
 
 }

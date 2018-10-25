@@ -20,6 +20,7 @@ import { CartCalculatorComponent } from './cart-calculator/cart-calculator.compo
 
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
+
 @NgModule({
   declarations: [
     AppComponent,

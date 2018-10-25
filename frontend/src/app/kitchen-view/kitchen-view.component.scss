@@ -13,19 +13,36 @@ p {
   font-size: 16px;
 }
 
+
+
 .font {
     font-style: normal;
+    font-size: 30px;
 }
 
 .example-card {
-    font-size: 30px;
-    margin-top: 20px;
-    max-width: 400px;
+    font-size: 100px;
+    margin-top: 0px;
+    max-width: 300px;
+    background: rgb(170, 79, 79);
   }
   
   .example-header-image {
       background-size: cover;
+  }
 
+  .title-bar{
+      width: fit-content;
+      height: 100px;
+      background: #383796;
+  }
+
+  .example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
   }
 
  h1 {
@@ -78,3 +95,42 @@ li {
  li a:hover {
       background-color: rgba(0, 255, 255, 0.158);
   }
+  h1 {
+    color: #444;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    margin: 20px 0 0 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  h2 {
+    border-bottom: 1px solid #444;
+    color: #000;
+    font-family: 'Oswald', sans-serif;
+    margin: 20px 0 10px;
+    padding: 0 0 10px 0;
+    text-transform: uppercase;
+  }
+  
+  .price p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    margin: 26px 0 5px;
+    text-align: right;
+  }
+  
+  .order-item-grid {
+    display: flex;
+    flex-flow: row wrap;
+  
+    .order-item-card {
+      width: 300px;
+      margin: 5px;
+  
+      // @media screen and (max-width: 700px) {
+      //   width: 100%;
+      // }
+    }
+}
