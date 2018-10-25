@@ -5,9 +5,9 @@
 <ul class="list-group mb-3">
   <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of products">
     <div>
-      <h6 class="my-0">{{ product.productName }}</h6>
+      <h6 class="my-0">{{ product.name }}</h6>
     </div>
-    <span class="text-muted">$ {{ product.productPrice }}</span>
+    <span class="text-muted">$ {{ product.base_price }}</span>
   </li>
   <hr>
   <li class="list-group-item d-flex justify-content-between">
@@ -15,6 +15,6 @@
     <strong>$ {{ totalValue }}</strong>
   </li>
   <a class="btn btn-primary" [routerLink]="['/']">Continue Shopping</a>
-  <a class="btn btn-default" [routerLink]="['/checkouts']">Checkout</a>
+  <a class="btn btn-default" [routerLink]="['/checkout']">Checkout</a>
 
 </ul>

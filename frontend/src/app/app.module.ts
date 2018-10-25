@@ -19,6 +19,7 @@ import { NoProductsFoundComponent } from './shared/no-products-found/no-products
 import { CartCalculatorComponent } from './cart-calculator/cart-calculator.component';
 
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
     KitchenViewComponent,
     ShoppingCartComponent,
     NoProductsFoundComponent,
-    CartCalculatorComponent
+    CartCalculatorComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

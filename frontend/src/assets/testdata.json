@@ -4,44 +4,44 @@
       "description": "spicy", 
       "id": 101, 
       "image": "https://www.goodfood.com.au/content/dam/images/g/z/s/3/z/6/image.related.wideLandscape.940x529.gzs3gz.png/1520825988811.jpg", 
-      "name": "chicken", 
+      "name": "Chicken", 
       "status": "active", 
-      "type": "poultry"
+      "type": "Poultry"
     }, 
     {
       "base_price": 14.5, 
       "description": "spicy", 
       "id": 101, 
       "image": "https://img.grouponcdn.com/deal/3XdbvM3oeTYv5KpV7xF69ePiB41K/3X-960x576/v1/c700x420.jpg", 
-      "name": "duck", 
+      "name": "Duck", 
       "status": "active", 
-      "type": "poultry"
+      "type": "Poultry"
     },
     {
       "base_price": 16.5, 
       "description": "non-spicy", 
       "id": 102, 
       "image": "https://amp.thisisinsider.com/images/59ef69e049e1cf1f008b456a-750-562.jpg", 
-      "name": "fish", 
+      "name": "Fish", 
       "status": "active", 
-      "type": "seafood"
+      "type": "Seafood"
     }, 
     {
       "base_price": 17.9, 
       "description": "non-spicy", 
       "id": 103, 
       "image": "https://thoughtcatalog.files.wordpress.com/2014/05/shutterstock_145058521.jpg?w=584&h=386", 
-      "name": "beef", 
+      "name": "Beef", 
       "status": "active", 
-      "type": "meat"
+      "type": "Meat"
     }, 
     {
       "base_price": 6.5, 
       "description": "sweet", 
       "id": 104, 
       "image": "http://www.alwaha.pk/wp-content/uploads/2017/11/exps6086_HB133235C07_19_4b_WEB.jpg", 
-      "name": "apple pie", 
+      "name": "Apple Pie", 
       "status": "inactive", 
-      "type": "dessert"
+      "type": "Dessert"
     }
   ]

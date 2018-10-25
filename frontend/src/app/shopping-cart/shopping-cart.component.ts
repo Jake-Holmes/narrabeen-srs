@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MenuItem } from '../menu';
-import { MenuService } from '../menu.service';
 import { CartService } from '../cart.service';
 
 
@@ -21,7 +20,6 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private menuService: MenuService,
     private cartService: CartService,
     private location: Location
   ) { }
@@ -38,7 +36,4 @@ export class ShoppingCartComponent implements OnInit {
   consoleMe() {
     console.log(this.cartProducts);
   }
-
-
-
 }
