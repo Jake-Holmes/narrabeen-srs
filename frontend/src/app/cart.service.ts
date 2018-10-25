@@ -24,4 +24,8 @@ export class CartService {
   CreateOrder() {
     // TODO implement this. Needs order service
   }
+
+  GetItems() {
+    return this.items;
+  }
 }

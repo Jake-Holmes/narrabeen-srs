@@ -14,6 +14,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.component';
 import { TablemanagementComponent } from './tablemanagement/tablemanagement.component';
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { NoProductsFoundComponent } from './shared/no-products-found/no-products-found.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
     MenuComponent,
     MenuItemDetailsComponent,
     TablemanagementComponent,
-    KitchenViewComponent
+    KitchenViewComponent,
+    ShoppingCartComponent,
+    NoProductsFoundComponent
   ],
   imports: [
     BrowserModule,
