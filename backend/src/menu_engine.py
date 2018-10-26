@@ -9,7 +9,7 @@ from .common_functions import string_to_bool, session_scope
 @error_handler
 def add_menu_item(request):
     menu_data = request.get_json()
-    schema = MenuItemSchema(exclude=('id'))
+    schema = MenuItemSchema(exclude=('id',))
     valid_menu_item, errors = schema.load(menu_data)
     if errors:
         return ("Error: unable to map object", 422)
@@ -42,11 +42,10 @@ def edit_menu_item(request):
     if errors:
         return ("Error: unable to map object", 422)
 
-    session = session_factory()
-    # Update the menu with the ID specified
-    session.query(MenuItem).filter(MenuItem.id == valid_menu_data["id"]).update(valid_menu_data)
-    session.commit()
-    session.close()
+    with session_scope() as session:
+        # Update the menu with the ID specified
+        session.query(MenuItem).filter(MenuItem.id == valid_menu_data["id"]).update(valid_menu_data)
+
     return "Edit menu successful", 200
 
 @error_handler
