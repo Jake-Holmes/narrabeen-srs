@@ -3,7 +3,7 @@ from .decorators import error_handler
 from db.schemas.table import Table
 from db.schemas.order import OrderStatus
 from interface.schemas.table import TableSchema
-from .common_functions import session_scope
+from .common_functions import session_scope, generate_code
 
 @error_handler
 def add_table(request):
@@ -27,7 +27,7 @@ def add_table(request):
 @error_handler
 def get_table(request):
     id = request.args.get("id")
-    schema = TableSchema()
+    schema = TableSchema(exclude=("order",))
 
     with session_scope() as session:
         table_object = session.query(Table).get(id)
@@ -35,10 +35,23 @@ def get_table(request):
 
     return table, 200
 
+@error_handler
+def table_login(request):
+    id = request.args.get("id")
+    table_passcode = int(request.args.get("passcode"))
 
+    with session_scope() as session:
+        table = session.query(Table).get(id)
+        if table != None:
+            if table.passcode == table_passcode:
+                table.qr_code = generate_code()
+                return table.qr_code, 200
+            else:
+                return "Passcode incorrect", 400
+        else:
+            return "No table with that id", 400
 
-
-
+    return "Bad Request", 400
 
 @error_handler
 def get_all_tables(request):

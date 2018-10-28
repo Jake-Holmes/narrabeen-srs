@@ -1,5 +1,7 @@
 from contextlib import contextmanager
 from base import session_factory
+import string
+import random
 
 @contextmanager
 def session_scope():
@@ -20,3 +22,6 @@ def string_to_bool(data):
         return False
     else:
         return None
+
+def generate_code(size=9, chars=string.ascii_uppercase + string.digits + string.ascii_lowercase):
+    return ''.join(random.choice(chars) for _ in range(size))

@@ -79,6 +79,16 @@ def get_all_tables():
     response_body, response_code = table_engine.get_all_tables(request)
     return jsonify(response_body), response_code
 
+@app.route('/table', methods=['GET'])
+def get_table():
+    response_body, response_code = table_engine.get_table(request)
+    return jsonify(response_body), response_code
+
+@app.route('/table/login', methods=['GET'])
+def table_login():
+    response_body, response_code = table_engine.table_login(request)
+    return jsonify(response_body), response_code
+
 ###----------RESERVATION----------###
 @app.route('/reservations/all', methods=['GET'])
 def get_all_reservations():
