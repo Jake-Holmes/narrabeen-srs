@@ -87,6 +87,11 @@ def table_login():
     response_body, response_code = table_engine.table_login(request)
     return jsonify(response_body), response_code
 
+@app.route('/table', methods=['PUT'])
+def edit_table():
+    response_body, response_code = table_engine.edit_table(request)
+    return jsonify(response_body), response_code
+
 ###----------RESERVATION----------###
 @app.route('/reservations/all', methods=['GET'])
 def get_all_reservations():
