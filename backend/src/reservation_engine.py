@@ -4,6 +4,7 @@ from .decorators import error_handler
 from db.schemas.reservation import Reservation
 from interface.schemas.reservation import ReservationSchema
 from sqlalchemy import and_
+from sqlalchemy.sql import exists
 
 # gets all of the reservations for the next 2 weeks
 @error_handler
@@ -48,6 +49,30 @@ def get_reservation(request):
             return "Bad request: no reservation id", 400
 
     return reservation, 200
+
+@error_handler
+def make_customer_reservations(request):
+    reservation_data = request.get_json()
+    schema = ReservationSchema(many=True)
+    valid_reservation, errors = schema.dump(reservation_data)
+
+    if errors:
+        return "Error: unable to map object", 422
+
+    reservation = Reservation(**valid_reservation)
+
+    with session_scope() as session:
+        if session.query(exists().where(and_(
+            Reservation.customer_id != None, Reservation.table_id == reservation.table_id, Reservation.start_time == reservation.start_time))).scalar():
+            return  "Error: reservation already exists", 400
+
+    session.add(reservation)
+    session.commit()
+    new_reservation = schema.dump(reservation).data
+
+    #add checks
+
+    return new_reservation, 200
 
 # to do:
 # - get all of the resevations for 2 weeks(done)
