@@ -26,6 +26,10 @@ def add_menu_item(request):
     return new_menu_item, 200
 
 @error_handler
+def delete_menu_item(request):
+    return "Okay", 200
+
+@error_handler
 def get_menu_item(request):
     id = request.args.get("id")
     schema = MenuItemSchema()
