@@ -47,9 +47,9 @@ def table_login(request):
                 table.qr_code = generate_code()
                 return table.qr_code, 200
             else:
-                return "Passcode incorrect", 400
+                return "Passcode incorrect", 401
         else:
-            return "No table with that id", 400
+            return "No table with that id", 404
 
     return "Bad Request", 400
 
