@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from src import menu_engine, order_engine, user_engine, table_engine, reservation_engine
-from src import reservation as ReservationFacade
 import mock_data
 
 app = Flask(__name__)
 app.debug = True
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
 
 
 ###----------ORDERS----------###
@@ -78,6 +77,16 @@ def add_table():
 @app.route('/table/all', methods=['GET'])
 def get_all_tables():
     response_body, response_code = table_engine.get_all_tables(request)
+    return jsonify(response_body), response_code
+
+@app.route('/table', methods=['GET'])
+def get_table():
+    response_body, response_code = table_engine.get_table(request)
+    return jsonify(response_body), response_code
+
+@app.route('/table/login', methods=['GET'])
+def table_login():
+    response_body, response_code = table_engine.table_login(request)
     return jsonify(response_body), response_code
 
 ###----------RESERVATION----------###

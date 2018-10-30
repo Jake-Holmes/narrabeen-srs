@@ -22,8 +22,16 @@ def add_menu_item(request):
 
     return new_menu_item, 201
 
-def get_menu_item(data):
-    return "Okay", 200
+@error_handler
+def get_menu_item(request):
+    id = request.args.get("id")
+    schema = MenuItemSchema()
+
+    with session_scope() as session:
+        menu_object = session.query(MenuItem).get(id)
+        menu_item, errors = schema.dump(menu_object)
+
+    return menu_item, 200
 
 @error_handler
 def edit_menu_item(request):
@@ -34,11 +42,10 @@ def edit_menu_item(request):
     if errors:
         return ("Error: unable to map object", 422)
 
-    session = session_factory()
-    # Update the menu with the ID specified
-    session.query(MenuItem).filter(MenuItem.id == valid_menu_data["id"]).update(valid_menu_data)
-    session.commit()
-    session.close()
+    with session_scope() as session:
+        # Update the menu with the ID specified
+        session.query(MenuItem).filter(MenuItem.id == valid_menu_data["id"]).update(valid_menu_data)
+
     return "Edit menu successful", 200
 
 @error_handler
