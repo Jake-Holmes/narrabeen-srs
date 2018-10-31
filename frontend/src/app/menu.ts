@@ -4,6 +4,6 @@ export class MenuItem {
     name: string;
     description: string;
     image: string;
-    status: string;
+    active: string;
     type: string;
 }

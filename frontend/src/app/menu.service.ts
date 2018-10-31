@@ -10,8 +10,7 @@ export class MenuService {
   constructor(private http: HttpClient) { }
 
   GetMenu() {
-    // return this.http.get<MenuItem[]>('https://jakeholmes.me:5000/api/menu/all');
-    return this.http.get<MenuItem[]>('assets/testdata.json');
+    return this.http.get<MenuItem[]>('https://jakeholmes.me:5000/menu/all');
   }
 
   getMenuItem(id: number) {
