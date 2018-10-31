@@ -8,8 +8,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 import { CheckoutComponent } from './checkout/checkout.component';
 
-import { NoAccessComponent } from "./shared/no-access/no-access.component";
-import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
+import { NoAccessComponent } from './shared/no-access/no-access.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 
 
