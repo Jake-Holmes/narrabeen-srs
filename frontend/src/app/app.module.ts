@@ -16,6 +16,11 @@ import { TablemanagementComponent } from './tablemanagement/tablemanagement.comp
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
 import { MenuItemAdminComponent } from './menu-item-admin/menu-item-admin.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { NoProductsFoundComponent } from './shared/no-products-found/no-products-found.component';
+import { CartCalculatorComponent } from './cart-calculator/cart-calculator.component';
+import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,11 @@ import { MenuItemAdminComponent } from './menu-item-admin/menu-item-admin.compon
     TablemanagementComponent,
     KitchenViewComponent,
     MenuAdminComponent,
-    MenuItemAdminComponent
+    MenuItemAdminComponent,
+    ShoppingCartComponent,
+    NoProductsFoundComponent,
+    CartCalculatorComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +47,7 @@ import { MenuItemAdminComponent } from './menu-item-admin/menu-item-admin.compon
     MatButtonModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

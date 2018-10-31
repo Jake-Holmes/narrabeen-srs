@@ -4,6 +4,14 @@ import { MenuComponent } from './menu/menu.component';
 import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.component';
 import { TablemanagementComponent } from './tablemanagement/tablemanagement.component';
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+
+import { CheckoutComponent } from './checkout/checkout.component';
+
+import { NoAccessComponent } from "./shared/no-access/no-access.component";
+import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
+
+
 
 import { MenuItemAdminComponent } from './menu-item-admin/menu-item-admin.component';
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
@@ -33,6 +41,14 @@ const routes: Routes = [
     path: 'kitchen-view',
     component: KitchenViewComponent
   },
+  {
+    path: 'shopping-cart',
+    component: ShoppingCartComponent
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent
+  }
 ];
 
 @NgModule({
