@@ -1,29 +1,36 @@
-import { Component, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { Product } from "../shared/models/product";
-import { CartService } from '../cart.service';
+import { MenuItem } from "../shared/models/menuitem";
 
 @Component({
   selector: 'app-cart-calculator',
   templateUrl: './cart-calculator.component.html',
   styleUrls: ['./cart-calculator.component.scss']
 })
-export class CartCalculatorComponent implements OnInit {
-  totalValue = 0;
-  products: any;
+export class CartCalculatorComponent implements OnInit, OnChanges {
+  @Input() products: MenuItem[];
 
-  constructor(
-    private cartService: CartService,
-  ) { }
+  totalValue = 0.0;
+
+  constructor() { }
 
   ngOnInit() {
-    this.cartService.items$.subscribe(i => this.products = i);
-    setTimeout(CartCalculatorComponent, 3000);
   }
 
   calculateTotalPrice() {
     this.totalValue = 0;
     this.products.forEach(product => {
       console.log(product)
+      this.totalValue += product.base_price;
+    });
+  }
+
+  ngOnChanges(changes: any) {
+    const dataChanges: SimpleChange = changes.products;
+
+    const products: Product[] = dataChanges.currentValue;
+    this.totalValue = 0;
+    products.forEach(product => {
       this.totalValue += product.base_price;
     });
   }
