@@ -84,3 +84,17 @@ def add_table_order(request):
 			return "Code incorrect", 401
 	
 	return return_msg, 200
+
+@error_handler
+def get_table_bill(request):
+	qr_code = str(request.args.get("qr_code", None))
+	schema = OrderSchema()
+
+	with session_scope() as session:
+		table = session.query(Table).filter(Table.qr_code == qr_code).scalar()
+		if table != None:
+			order, errors = schema.dump(table.order)
+		else:
+			return "Code incorrect", 401
+
+	return order, 200

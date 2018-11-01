@@ -35,6 +35,11 @@ def route_add_table_order():
     response_body, response_code = order_engine.add_table_order(request)
     return jsonify(response_body), response_code
 
+@app.route('/order/table/bill', methods=['GET'])
+def route_get_table_bill():
+    response_body, response_code = order_engine.get_table_bill(request)
+    return jsonify(response_body), response_code
+
 ###----------MENU----------###
 @app.route('/menu', methods=['POST'])
 def route_add_menu_item():
