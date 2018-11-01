@@ -7,7 +7,6 @@ import { CheckoutComponent } from "./checkout.component";
 import { BillingDetailsComponent } from './billing-details/billing-details.component';
 import { ProductsComponent } from './products/products.component';
 import { ResultComponent } from './result/result.component';
-import { ShippingDetailsComponent } from './shipping-details/shipping-details.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, CheckoutRoutingModule],
@@ -16,8 +15,7 @@ import { ShippingDetailsComponent } from './shipping-details/shipping-details.co
     CheckoutNavbarComponent,
     BillingDetailsComponent,
     ProductsComponent,
-    ResultComponent,
-    ShippingDetailsComponent
+    ResultComponent
   ],
   exports: [CheckoutComponent]
 })
