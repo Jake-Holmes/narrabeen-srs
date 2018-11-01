@@ -13,6 +13,14 @@ p {
   font-size: 16px;
 }
 
+$colors: (
+  primary:    #ff48b9,
+  secondary:  #32db64,
+  tertiary:   #f53d3d,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222
+);
 
 
 .font {
@@ -20,10 +28,12 @@ p {
     font-size: 30px;
 }
 
+
+
 .example-card {
     font-size: 100px;
     margin-top: 0px;
-    max-width: 300px;
+    max-width: 250px;
     background: rgb(170, 79, 79);
   }
   
@@ -111,8 +121,36 @@ li {
     margin: 20px 0 10px;
     padding: 0 0 10px 0;
     text-transform: uppercase;
+    text-align: center;
+  }
+
+
+  h5{
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+  }
+
+  h6{
+    font-size: 25px;
+    font-family: 'Oswald', sans-serif;
+    align-content: center;
+    align-items: center;
+    text-align: justify;
   }
   
+
+  a{    
+    font-size: 25px;
+    font-family: 'Oswald', sans-serif;
+    align-content: center;
+    align-items: center;
+    text-align: justify;
+    margin: 20px 0 10px;
+    padding: 0 0 10px 0;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
   .price p {
     font-family: 'Oswald', sans-serif;
     font-size: 20px;
@@ -120,14 +158,33 @@ li {
     margin: 26px 0 5px;
     text-align: right;
   }
+
+  .mathead{
+    align-content: center;
+    background-size: cover;
+    background-color: #444;
+    text-transform: uppercase;
+    text-align: center;
+    align-content: center;
+    text-align: center;
+    padding: 5px;
+  }
   
   .order-item-grid {
     display: flex;
     flex-flow: row wrap;
   
     .order-item-card {
-      width: 300px;
-      margin: 5px;
+      align-content: center;
+      text-align: center;
+      padding: 0px;
+      width: 230px;
+      margin: 8px;
+      .order-item-card-content{
+        align-content: center;
+        text-align: center;
+        padding: 5px;
+      }
   
       // @media screen and (max-width: 700px) {
       //   width: 100%;

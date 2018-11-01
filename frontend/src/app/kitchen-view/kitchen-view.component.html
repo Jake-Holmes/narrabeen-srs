@@ -1,69 +1,35 @@
-<!-- <div>
-<ul>
-  <li>
-  <h1><span>Narrabeen</span><span>Pizza</span></h1>
-</li>
-  <li><a href="#home">Waiting Orders</a></li>
-  <li><a href="#news">All Orders</a></li>
-  <li><a href="#contact">By Table</a></li>
-  <li><a href="#about">By Time</a></li>
-</ul>
-</div>
-<mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>2</mat-grid-tile>
-    <mat-grid-tile>3</mat-grid-tile>
-    <mat-grid-tile>4</mat-grid-tile>
-  </mat-grid-list>
-  <div *ngIf="selectedMenuItems">
-    <mat-card class="example-card">
-        <mat-card-header class="font">
-          <mat-card-title class="font">Table 1</mat-card-title>
-          <mat-card-subtitle class="font">Time: 05:45 </mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-            <div>
-                <div *ngFor="let item of selectedMenuItems">
-                  <p>1 X {{ item.type }}, {{ item.name }}, {{ item.description }}</p>
-                </div>
-              </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>Done</button>
-          <button mat-button>Expand</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-    
--->
-   
+<nav class="navbar navbar-light bg-dark">
+    <a class="navbar-brand text-danger" href="#">Narrabeen</a>
+    <button class="btn btn-dark">ORDERED</button>
+    <button class="btn btn-dark">ORDERED</button>
+    <button class="btn btn-dark">ORDERED</button>
+  </nav>
+
 <div class="order-item-grid">
   <div class="order-item-container" *ngFor="let item of order$">
-    <mat-card class="order-item-card">
-      <mat-card-header>
-        <mat-card-title>
-          <h3>
-            <a routerLink='/kitchen-view'>{{item.id}}</a>
-          </h3>
-        </mat-card-title>
+    <mat-card class="order-item-card" [style.background]="cardColor">
+      <mat-card-header (InIt)="toggleColor()" [background-color]="typeColor" class="mathead">
+          <a>{{item.menu_item.menu_item_type}}</a>
       </mat-card-header>
 
-      <mat-card-content>
-        <p>
-          {{item.menu_item.name}}
-        </p>
-        <p>
-          {{item.menu_item.description}}
-        </p>
+      <mat-card-content class="order-item-card-content">
+             
+          <h3>
+            <a routerLink='/kitchen-view'>Order Id: {{item.order_id}}</a>
+          </h3>
+          <a>Order Time: {{item.date_created| date:'HH:mm'}}</a>
+          <h2>{{item.menu_item.name}}</h2>
+          <h5>{{item.menu_item.description}}</h5>
+          <!--<h5>{{item.date_created| date:'HH:mm:ss'}}</h5>
+          <h5>{{today| date:'HH:mm:ss'}}</h5>-->
+        
+          <h5>Place Item In Slot: {{item.slot}}</h5>
+          <mat-card-actions>
+              <button  (click)="toggleNamedColor()" mat-raised-button (click)="ordered" [color]="ionicNamedColor">{{buttonStatus}}</button>
+              <span style="float:right;"></span>
+            </mat-card-actions>
       </mat-card-content>
-
-
-      <mat-card-actions>
-        <button mat-button (click)="ordered">ORDERED</button>
-        <span style="float:right;"></span>
-      </mat-card-actions>
-
-
     </mat-card>
   </div>
 </div>
+

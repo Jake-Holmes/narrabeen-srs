@@ -17,7 +17,7 @@ export class CartCalculatorComponent implements OnInit {
 
   ngOnInit() {
     this.cartService.items$.subscribe(i => this.products = i);
-    setTimeout(this.calculateTotalPrice(), 3000);
+    setTimeout(CartCalculatorComponent, 3000);
   }
 
   calculateTotalPrice() {
