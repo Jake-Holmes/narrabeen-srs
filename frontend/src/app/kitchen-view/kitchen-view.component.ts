@@ -70,8 +70,6 @@ export class KitchenViewComponent implements OnInit {
   ngOnInit() {    
     this.GetOrder();
     this.GetMenu();
-    // this.type=this.GetMenuTypes(this.order$);
-    // this.timeFormatted=this.GetOrderTime(this.order$);
   }
 
 
