@@ -3,6 +3,7 @@ from .decorators import error_handler
 from db.schemas.menu_item import MenuItem
 from interface.schemas.menu_item import MenuItemSchema
 from .common_functions import string_to_bool, session_scope
+from sqlalchemy import exists
 
 # Menu module to implement business logic
 
@@ -17,10 +18,16 @@ def add_menu_item(request):
     menu_item = MenuItem(**valid_menu_item)
     
     with session_scope() as session:
+        if session.query(exists().where(MenuItem.name==menu_item.name)).scalar():
+            return ("Error: Menu item exists", 400)
         session.add(menu_item)
         new_menu_item = schema.dump(menu_item).data
 
-    return new_menu_item, 201
+    return new_menu_item, 200
+
+@error_handler
+def delete_menu_item(request):
+    return "Okay", 200
 
 @error_handler
 def get_menu_item(request):

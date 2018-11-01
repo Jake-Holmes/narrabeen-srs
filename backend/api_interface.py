@@ -13,13 +13,11 @@ CORS(app)
 def route_get_order():
     response_body, response_code = order_engine.get_order(request)
     return jsonify(response_body), response_code
-
     
 @app.route('/order', methods=['PUT'])
 def route_edit_order():
     response_body, response_code = order_engine.edit_order(request)
     return jsonify(response_body), response_code
-
 
 @app.route('/order/all', methods=['GET'])
 def route_get_all_order():
@@ -43,31 +41,31 @@ def route_add_menu_item():
     response_body, response_code = menu_engine.add_menu_item(request)
     return jsonify(response_body), response_code
 
+@app.route('/menu', methods=['DELETE'])
+def route_delete_menu_item():
+    response_body, response_code = menu_engine.delete_menu_item(request)
+    return jsonify(response_body), response_code
 
 @app.route('/menu', methods=['GET'])
 def route_get_menu_item():
     response_body, response_code = menu_engine.get_menu_item(request)
     return jsonify(response_body), response_code
 
-
 @app.route('/menu', methods=['PUT'])
 def route_edit_menu_item():
     response_body, response_code = menu_engine.edit_menu_item(request)
     return jsonify(response_body), response_code
-
 
 @app.route('/menu/all', methods=['GET'])
 def route_get_all_menu_items():
     response_body, response_code = menu_engine.get_all_menu_items(request)
     return jsonify(response_body), response_code
 
-
 ###----------USER----------###
 @app.route('/user/all', methods=['GET'])
 def get_all_users():
     response_body, response_code = user_engine.get_all_users(request)
     return jsonify(response_body), response_code
-
 
 @app.route('/user', methods=['POST'])
 def add_user():
@@ -93,6 +91,11 @@ def get_table():
 @app.route('/table/login', methods=['GET'])
 def table_login():
     response_body, response_code = table_engine.table_login(request)
+    return jsonify(response_body), response_code
+
+@app.route('/table', methods=['PUT'])
+def edit_table():
+    response_body, response_code = table_engine.edit_table(request)
     return jsonify(response_body), response_code
 
 ###----------RESERVATION----------###

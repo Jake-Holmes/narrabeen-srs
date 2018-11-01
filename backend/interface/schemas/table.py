@@ -5,7 +5,7 @@ from db.schemas.table import Table
 from interface.schemas.order import OrderSchema
 
 class TableSchema(Schema):
-	id = fields.Integer(dump_only=True, required=True)
+	id = fields.Integer(required=True)
 	table_number = fields.Int(required=True)
 	seats = fields.Int(required=True)
 	qr_code = fields.Str(dump_only=True, required=True)
