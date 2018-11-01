@@ -4,24 +4,24 @@
       Clickable table lists goes here
     </p>
   </div>
-  <div class="column-2">
-    <h2 class="mat-h2">Table #X</h2>
+  <div class="column-2" *ngFor="let table of tables">
+    <h2 class="mat-h2">Table {{table.table_number}}</h2>
     <div>
       <span>Status: </span>
-      <span>Order status goes here</span>
+      <span>{{table.status ? "Active":"Inactive"}}</span>
     </div>
     <div>
       <span># of Seats: </span>
-      <span># of seats goes here</span>
+      <span>{{table.seats}}</span>
     </div>
-    <div>
+    <!-- <div>
       <span>QR Code: </span>
       <span>QR code of seats goes here</span>
     </div>
     <div>
       <span>Passcode: </span>
       <span>Passcode of seats goes here</span>
-    </div>
+    </div> -->
     <div>
       <p>Order Items</p>
     </div>

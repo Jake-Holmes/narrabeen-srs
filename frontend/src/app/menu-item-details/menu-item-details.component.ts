@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MenuItem } from '../menu';
@@ -14,6 +14,8 @@ export class MenuItemDetailsComponent implements OnInit {
 
   item: MenuItem;
 
+  @Input('item') inputItem: MenuItem;
+
   constructor(
     private route: ActivatedRoute,
     private menuService: MenuService,
@@ -22,7 +24,10 @@ export class MenuItemDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.GetMenuItem();
+    if (this.inputItem !== undefined)
+      this.item = this.inputItem;
+    else    
+      this.GetMenuItem();
   }
 
   GetMenuItem(): void {
@@ -30,6 +35,8 @@ export class MenuItemDetailsComponent implements OnInit {
 
     // TODO remove id checking logic from here when api integrated
     this.menuService.getMenuItem(id).subscribe(menuItem => this.item = menuItem.find(mItem => mItem.id === id));
+    // const menuItems = await this.menuService.getMenuItem(id);
+    // this.item = menuItems.find(item => item.id === id);
   }
 
   AddToOrder(item: MenuItem): void {

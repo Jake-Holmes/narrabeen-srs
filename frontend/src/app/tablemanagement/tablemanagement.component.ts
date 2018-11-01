@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TableService } from '../table.service';
+import { Table } from '../table';
 
 @Component({
   selector: 'app-tablemanagement',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TablemanagementComponent implements OnInit {
 
-  constructor() { }
+  tables: Table[] = [];
 
-  ngOnInit() {
+  constructor(private tableService: TableService) { }
+
+  async ngOnInit() {
+    this.tables = await this.tableService.getAllTables();
+    console.log(this.tables);
   }
 
 }
