@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { OrderItem } from './order';
+import { OrderItem } from './shared/models/orderitem';
 import { Observable, BehaviorSubject } from 'rxjs';
  
 

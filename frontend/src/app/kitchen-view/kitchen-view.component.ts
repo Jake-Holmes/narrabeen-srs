@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
 import { MenuService } from '../menu.service';
-import { Observable } from 'rxjs';
-import { MenuItem } from '../menu';
+import { MenuItem } from '../shared/models/menuitem';
 import { OrderService } from '../order.service';
-import { OrderItem } from '../order';  
+import { OrderItem } from '../shared/models/orderitem';  
 
 @Component({
   selector: 'app-kitchen-view',

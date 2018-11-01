@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MenuItem } from './menu';
+import { MenuItem } from './shared/models/menuitem';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({

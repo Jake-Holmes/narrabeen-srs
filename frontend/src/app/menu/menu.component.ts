@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../menu.service';
-import { Observable } from 'rxjs';
-import { MenuItem } from '../menu';
+import { MenuItem } from '../shared/models/menuitem';
 import { CartService } from '../cart.service';
 
 @Component({
