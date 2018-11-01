@@ -15,12 +15,7 @@ export class KitchenViewComponent implements OnInit {
 
   order$: OrderItem[];  
   orderItems$ : MenuItem[];
-  public ionicNamedColor: string = 'primary';
-  public cardColor: string = 'lightGrey';
-  public typeColor: string = 'Red';
-  public timeFormatted: String[] = [];
   menu$: MenuItem[];
-  buttonStatus: string="Ordered";
 
   // TODO Convert this into an order with a list of items or something
   selectedMenuItems: MenuItem[] = [];
@@ -35,33 +30,35 @@ export class KitchenViewComponent implements OnInit {
     private menuService: MenuService  
   ) { }
   
-  
-
-
-  public toggleNamedColor(): void {
-    if(this.ionicNamedColor === 'primary') { 
-      this.ionicNamedColor = 'accent'
-      this.cardColor = 'orange'
-      this.buttonStatus="In Progress"
-    } 
-    else if(this.ionicNamedColor === 'accent'){
-      this.ionicNamedColor = 'warn'
-      this.cardColor = 'lime'
-      this.buttonStatus="Done"
-    }
-    else {
-      this.ionicNamedColor = 'primary'
-      this.cardColor = 'lightGrey'
-      this.buttonStatus="Ordered"
+  public toggleNamedColor(item: OrderItem): void {
+    for (let i = 0; i < this.order$.length; i++) {
+      if (this.order$[i] === item) {
+        if(item.ionicNamedColor === 'primary') { 
+          item.ionicNamedColor = 'accent'
+          item.cardColor = 'orange'
+          item.buttonStatus="In Progress"
+        } 
+        else if(item.ionicNamedColor === 'accent'){
+          item.ionicNamedColor = 'warn'
+          item.cardColor = 'lime'
+          item.buttonStatus="Done"
+        }
+        else {
+          item.ionicNamedColor = 'primary'
+          item.cardColor = 'lightGrey'
+          item.buttonStatus="Ordered"
+        }
+        break;
+      }
     }
   }
 
   public toggleColor(): void {
     if(this.type === ["Poultry"]) { 
-      this.typeColor = 'lightPink'
+      // this.typeColor = 'lightPink'
     } 
     else {
-      this.typeColor='LightGreen'
+      // this.typeColor='LightGreen'
     }
   }
 
@@ -69,9 +66,6 @@ export class KitchenViewComponent implements OnInit {
     this.GetOrder();
     this.GetMenu();
   }
-
-
-  
 
   GetMenu(): void {
     this.menuService.GetMenu().subscribe(data => {
@@ -91,8 +85,13 @@ export class KitchenViewComponent implements OnInit {
   GetOrder(): void {
     this.orderService.GetOrder().subscribe(data => {
         this.order$ = data;
+        this.order$['ionicNamedColor'] = 'primary';
+        this.order$['cardColor'] = 'lightGrey';
+        this.order$['typeColor'] = 'red';
+        this.order$['timeFormatted'] = [];
+        this.order$['buttonStatus'] = "Ordered"
         this.type = this.GetMenuTypes(this.order$);
-        this.timeFormatted = this.GetOrderTime(this.order$);
+        this.order$['timeFormatted'] = this.GetOrderTime(this.order$);
       }
     );
   }
@@ -109,6 +108,5 @@ export class KitchenViewComponent implements OnInit {
     // Unique Type List
     return typeList; 
   }
-  
 }
 

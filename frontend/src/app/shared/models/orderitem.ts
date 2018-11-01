@@ -1,6 +1,6 @@
 import { MenuItem } from './menuitem';
 
-export class OrderItem{
+export class OrderItem {
     date_created: string;
     date_modified: string;
     id: number;
@@ -10,4 +10,9 @@ export class OrderItem{
     price: number;
     slot: number;
     status: string;
+    ionicNamedColor: string;
+    cardColor: string;
+    typeColor: string;
+    timeFormatted: String;
+    buttonStatus: string;
 }

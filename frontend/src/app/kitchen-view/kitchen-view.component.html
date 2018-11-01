@@ -7,8 +7,8 @@
 
 <div class="order-item-grid">
   <div class="order-item-container" *ngFor="let item of order$">
-    <mat-card class="order-item-card" [style.background]="cardColor">
-      <mat-card-header (InIt)="toggleColor()" [background-color]="typeColor" class="mathead">
+    <mat-card class="order-item-card" [style.background]="item.cardColor">
+      <mat-card-header (InIt)="toggleColor()"  [ngStyle]="item.typeColor" class="mathead">
           <a>{{item.menu_item.menu_item_type}}</a>
       </mat-card-header>
 
@@ -24,10 +24,7 @@
           <h5>{{today| date:'HH:mm:ss'}}</h5>-->
         
           <h5>Place Item In Slot: {{item.slot}}</h5>
-          <mat-card-actions>
-              <button  (click)="toggleNamedColor()" mat-raised-button (click)="ordered" [color]="ionicNamedColor">{{buttonStatus}}</button>
-              <span style="float:right;"></span>
-            </mat-card-actions>
+          <button mat-raised-button (click)="toggleNamedColor(item)">NEEDS FIXING</button>
       </mat-card-content>
     </mat-card>
   </div>
