@@ -109,14 +109,19 @@ def get_all_reservations():
     response_body, response_code = reservation_engine.get_all_reservations(request)
     return jsonify(response_body), response_code
 
-@app.route('/reservations/customer', methods=['GET'])
-def get_customer_reservations():
-    response_body, response_code = reservation_engine.get_customer_reservations(request)
-    return jsonify(response_body), response_code
-
-@app.route('/reservations/single', methods=['GET'])
+@app.route('/reservations', methods=['GET'])
 def get_reservation():
     response_body, response_code = reservation_engine.get_reservation(request)
+    return jsonify(response_body), response_code
+
+@app.route('/reservations/customer', methods=['GET'])
+def get_customer_reservations():
+    response_body, response_code = reservation_engine.get_available_reservations(request)
+    return jsonify(response_body), response_code
+
+@app.route('/reservations/customer', methods=['POST'])
+def make_customer_reservations():
+    response_body, response_code = reservation_engine.make_customer_reservations(request)
     return jsonify(response_body), response_code
 
 if __name__ == "__main__":

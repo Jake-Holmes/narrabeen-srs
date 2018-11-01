@@ -45,14 +45,18 @@ table1.order = order2 # Table1 links to Order1
 order2.order_items = [orderItem1] # Order1 has is associated with a collection of order items
 
 customer1 = Customer("911", "Joe", "Smith", "JSmith", True)
-
-start = datetime.utcnow()
-end = start + timedelta(hours=2)
-reservation1 = Reservation(1.5, table1, customer1, start, end)
+customer2 = Customer("0912345678", "John", "Test", "Jusername", True)
 
 # Add given instances to the session
 
-session.add_all([table1, corey, wallace, steak, fish, orderItem1, order2, customer1, reservation1])
+session.add_all([table1, corey, wallace, steak, fish, orderItem1, order2, customer1, customer2])
+session.commit()
+
+start = datetime.utcnow()
+end = start + timedelta(hours=2)
+reservation1 = Reservation(1.5, table1.id, customer1.id, start, end)
+
+session.add(reservation1)
 session.commit()
 
 # Perform some queries

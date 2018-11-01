@@ -22,10 +22,10 @@ class Reservation(Base):
 	date_created = Column(DateTime, nullable=False)
 	date_modified = Column(DateTime, nullable=False)
 
-	def __init__(self, duration, table, customer, start_time, end_time):
+	def __init__(self, duration, table_id, customer_id, start_time, end_time):
 		self.duration = duration
-		self.table = table
-		self.customer = customer
+		self.table_id = table_id
+		self.customer_id = customer_id
 		self.start_time = start_time
 		self.end_time = end_time
 		now = datetime.datetime.utcnow()
