@@ -56,14 +56,13 @@ def get_all_order_items(request):
 
 @error_handler
 def add_table_order(request):
-	id = request.args.get("id")
 	qr_code = str(request.args.get("qr_code", None))
 	menu_item_dict = request.get_json()
 
 	with session_scope() as session:
-		table = session.query(Table).get(id)
-		if table.qr_code == qr_code:
-
+		table = session.query(Table).filter(Table.qr_code == qr_code).scalar()
+		
+		if table != None:
 			if table.order == None or table.order.status == OrderStatus.paid:
 				order = Order("confirmed", "dinein") # Create new order
 				return_msg = "Order received"
