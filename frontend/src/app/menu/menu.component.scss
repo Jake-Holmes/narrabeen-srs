@@ -39,12 +39,12 @@ p {
   padding: 0;
 }
 
-.container {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  margin: -70px auto 80px;
-  padding: 80px;
-  z-index: 0;
-}
+// .container {
+//   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+//   margin: -70px auto 80px;
+//   padding: 80px;
+//   z-index: 0;
+// }
 
 h1 {
   color: #444;
@@ -64,17 +64,24 @@ h2 {
   text-transform: uppercase;
 }
 
-h3 {
-  color: #ce2c38;
-  font-family: 'Oswald', sans-serif;
-  margin: 10px 0 5px;
-  text-transform: uppercase;
-}
-
 .price p {
   font-family: 'Oswald', sans-serif;
   font-size: 20px;
   font-style: normal;
   margin: 26px 0 5px;
   text-align: right;
+}
+
+.menu-item-grid {
+  display: flex;
+  flex-flow: row wrap;
+
+  .menu-item-card {
+    width: 300px;
+    margin: 5px;
+
+    // @media screen and (max-width: 700px) {
+    //   width: 100%;
+    // }
+  }
 }

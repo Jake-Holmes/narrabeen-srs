@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=serif');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=sans-serif');
+
+
+* {
+  font-family: 'Playfair Display', serif;
+}
+
+p {
+  font-style: italic;
+  font-size: 16px;
+}
+
+.font {
+    font-style: normal;
+}
+
+.example-card {
+    font-size: 30px;
+    margin-top: 20px;
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+      background-size: cover;
+
+  }
+
+ h1 {
+    background: #ce2c38;
+    border-radius: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    height: 150px;
+    margin: 30px auto 0;
+    position: relative;
+    text-align: center;
+    width: 150px;
+    z-index: 10;
+  }
+  
+h1 span {
+    color: #fff;
+    display: block;
+    font-size: 20px;
+    padding: 62px 0 0 0;
+  }
+  
+h1 span+span {
+    color: #000;
+    display: block;
+    font-size: 14px;
+    padding: 0;
+  }
+  
+ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0px;
+      overflow: hidden;
+      background-color: rgb(255, 255, 255);
+  }
+  
+  
+li {
+      float: left;
+  }
+  
+ li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      text-decoration: none;
+  }
+  
+ li a:hover {
+      background-color: rgba(0, 255, 255, 0.158);
+  }
