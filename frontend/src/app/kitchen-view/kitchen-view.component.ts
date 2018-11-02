@@ -85,7 +85,6 @@ export class KitchenViewComponent implements OnInit {
   GetOrder(): void {
     this.orderService.GetOrder().subscribe(data => {
         this.order$ = data;
-<<<<<<< HEAD
         this.order$['ionicNamedColor'] = 'primary';
         this.order$['cardColor'] = 'lightGrey';
         this.order$['typeColor'] = 'red';
@@ -93,10 +92,6 @@ export class KitchenViewComponent implements OnInit {
         this.order$['buttonStatus'] = "Ordered"
         this.type = this.GetMenuTypes(this.order$);
         this.order$['timeFormatted'] = this.GetOrderTime(this.order$);
-=======
-        this.type = this.GetMenuTypes(this.order$);
-        this.timeFormatted = this.GetOrderTime(this.order$);
->>>>>>> 14c6fbcea9ffec169c32f51d36939259d93260d6
       }
     );
   }
