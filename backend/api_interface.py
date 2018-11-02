@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
-from src import menu_engine, order_engine, user_engine, table_engine, reservation_engine
+from src import menu_engine, order_engine, user_engine, table_engine, reservation_engine, customer_engine
 import mock_data
 
 app = Flask(__name__)
@@ -126,6 +126,32 @@ def get_customer_reservations():
 @app.route('/reservations/customer', methods=['POST'])
 def make_customer_reservations():
     response_body, response_code = reservation_engine.make_customer_reservations(request)
+    return jsonify(response_body), response_code
+
+###----------CUSTOMER----------###
+@app.route('/customer', methods=['POST'])
+def route_add_customer():
+    response_body, response_code = customer_engine.add_customer(request)
+    return jsonify(response_body), response_code
+
+@app.route('/customer', methods=['GET'])
+def route_get_customer():
+    response_body, response_code = customer_engine.get_customer(request)
+    return jsonify(response_body), response_code
+
+@app.route('/customer', methods=['GET'])
+def route_get_takeaway_customer():
+    response_body, response_code = customer_engine.get_takeaway_customer(request)
+    return jsonify(response_body), response_code
+
+@app.route('/customer', methods=['GET'])
+def route_get_customer_reservation():
+    response_body, response_code = customer_engine.get_customer_reservation(request)
+    return jsonify(response_body), response_code
+
+@app.route('/customer', methods=['PUT'])
+def route_edit_customer():
+    response_body, response_code = customer_engine.edit_customer(request)
     return jsonify(response_body), response_code
 
 if __name__ == "__main__":
