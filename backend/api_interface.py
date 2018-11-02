@@ -26,6 +26,11 @@ def route_get_all_order():
     response_body, response_code = order_engine.get_all_orders(request)
     return jsonify(response_body), response_code
 
+@app.route('/order/items', methods=['PUT'])
+def route_edit_order_status():
+    response_body, response_code = order_engine.edit_order_status(request)
+    return jsonify(response_body), response_code
+
 @app.route('/order/items/all', methods=['GET'])
 def route_get_all_order_items():
     response_body, response_code = order_engine.get_all_order_items(request)
