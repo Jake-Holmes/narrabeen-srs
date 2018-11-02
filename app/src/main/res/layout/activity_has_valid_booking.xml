@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HasValidBooking">
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="317dp"
+        android:layout_height="20dp"
+        android:fontFamily="sans-serif"
+        android:text="We found your booking details"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="56dp" />
+
+    <TextView
+        android:id="@+id/firstNameTV"
+        android:layout_width="150dp"
+        android:layout_height="26dp"
+        android:text="First Name"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="92dp" />
+
+    <TextView
+        android:id="@+id/lastNameTV"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:text="Last Name"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="127dp" />
+
+    <TextView
+        android:id="@+id/FNameEntered"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        tools:layout_editor_absoluteX="195dp"
+        tools:layout_editor_absoluteY="92dp" />
+
+    <TextView
+        android:id="@+id/LNameEntered"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        tools:layout_editor_absoluteX="195dp"
+        tools:layout_editor_absoluteY="127dp" />
+
+    <TextView
+        android:id="@+id/TableID"
+        android:layout_width="148dp"
+        android:layout_height="25dp"
+        android:text="TableID:"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="168dp" />
+
+    <TextView
+        android:id="@+id/TableIDLabel"
+        android:layout_width="149dp"
+        android:layout_height="23dp"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="168dp" />
+</RelativeLayout>
