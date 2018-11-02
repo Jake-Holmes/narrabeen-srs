@@ -1,7 +1,9 @@
 from .decorators import error_handler
 from .common_functions import string_to_bool, session_scope
-from db.schemas.order import Order
-from db.schemas.order_item import OrderItem
+from db.schemas.order import Order, OrderType, OrderStatus
+from db.schemas.table import Table
+from db.schemas.order_item import OrderItem, OrderItemStatus
+from db.schemas.menu_item import MenuItem
 from interface.schemas.order import OrderSchema
 from interface.schemas.order_item import OrderItemSchema
 from sqlalchemy import exists
@@ -82,3 +84,48 @@ def get_all_order_items(request):
 		order_items, errors = schema.dump(order_item_objects)
 
 	return order_items, 200
+
+@error_handler
+def add_table_order(request):
+	qr_code = str(request.args.get("qr_code", None))
+	menu_item_dict = request.get_json()
+
+	with session_scope() as session:
+		table = session.query(Table).filter(Table.qr_code == qr_code).scalar()
+		
+		if table != None:
+			if table.order == None or table.order.status == OrderStatus.paid:
+				order = Order("confirmed", "dinein") # Create new order
+				return_msg = "Order received"
+			else:
+				order = table.order # Append existing order
+				return_msg = "Order items added to order"
+
+			order_items = []
+			for menu_item_id in menu_item_dict:
+				menu_item = session.query(MenuItem).get(int(menu_item_id))
+				order_item = OrderItem(None, float(menu_item.base_price), "confirmed", menu_item)
+				order.order_items.append(order_item)
+				order_items.append(order_item)
+
+			table.order = order
+			session.add_all(order_items)
+			session.add(order)
+		else:
+			return "Code incorrect", 401
+	
+	return return_msg, 200
+
+@error_handler
+def get_table_bill(request):
+	qr_code = str(request.args.get("qr_code", None))
+	schema = OrderSchema()
+
+	with session_scope() as session:
+		table = session.query(Table).filter(Table.qr_code == qr_code).scalar()
+		if table != None:
+			order, errors = schema.dump(table.order)
+		else:
+			return "Code incorrect", 401
+
+	return order, 200
