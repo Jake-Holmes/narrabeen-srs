@@ -17,5 +17,16 @@
       "es2017",
       "dom"
     ]
-  }
+  },
+  "paths": {
+    "@app/*": [
+      "app/*"
+    ],
+    "@env/*": [
+      "environments/*"
+    ],
+    "@testing/*": [
+      "testing/*"
+    ]
+  },
 }
