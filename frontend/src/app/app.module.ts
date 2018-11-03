@@ -9,11 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatButtonModule} from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import {MaterialComponentsModule} from './material-components.module';
 import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.component';
 import { TablemanagementComponent } from './tablemanagement/tablemanagement.component';
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
@@ -48,11 +44,7 @@ import { StaffLoginComponent } from './staff-login/staff-login.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatCardModule,
-    MatGridListModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule
+    MaterialComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
