@@ -1,4 +1,8 @@
-<div *ngFor="let menuItem of menuList">
-  <h3><a routerLink='/menu-item-create-edit/{{menuItem.id}}'>{{ menuItem.name | titlecase }}</a></h3>
-</div>
-<button mat-button (click)="CreateNewItem">Add New</button>
+<h2>Manage Menu Items</h2>
+<mat-list>
+  <mat-list-item *ngFor="let menuItem of menuList">
+    <h4 mat-line><a routerLink='/menu-item-create-edit/{{menuItem.id}}'>{{ menuItem.name | titlecase }}</a></h4>
+    <p mat-line>{{ menuItem.description }}</p>
+  </mat-list-item>
+</mat-list>
+<button mat-stroked-button (click)="CreateNewItem">Add New</button>
