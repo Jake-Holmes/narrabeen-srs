@@ -47,19 +47,32 @@
         android:id="@+id/btn_use_qr"
         android:layout_width="261dp"
         android:layout_height="67dp"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="28dp"
-        android:layout_marginEnd="17dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="280dp"
         android:text="Scan Booking QR Code" />
 
     <Button
         android:id="@+id/btn_check_online"
         android:layout_width="261dp"
         android:layout_height="67dp"
-        android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/btn_use_qr"
-        android:layout_marginStart="22dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="118dp"
+        android:layout_marginEnd="0dp"
         android:onClick="submitWithInfo"
         android:text="Check online" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="139dp"
+        android:layout_height="103dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/editText_first_name"
+        android:onClick="cancel"
+        android:text="Cancel" />
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.avatarmind.robotmotion;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.robot.motion.RobotMotion;
 import android.robot.speech.SpeechManager;
@@ -39,8 +40,8 @@ public class WheelActivity extends Activity implements OnClickListener {
     final int mapWidth = 7, mapHeight = 9;
 
     final String TAG = "HasBooking";
+    private NavigationGrid<GridCell> navGrid;
 
-    NavigationGrid<GridCell> navGrid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,7 @@ public class WheelActivity extends Activity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.common_title_back:
                 finish();
@@ -122,11 +124,15 @@ public class WheelActivity extends Activity implements OnClickListener {
                     //int angle = Integer.parseInt(degree);
                     //mRobotMotion.turn(angle, 2);
                 }
-                mSpeechManager.startSpeaking("Hello Menka and John, please take me home");
+                //mSpeechManager.startSpeaking("Hello Menka and John, please take me home");
                 break;
+            case R.id.Booking:
+                intent.setClass(this, HasBooking.class);
+                startActivity(intent);
             default:
                 break;
         }
+
     }
 
 
@@ -153,7 +159,6 @@ public class WheelActivity extends Activity implements OnClickListener {
         output = str.toString();
 
         //output += "\n\nMatrix:\n" + printMatrix(cells);
-
         Log.d(TAG, output);
 
         //TextView tv = findViewById(R.id.output);
@@ -178,6 +183,9 @@ public class WheelActivity extends Activity implements OnClickListener {
                     }
 
                     //double turnDegrees = get_new_direction_in_degrees(currentCell, nextCell);
+                    //double turnDegrees = logicalGetDirection(currentCell, nextCell); //absolute degrees from 0
+                    //double turnAngle = Math.abs(turnDegrees - currentHeading);
+
                     double turnDegrees = logicalGetDirection(currentCell, nextCell); //absolute degrees from 0
                     double turnAngle = turnDegrees - currentHeading;
                     turnAngle += turnAngle < 0 ? 360 : 0; //normalise negative angle;
