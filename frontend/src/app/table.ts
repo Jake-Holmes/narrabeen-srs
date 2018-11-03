@@ -1,4 +1,4 @@
-import { OrderItem } from "./order";
+import { OrderItem } from "./shared/models/orderitem";
 
 export class ITable {
     id: number;
