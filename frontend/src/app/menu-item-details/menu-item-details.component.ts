@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MenuItem } from '../shared/models/menuitem';
@@ -12,8 +12,6 @@ import { CartService } from '../cart.service';
 })
 export class MenuItemDetailsComponent implements OnInit {
 
-  item: MenuItem;
-
   constructor(
     private route: ActivatedRoute,
     private menuService: MenuService,
@@ -21,8 +19,13 @@ export class MenuItemDetailsComponent implements OnInit {
     private location: Location
   ) { }
 
+  @Input() item: MenuItem;
+
   ngOnInit() {
-    this.GetMenuItem();
+    // If item was not passed as a param, get from routeLink url params
+    if (!this.item) {
+      this.GetMenuItem();
+    }
   }
 
   GetMenuItem(): void {
