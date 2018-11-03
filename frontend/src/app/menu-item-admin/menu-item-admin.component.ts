@@ -27,7 +27,12 @@ export class MenuItemAdminComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     // TODO remove id checking logic from here when api integrated
-    this.menuService.getMenuItem(id).subscribe(menuItem => this.item = menuItem.find(mItem => mItem.id === id));
+    this.menuService.getMenuItem(id).subscribe(menuItem => this.item = menuItem);
+  }
+
+  Save(): void {
+    this.menuService.editMenuItem(this.item)
+     .subscribe(() => this.GoBack());
   }
 
   GoBack(): void {

@@ -25,4 +25,7 @@ export class MenuAdminComponent implements OnInit {
     });
   }
 
+  CreateNewItem(): void {
+
+  }
 }

@@ -1,5 +1,26 @@
 <button mat-raised-button (click)="GoBack()">go back</button>
-<div *ngIf="item">
-  <h2>{{ item.name }}</h2>
-  <p>{{ item.base_price }}</p>
+<div *ngIf="item" class="row">
+  <div class="menu-item-edit-form-containter col-md-6">
+      <mat-form-field>
+          <input matInput placeholder="Name" [(ngModel)]="item.name"/>
+        </mat-form-field>
+    
+        <mat-form-field>
+          <input matInput placeholder="Description" [(ngModel)]="item.description"/>
+        </mat-form-field>
+    
+        <mat-form-field>
+          <!-- TODO Make float -->
+          <input matInput placeholder="Price" [(ngModel)]="item.base_price"/>
+        </mat-form-field>
+
+        <button mat-button (click)="Save()">Save</button>
+  </div>
+    
+
+    <!-- TODO Image -->
+
+    <!-- TODO Active -->
+
+    <!-- TODO Type -->
 </div>

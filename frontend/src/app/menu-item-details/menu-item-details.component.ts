@@ -29,7 +29,7 @@ export class MenuItemDetailsComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     // TODO remove id checking logic from here when api integrated
-    this.menuService.getMenuItem(id).subscribe(menuItem => this.item = menuItem.find(mItem => mItem.id === id));
+    this.menuService.getMenuItem(id).subscribe(menuItem => this.item = menuItem);
   }
 
   AddToOrder(item: MenuItem): void {
