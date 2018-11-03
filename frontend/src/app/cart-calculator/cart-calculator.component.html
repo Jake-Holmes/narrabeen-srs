@@ -1,6 +1,6 @@
 <h4 class="d-flex justify-content-between align-items-center mb-3">
   <span class="text-muted">Your cart</span>
-  <span class="badge badge-primary badge-pill">{{ products.length }}</span>
+  <span class="badge badge-primary badge-pill counter">{{ products.length }}</span>
 </h4>
 <ul class="list-group mb-3">
   <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of products">
@@ -15,6 +15,7 @@
     <strong>$ {{ totalValue }}</strong>
   </li>
   <a class="btn btn-primary" [routerLink]="['/']">Continue Shopping</a>
+  <br />
   <a class="btn btn-default" [routerLink]="['/checkout']">Checkout</a>
 
 </ul>

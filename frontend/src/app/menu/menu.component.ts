@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../menu.service';
-import { MenuItem } from '../menu';
+import { MenuItem } from '../shared/models/menuitem';
 import { CartService } from '../cart.service';
 
 @Component({
@@ -43,8 +43,7 @@ export class MenuComponent implements OnInit {
 
   SelectMenuItem(menuItem: MenuItem): void {
     this.cartService.AddItem(menuItem);
-
-    localStorage.setItem("avct_item", JSON.stringify(this.selectedMenuItems));
+    localStorage.setItem('avct_item', JSON.stringify(this.selectedMenuItems));
   }
 
 }

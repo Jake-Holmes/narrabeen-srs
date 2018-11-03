@@ -24,6 +24,7 @@ import { NoProductsFoundComponent } from './shared/no-products-found/no-products
 import { CartCalculatorComponent } from './cart-calculator/cart-calculator.component';
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { StaffLoginComponent } from './staff-login/staff-login.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ShoppingCartComponent,
     NoProductsFoundComponent,
     CartCalculatorComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    StaffLoginComponent
   ],
   imports: [
     BrowserModule,

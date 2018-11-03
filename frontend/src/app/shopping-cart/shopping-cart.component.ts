@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { MenuItem } from '../menu';
+import { MenuItem } from '../shared/models/menuitem';
 import { CartService } from '../cart.service';
 
 
@@ -19,14 +19,12 @@ export class ShoppingCartComponent implements OnInit {
   messageDescription = "Please, Add Products to Cart";
 
   constructor(
-    private route: ActivatedRoute,
     private cartService: CartService,
     private location: Location
   ) { }
 
   ngOnInit() {
-    this.cartService.items$.subscribe(i => this.cartProducts = i);
-    this.consoleMe();
+    this.getCartProduct();
   }
 
   GoBack(): void {
@@ -35,5 +33,16 @@ export class ShoppingCartComponent implements OnInit {
 
   consoleMe() {
     console.log(this.cartProducts);
+  }
+
+  removeCartProduct(product: MenuItem) {
+    this.cartService.removeLocalCartProduct(product);
+
+    // Recalling
+    this.getCartProduct();
+  }
+
+  getCartProduct() {
+    this.cartProducts = this.cartService.getLocalCartProducts();
   }
 }
