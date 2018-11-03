@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit {
 
   SelectMenuItem(menuItem: MenuItem): void {
     this.cartService.AddItem(menuItem);
-    localStorage.setItem("avct_item", JSON.stringify(this.selectedMenuItems));
+    localStorage.setItem('avct_item', JSON.stringify(this.selectedMenuItems));
   }
 
 }
