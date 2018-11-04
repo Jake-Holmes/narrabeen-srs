@@ -129,3 +129,21 @@ def get_table_bill(request):
 			return "Code incorrect", 401
 
 	return order, 200
+
+@error_handler
+def pay_table_bill(request):
+	qr_code = str(request.args.get("qr_code", None))
+	schema = OrderSchema()
+
+	with session_scope() as session:
+		table = session.query(Table).filter(Table.qr_code == qr_code).scalar()
+		if table != None:
+			table.order.status = OrderStatus.paid
+			for order_item in table.order.order_items:
+				order_item.status = OrderItemStatus.paid
+
+			order, errors = schema.dump(table.order)
+		else:
+			return "Code incorrect", 401
+
+	return order, 200
