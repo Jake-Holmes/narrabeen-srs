@@ -12,11 +12,12 @@ export class TableService {
 
   constructor(private http: HttpClient) { }
 
-  getAllTables(): Promise<Table[]> {
-    return new Promise((resolve, reject) => {
-      this.http.get<ITable[]>(this.API + "table/all").subscribe((data: ITable[]) => {
-        resolve(data.map(item => new Table(item)))
-      }, reject)
-    })
+  public async getAllTables(): Promise<Table[]> {
+    const tables = await this.http.get<ITable[]>(this.API + "/table/all").toPromise();
+    return tables.map(item => new Table(item));
+  }
+
+  public createTable(table: ITable): Promise<void> {
+    return this.http.post<void>(this.API + "/table", table).toPromise();
   }
 }

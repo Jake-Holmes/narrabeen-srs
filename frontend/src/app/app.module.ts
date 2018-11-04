@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule } from "@angular/forms";
 import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.component';
 import { TablemanagementComponent } from './tablemanagement/tablemanagement.component';
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
@@ -21,6 +23,7 @@ import { CartCalculatorComponent } from './cart-calculator/cart-calculator.compo
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CheckoutComponent } from './checkout/checkout.component';
 import { StaffLoginComponent } from './staff-login/staff-login.component';
+import { TablemanagementCreateComponent } from './tablemanagement-create/tablemanagement-create.component';
 
 
 @NgModule({
@@ -35,7 +38,8 @@ import { StaffLoginComponent } from './staff-login/staff-login.component';
     NoProductsFoundComponent,
     CartCalculatorComponent,
     CheckoutComponent,
-    StaffLoginComponent
+    StaffLoginComponent,
+    TablemanagementCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ import { StaffLoginComponent } from './staff-login/staff-login.component';
     BrowserAnimationsModule,
     MatCardModule,
     MatGridListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSlideToggleModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

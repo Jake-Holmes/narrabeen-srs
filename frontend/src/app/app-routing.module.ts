@@ -11,6 +11,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 
 import { NoAccessComponent } from "./shared/no-access/no-access.component";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
+import { TablemanagementCreateComponent } from './tablemanagement-create/tablemanagement-create.component';
 
 
 
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'tablemanagement',
     component: TablemanagementComponent
+  },
+  {
+    path: 'tablemanagement-create',
+    component: TablemanagementCreateComponent
   },
   {
     path: 'kitchen-view',
@@ -48,7 +53,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

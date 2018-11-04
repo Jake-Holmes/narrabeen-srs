@@ -1,28 +1,34 @@
 import { OrderItem } from "./shared/models/orderitem";
 
 export class ITable {
-    id: number;
+    id?: number;
     table_number: number;
     seats: number;
-    qr_code: string;
+    qr_code?: string;
     passcode: string;
     status: boolean;
-    order: OrderItem;
+    order?: OrderItem;
 }
 
 export class Table implements ITable {
-    public id: number;
+    public id?: number;
     public table_number: number;
     public seats: number;
-    public qr_code: string;
+    public qr_code?: string;
     public passcode: string; 
     public status: boolean;
-    order: OrderItem;
+    order?: OrderItem;
 
     constructor(table?: ITable) {
         if (table) {
             console.log(table);
-            Object.assign(this, table);
+            Object.assign(this, table); //blind assign with no type checking is gonna make for fun times and amazing bugs..... if we really cared we could add some more checking here
+        }
+        else {
+            this.table_number = 0;
+            this.seats = 0;
+            this.passcode = "0000"
+            this.status = true;
         }
     }
 }

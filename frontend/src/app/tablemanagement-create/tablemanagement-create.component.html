@@ -1,0 +1,12 @@
+<h3>Create a new Table</h3>
+<mat-form-field>
+  <input matInput placeholder="Table Number" [(ngModel)]="model.table_number">
+</mat-form-field>
+<mat-form-field>
+  <input matInput placeholder="Seats" [(ngModel)]="model.seats">
+</mat-form-field>
+<mat-form-field>
+  <input matInput placeholder="passcode" [(ngModel)]="model.passcode">
+</mat-form-field>
+<mat-slide-toggle [(ngModel)]="model.status">Enabled (Status)</mat-slide-toggle> 
+<button mat-raised-button color="primary" (click)="submitTable()">Submit</button>
