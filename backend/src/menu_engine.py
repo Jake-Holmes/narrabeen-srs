@@ -1,8 +1,9 @@
+import base64
 from . import menu_access as ma
 from .decorators import error_handler
 from db.schemas.menu_item import MenuItem
 from interface.schemas.menu_item import MenuItemSchema
-from .common_functions import string_to_bool, session_scope
+from .common_functions import string_to_bool, session_scope, generate_code
 from sqlalchemy import exists
 
 # Menu module to implement business logic
@@ -16,7 +17,13 @@ def add_menu_item(request):
         return ("Error: unable to map object", 422)
 
     menu_item = MenuItem(**valid_menu_item)
-    
+
+    if "image" in menu_data:
+        filename = valid_menu_item["name"].replace(" ", "") + ".png"
+        menu_item.image = filename
+        with open("images/" + filename, "wb") as fh:
+            fh.write(base64.b64decode(menu_data["image"]))
+
     with session_scope() as session:
         if session.query(exists().where(MenuItem.name==menu_item.name)).scalar():
             return ("Error: Menu item exists", 400)
@@ -48,6 +55,12 @@ def edit_menu_item(request):
 
     if errors:
         return ("Error: unable to map object", 422)
+
+    if "image" in menu_data:
+        filename = valid_menu_data["name"].replace(" ", "") + ".png"
+        valid_menu_data["image"] = filename
+        with open("images/" + filename, "wb") as fh:
+            fh.write(base64.b64decode(menu_data["image"]))
 
     with session_scope() as session:
         # Update the menu with the ID specified

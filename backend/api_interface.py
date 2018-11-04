@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS, cross_origin
 from src import menu_engine, order_engine, user_engine, table_engine, reservation_engine, customer_engine
 import mock_data
@@ -158,6 +158,11 @@ def route_get_customer_reservation():
 def route_edit_customer():
     response_body, response_code = customer_engine.edit_customer(request)
     return jsonify(response_body), response_code
+
+###----------IMAGES----------###
+@app.route('/images/<path:path>', methods=['GET'])
+def get_image(path):
+    return send_from_directory('images', path)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
