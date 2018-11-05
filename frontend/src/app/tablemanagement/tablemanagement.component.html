@@ -1,12 +1,12 @@
 <a mat-raised-button routerLink="/tablemanagement-create" color="primary">Create a Table</a>
 <div class="row">
-  <div *ngFor="let table of tables">
+  <div class="col-3" *ngFor="let table of sortedTables">
     <div class="card table-status__{{table.status}}">
-      <div class="p-4">
+      <div class="card-body p-4">
           <h1>Table {{table.table_number}}</h1>
           <div>
             <span>Table is </span>
-            <span>{{table.status ? "Occupied":"Empty"}}</span>
+            <span>{{table.status ? "Active":"Inactive"}}</span>
           </div>
           <div>
             <span>Number of Seats: </span>
@@ -20,7 +20,7 @@
             <span>Passcode: </span>
             <span>Passcode of seats goes here</span>
           </div> -->
-          <div>
+          <div *ngIf="table.order != null">
             <p>Order Items</p>
           </div>
           <!-- TODO Loop over Orders when the order component is ready instead of menu items only because it's useless atm -->

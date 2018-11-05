@@ -10,12 +10,20 @@ import { Table } from '../table';
 export class TablemanagementComponent implements OnInit {
 
   tables: Table[] = [];
-
+  sortedTables: Table[] = [];
   constructor(private tableService: TableService) { }
 
   async ngOnInit() {
     this.tables = await this.tableService.getAllTables();
+
+    this.sortedTables = this.tables.slice(0);  
+    this.sortedTables.sort((leftSide, rightSide): number => {
+      if (leftSide.table_number < rightSide.table_number) return -1;
+      if (leftSide.table_number > rightSide.table_number) return 1;
+      return 0;
+    });
     console.log(this.tables);
+    console.log(this.sortedTables);
   }
 
 }
