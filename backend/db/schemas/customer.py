@@ -29,4 +29,4 @@ class Customer(Base):
 		self.date_modified = now
 
 	def __repr__(self):
-		return "<Customer(id='{}', firstname='{}', lastname='{}')>".format(self.id, self.firstname, self.lastname)
+		return "<Customer(id='{}', firstname='{}', lastname='{}', phone='{}')>".format(self.id, self.firstname, self.lastname, self.phone)

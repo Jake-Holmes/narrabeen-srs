@@ -31,7 +31,7 @@ class MenuItem(Base):
         self.menu_item_type = MenuItemType[menu_item_type]
         self.base_price = base_price
         self.active = active
-        self.image = "images/food.jpg" # todo: Change this on implementation
+        self.image = "empty-photo.png"
         now = datetime.datetime.utcnow()
         self.date_created = now
         self.date_modified = now

@@ -8,7 +8,7 @@ from .common_functions import session_scope, generate_code
 @error_handler
 def add_table(request):
     table_data = request.get_json()
-    schema = TableSchema()
+    schema = TableSchema(exclude=("id",))
     valid_table, errors = schema.load(table_data)
     if errors:
         return ("Error: unable to map object", 422)
@@ -62,3 +62,18 @@ def get_all_tables(request):
         tables, errors = schema.dump(table_objects)
 
     return tables, 200
+
+@error_handler
+def edit_table(request):
+    table_data = request.get_json()
+    schema = TableSchema()
+    valid_table, errors = schema.load(table_data)
+
+    if errors:
+        return ("Error: unable to map object", 422)
+
+    with session_scope() as session:
+        session.query(Table).filter(Table.id == valid_table["id"]).update(valid_table)
+        updated_table = schema.dump(valid_table).data
+
+    return updated_table, 200
