@@ -31,7 +31,7 @@ const routes: Routes = [
     component: MenuAdminComponent
   },
   {
-    path: 'menu-item-create-edit/:id',
+    path: 'menu-item-create-edit',
     component: MenuItemAdminComponent
   },
   {

@@ -1,8 +1,26 @@
 import { NgModule } from '@angular/core';
-import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatCheckboxModule,
+  MatListModule,
+  MatSnackBarModule
+} from '@angular/material';
+
+const materialModules: any[] = [
+  MatCardModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatCheckboxModule,
+  MatInputModule,
+  MatListModule,
+  MatSnackBarModule
+];
 
 @NgModule({
-  imports: [MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule],
-  exports: [MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule]
+  imports: materialModules,
+  exports: materialModules
 })
 export class MaterialComponentsModule { }

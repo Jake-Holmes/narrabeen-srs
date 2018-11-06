@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MenuItem } from './shared/models/menuitem';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +26,18 @@ export class MenuService {
   }
 
   createMenuItem(menuItem: MenuItem) {
-    // TODO Test This
-    return this.http.post(this.baseRoute + 'menu', menuItem);
+    return this.http.post(this.baseRoute + 'menu',  JSON.stringify(menuItem), httpOptions);
   }
 
   editMenuItem(menuItem: MenuItem) {
-    // TODO Test This, must have id in menuItem
-    return this.http.put(this.baseRoute + 'menu', menuItem);
+    const menuUpdateData = {
+      id: menuItem.id,
+      name: menuItem.name,
+      description: menuItem.description,
+      base_price: menuItem.base_price,
+      active: menuItem.active,
+      menu_item_type: menuItem.menu_item_type
+    };
+    return this.http.put(this.baseRoute + 'menu', JSON.stringify(menuUpdateData), httpOptions);
   }
 }
