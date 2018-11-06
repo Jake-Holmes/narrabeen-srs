@@ -1,6 +1,6 @@
 <button mat-raised-button (click)="GoBack()">go back</button>
 <div *ngIf="item" class="row">
-  <div class="menu-item-edit-form-containter col-md-6">
+  <div class="menu-item-edit-form-container col-md-6">
       <mat-form-field>
           <input matInput placeholder="Name" [(ngModel)]="item.name"/>
         </mat-form-field>
@@ -20,5 +20,14 @@
         <mat-checkbox [(ngModel)]="item.active" name="active" ngDefaultControl >Active</mat-checkbox>
         
         <button mat-stroked-button (click)="Save()">Save</button>
+  </div>
+  <div class="col-md-6">
+      <div *ngIf="image">
+        <img id="menu-item-image" src="https://jakeholmes.me:5000/images/{{image}}"/>
+      </div>
+      <div id="upload-image-container">
+        <input type="file" id="menu-item-image-input" (change)="onImageChange($event)"/>
+        <!-- <button mat-stroked-button (click)="UploadImage()">Upload Image</button> -->
+      </div>
   </div>
 </div>
