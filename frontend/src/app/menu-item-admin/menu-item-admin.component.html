@@ -14,19 +14,11 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Menu Item Type" [(ngModel)]="item.menu_item_type"/>
+          <input matInput placeholder="Type" [(ngModel)]="item.menu_item_type"/>
         </mat-form-field>
-
-        <mat-form-field>
-          <input matInput placeholder="Active" type='checkbox' [(ngModel)]="item.active"/>
-        </mat-form-field>
+        
+        <mat-checkbox [(ngModel)]="item.active" name="active" ngDefaultControl >Active</mat-checkbox>
+        
         <button mat-stroked-button (click)="Save()">Save</button>
   </div>
-    
-
-    <!-- TODO Image -->
-
-    <!-- TODO Active -->
-
-    <!-- TODO Type -->
 </div>
