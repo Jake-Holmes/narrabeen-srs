@@ -26,8 +26,7 @@ export class MenuService {
   }
 
   createMenuItem(menuItem: MenuItem) {
-    // TODO Test This
-    return this.http.post(this.baseRoute + 'menu', menuItem, httpOptions);
+    return this.http.post(this.baseRoute + 'menu',  JSON.stringify(menuItem), httpOptions);
   }
 
   editMenuItem(menuItem: MenuItem) {

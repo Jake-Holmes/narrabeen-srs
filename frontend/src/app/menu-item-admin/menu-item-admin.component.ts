@@ -26,13 +26,21 @@ export class MenuItemAdminComponent implements OnInit {
   GetMenuItem(): void {
     const id = +this.route.snapshot.paramMap.get('id');
 
-    // TODO remove id checking logic from here when api integrated
-    this.menuService.getMenuItem(id).subscribe(menuItem => this.item = menuItem);
+    if (id) {
+      this.menuService.getMenuItem(id).subscribe(menuItem => this.item = menuItem);
+    } else {
+      this.item = new MenuItem;
+    }
   }
 
   Save(): void {
-    this.menuService.editMenuItem(this.item)
-     .subscribe(() => this.GoBack());
+    if (this.item.id) {
+      // Editing Existing Item
+      this.menuService.editMenuItem(this.item).subscribe(() => this.GoBack());
+    } else {
+      // Creating New Item
+      this.menuService.createMenuItem(this.item).subscribe(() => this.GoBack());
+    }
   }
 
   GoBack(): void {
