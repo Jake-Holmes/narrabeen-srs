@@ -10,11 +10,17 @@
         </mat-form-field>
     
         <mat-form-field>
-          <!-- TODO Make float -->
-          <input matInput placeholder="Price" [(ngModel)]="item.base_price"/>
+          <input matInput type="number" placeholder="Price" [(ngModel)]="item.base_price" step="0.01"/>
         </mat-form-field>
 
-        <button mat-button (click)="Save()">Save</button>
+        <mat-form-field>
+          <input matInput placeholder="Menu Item Type" [(ngModel)]="item.menu_item_type"/>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Active" type='checkbox' [(ngModel)]="item.active"/>
+        </mat-form-field>
+        <button mat-stroked-button (click)="Save()">Save</button>
   </div>
     
 
