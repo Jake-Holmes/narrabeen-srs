@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MenuItem } from '../shared/models/menuitem';
 import { MenuService } from '../menu.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-menu-item-admin',
@@ -13,12 +14,15 @@ export class MenuItemAdminComponent implements OnInit {
 
   item: MenuItem;
   image: string;
-  base64textString: string;
+  imageUploadSrc: any;
+  imageUploadType: string;
+  imageUploadBase64: string;
 
   constructor(
     private route: ActivatedRoute,
     private menuService: MenuService,
-    private location: Location
+    private location: Location,
+    private _sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -40,26 +44,27 @@ export class MenuItemAdminComponent implements OnInit {
 
   onImageChange(event): void {
     if (event.target.files && event.target.files.length > 0) {
-      const reader = new FileReader();
+      const reader = new FileReader(),
+            file = event.target.files[0];
+
+      this.imageUploadType = file.type;
       reader.onload = this._handleReaderLoaded.bind(this);
-      reader.readAsBinaryString(event.target.files[0]);
+      reader.readAsBinaryString(file);
     }
   }
 
   _handleReaderLoaded(event): void {
-    const binaryString = event.target.result;
-    this.base64textString = btoa(binaryString);
-    console.log(btoa(binaryString));
+    const binaryString = event.target.result,
+          typeString = 'data:' + this.imageUploadType;
+
+    this.imageUploadBase64 = btoa(binaryString);
+    this.imageUploadSrc = this._sanitizer.bypassSecurityTrustResourceUrl(typeString + ';base64,' + this.imageUploadBase64);
   }
-
-  // UploadImage(): {
-
-  // }
 
   Save(): void {
     if (this.item.id) {
       // Editing Existing Item
-      this.menuService.editMenuItem(this.item).subscribe(() => this.GoBack());
+      this.menuService.editMenuItem(this.item, this.imageUploadBase64).subscribe(() => this.GoBack());
     } else {
       // Creating New Item
       this.menuService.createMenuItem(this.item).subscribe(() => this.GoBack());

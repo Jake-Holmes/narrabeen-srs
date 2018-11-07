@@ -22,8 +22,11 @@
         <button mat-stroked-button (click)="Save()">Save</button>
   </div>
   <div class="col-md-6">
-      <div *ngIf="image">
+      <div *ngIf="image && !imageUploadSrc">
         <img id="menu-item-image" src="https://jakeholmes.me:5000/images/{{image}}"/>
+      </div>
+      <div *ngIf="imageUploadSrc">
+        <img id="menu-item-image" [src]="imageUploadSrc"/>
       </div>
       <div id="upload-image-container">
         <input type="file" id="menu-item-image-input" (change)="onImageChange($event)"/>
