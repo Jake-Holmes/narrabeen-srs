@@ -17,8 +17,14 @@ export class MenuService {
 
   constructor(private http: HttpClient) { }
 
-  GetMenu() {
-    return this.http.get<MenuItem[]>(this.baseRoute + 'menu/all');
+  GetMenu(activeOnly?: boolean) {
+    let menuRoute = 'menu/all';
+
+    if (activeOnly) {
+      menuRoute += '?active=true';
+    }
+
+    return this.http.get<MenuItem[]>(this.baseRoute + menuRoute);
   }
 
   getMenuItem(id: number) {
@@ -29,15 +35,21 @@ export class MenuService {
     return this.http.post(this.baseRoute + 'menu',  JSON.stringify(menuItem), httpOptions);
   }
 
-  editMenuItem(menuItem: MenuItem) {
+  editMenuItem(menuItem: MenuItem, base64Image?: string) {
     const menuUpdateData = {
       id: menuItem.id,
       name: menuItem.name,
       description: menuItem.description,
       base_price: menuItem.base_price,
       active: menuItem.active,
-      menu_item_type: menuItem.menu_item_type
+      menu_item_type: menuItem.menu_item_type,
+      image: base64Image
     };
+
+    if (base64Image) {
+      menuUpdateData.image = base64Image;
+    }
+
     return this.http.put(this.baseRoute + 'menu', JSON.stringify(menuUpdateData), httpOptions);
   }
 }

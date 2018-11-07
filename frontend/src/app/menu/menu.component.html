@@ -16,9 +16,10 @@
               
             </mat-card-title>
           </mat-card-header>
-
+          <img mat-card-image src="https://jakeholmes.me:5000/images/{{item.image}}"/>
           <mat-card-content>
-              <p>
+            <div style="flex-grow: 1"></div>
+              <p style="margin-bottom: auto;">
                   {{ item.description }}
               </p>
             </mat-card-content>
