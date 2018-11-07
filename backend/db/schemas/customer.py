@@ -8,7 +8,7 @@ from db.base import Base
 
 class Customer(Base):
 	__tablename__ = 'customers'
-	id = Column(Integer, primary_key=True)
+	id = Column(Integer, primary_key=True, autoincrement=True)
 	phone = Column(String, nullable=False)
 	firstname = Column(String, nullable=False)
 	lastname = Column(String, nullable=False)
@@ -18,12 +18,11 @@ class Customer(Base):
 	date_created = Column(DateTime, nullable=False)
 	date_modified = Column(DateTime, nullable=False)
 
-	def __init__(self, phone, firstname, lastname, username, status):
+	def __init__(self, phone, firstname, lastname):
 		self.phone = phone
 		self.firstname = firstname
 		self.lastname = lastname
-		self.username = username
-		self.status = status
+		self.status = False
 		now = datetime.datetime.utcnow()
 		self.date_created = now
 		self.date_modified = now
