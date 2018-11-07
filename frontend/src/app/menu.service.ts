@@ -17,8 +17,14 @@ export class MenuService {
 
   constructor(private http: HttpClient) { }
 
-  GetMenu() {
-    return this.http.get<MenuItem[]>(this.baseRoute + 'menu/all');
+  GetMenu(activeOnly?: boolean) {
+    let menuRoute = 'menu/all';
+
+    if (activeOnly) {
+      menuRoute += '?active=true';
+    }
+
+    return this.http.get<MenuItem[]>(this.baseRoute + menuRoute);
   }
 
   getMenuItem(id: number) {

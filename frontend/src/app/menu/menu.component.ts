@@ -28,7 +28,7 @@ export class MenuComponent implements OnInit {
   }
 
   GetMenu(): void {
-    this.menuService.GetMenu().subscribe(data => {
+    this.menuService.GetMenu(true).subscribe(data => {
       this.menu$ = data;
       this.menuTypes = this.GetMenuTypes(data);
     });
@@ -45,5 +45,4 @@ export class MenuComponent implements OnInit {
     this.cartService.AddItem(menuItem);
     localStorage.setItem('avct_item', JSON.stringify(this.selectedMenuItems));
   }
-
 }
