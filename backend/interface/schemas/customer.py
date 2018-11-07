@@ -10,8 +10,7 @@ class CustomerSchema(Schema):
 	phone = fields.Str(required=True)
 	firstname = fields.Str(required=True)
 	lastname = fields.Str(required=True)
-	username = fields.Str(required=True)
-	status = fields.Boolean(dump_only=True, required=True) # Ignore status field when loading data to objects
+	status = fields.Boolean(dump_only=True, required=False) # Ignore status field when loading data to objects
 	reservations = fields.Nested('ReservationSchema', many=True, exclude=('customer',))
 	takeaway_orders = fields.Nested(TakeAwayOrderSchema, many=True)
 	date_created = fields.DateTime(dump_only=True, required=True) # Ignore date_created when loading data to object

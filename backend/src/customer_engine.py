@@ -12,8 +12,9 @@ def add_customer(request):
     schema = CustomerSchema()
     valid_customer, errors = schema.load(customer_data)
     if errors:
+        print(errors)
         return ("Error: unable to map object", 422)
-
+    
     customer = Customer(**valid_customer)
 
     with session_scope() as session:

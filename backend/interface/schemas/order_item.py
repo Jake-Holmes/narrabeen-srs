@@ -1,6 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, Binary, Enum, DateTime, Float
-from sqlalchemy.orm import relationship
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, pre_dump
 import sys
 sys.path.insert(0, '../../')
 from db.schemas.order_item import OrderItem
@@ -16,3 +14,8 @@ class OrderItemSchema(Schema):
     order_id = fields.Integer(dump_only=True, required=True)
     date_created = fields.DateTime(dump_only=True, required=True)
     date_modified = fields.DateTime(dump_only=True, required=True)
+
+    @pre_dump
+    def remove_enum_prefix(self, in_data):
+        in_data.status = in_data.status.name
+        return in_data
