@@ -1,6 +1,6 @@
 <a mat-raised-button routerLink="/tablemanagement-create" color="primary">Create a Table</a>
 <div class="row">
-  <div class="col-3" *ngFor="let table of sortedTables">
+  <div class="col-3" *ngFor="let table of sortedTables" [routerLink]="['/tablemanagement-create', {id: table.id}]">
     <div class="card table-status__{{table.status}}">
       <div class="card-body p-4">
           <h1>Table {{table.table_number}}</h1>

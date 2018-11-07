@@ -8,7 +8,7 @@ import { environment } from "./../environments/environment";
 })
 export class TableService {
 
-  API: string = environment.API;
+  API: string = environment.prod_API;
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +17,22 @@ export class TableService {
     return tables.map(item => new Table(item));
   }
 
-  public createTable(table: ITable): Promise<void> {
-    return this.http.post<void>(this.API + "/table", table).toPromise();
+  public async createTable(table: ITable): Promise<Table> {
+    const responseTable: ITable = await this.http.post<ITable>(this.API + "/table", table).toPromise();
+    return new Table(responseTable);
+  }
+
+  public async editTable(table: ITable): Promise<ITable> {
+    const responseTable: ITable = await this.http.put<ITable>(this.API + "/table", table).toPromise();
+    return new Table(responseTable);
+  }
+  
+  public async getTable(id: number): Promise<Table | undefined> {
+    const responseTable: ITable = await this.http.get<ITable>(this.API + "/table?id="+id).toPromise();
+    console.log(responseTable);
+    if (Object.keys(responseTable).length < 1)
+      return undefined;
+    else
+      return new Table(responseTable);
   }
 }

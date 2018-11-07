@@ -1,4 +1,4 @@
-<h3>Create a new Table</h3>
+<h3>{{this.preloaded ? "Edit an existing Table" : "Create a new table"}}</h3>
 <mat-form-field>
   <label for="tableNumber">Table Number</label>
   <input type="number" min="0" max="100" required matInput name="tableNumber" placeholder="Table Number" [(ngModel)]="model.table_number">
@@ -11,5 +11,8 @@
   <label for="passcode">Passcode</label>
   <input type="number" matInput placeholder="passcode" [(ngModel)]="model.passcode">
 </mat-form-field>
-<mat-slide-toggle [(ngModel)]="model.status">Enabled (Status)</mat-slide-toggle> 
-<button mat-raised-button color="primary" (click)="submitTable()">Submit</button>
+<mat-slide-toggle [(ngModel)]="model.status">Enabled (Status)</mat-slide-toggle>
+<div>
+  <a mat-raised-button color="primary" routerLink='/tablemanagement'>Cancel</a>
+  <button mat-raised-button color="primary" (click)="submitTable()">{{this.preloaded ? 'Update' : 'Submit'}} Table</button>
+</div>
