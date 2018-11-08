@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +29,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { StaffLoginComponent } from './staff-login/staff-login.component';
 import { TablemanagementCreateComponent } from './tablemanagement-create/tablemanagement-create.component';
 import { StaffHomeComponent } from './staff-home/staff-home.component';
+import { AuthService } from './auth/auth.service';
 
 
 @NgModule({
@@ -50,6 +52,7 @@ import { StaffHomeComponent } from './staff-home/staff-home.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatGridListModule,
@@ -60,8 +63,7 @@ import { StaffHomeComponent } from './staff-home/staff-home.component';
     ReactiveFormsModule,
     MatFormFieldModule
   ],
-  providers: [
-  ],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
 })

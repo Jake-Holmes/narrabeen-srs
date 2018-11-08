@@ -17,7 +17,7 @@
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit">Login</button>
         <div class="small-space"></div>
-        <mat-error *ngIf="isFieldInvalid('password')">
+        <mat-error *ngIf="isFormSubmitted()">
           Login failed, please check username or password.
         </mat-error>
       </form>

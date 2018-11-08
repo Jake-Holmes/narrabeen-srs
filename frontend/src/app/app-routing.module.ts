@@ -12,6 +12,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { NoAccessComponent } from "./shared/no-access/no-access.component";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 import { TablemanagementCreateComponent } from './tablemanagement-create/tablemanagement-create.component';
+import { StaffHomeComponent } from './staff-home/staff-home.component';
 
 
 
@@ -49,7 +50,14 @@ const routes: Routes = [
   {
     path:'staffLogin',
     component: StaffLoginComponent
-  }
+  },
+
+  //Routes for staff/administrator home.
+  {
+    path:'staffHome',
+    component: StaffHomeComponent
+  },
+
 ];
 
 @NgModule({
