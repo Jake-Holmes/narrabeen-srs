@@ -34,13 +34,6 @@ p {
   padding: 0;
 }
 
-// .container {
-//   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-//   margin: -70px auto 80px;
-//   padding: 80px;
-//   z-index: 0;
-// }
-
 h1 {
   color: #444;
   font-family: 'Oswald', sans-serif;
@@ -70,6 +63,7 @@ h2 {
 .menu-item-grid {
   display: flex;
   flex-flow: row wrap;
+  // justify-content: center;
   
   .menu-item-container {
     display: inherit;

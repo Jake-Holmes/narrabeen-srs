@@ -14,12 +14,18 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Type" [(ngModel)]="item.menu_item_type"/>
+          <mat-select placeholder="Type" [(ngModel)]="item.menu_item_type">
+            <mat-option value="main">Main</mat-option>
+            <mat-option value="appetizer">Appetizer</mat-option>
+            <mat-option value="dessert">Dessert</mat-option>
+            <mat-option value="beverage">Beverage</mat-option>
+          </mat-select>
         </mat-form-field>
         
         <mat-checkbox [(ngModel)]="item.active" name="active" ngDefaultControl >Active</mat-checkbox>
         
-        <button mat-stroked-button (click)="Save()">Save</button>
+        <button mat-flat-button color="primary" (click)="Save()">Save</button>
+        <button id="delete-btn" *ngIf="item.id" mat-flat-button color="warn" (click)="Delete()">Delete</button>
   </div>
   <div class="col-md-6">
       <div *ngIf="image && !imageUploadSrc">
@@ -29,8 +35,8 @@
         <img id="menu-item-image" [src]="imageUploadSrc"/>
       </div>
       <div id="upload-image-container">
-        <input type="file" id="menu-item-image-input" (change)="onImageChange($event)"/>
-        <!-- <button mat-stroked-button (click)="UploadImage()">Upload Image</button> -->
+        <input type="file" id="menu-item-image-input" (change)="onImageChange($event)" #fileUpload/>
+        <button mat-flat-button color="accent" (click)="fileUpload.click()">Upload Image</button>
       </div>
   </div>
 </div>

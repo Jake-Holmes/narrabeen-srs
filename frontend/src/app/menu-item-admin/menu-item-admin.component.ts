@@ -71,6 +71,10 @@ export class MenuItemAdminComponent implements OnInit {
     }
   }
 
+  Delete(): void {
+    this.menuService.deleteMenuItem(this.item.id).subscribe(() => this.GoBack());
+  }
+
   GoBack(): void {
     this.location.back();
   }

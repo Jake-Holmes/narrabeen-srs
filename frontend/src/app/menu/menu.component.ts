@@ -35,7 +35,7 @@ export class MenuComponent implements OnInit {
   }
 
   GetMenuTypes(data): String[] {
-    const typeList = data.map((menuItem: MenuItem) => menuItem.type);
+    const typeList = data.map((menuItem: MenuItem) => menuItem.menu_item_type);
 
     // Unique Type List
     return typeList.filter((value, index, self) => self.indexOf(value) === index);

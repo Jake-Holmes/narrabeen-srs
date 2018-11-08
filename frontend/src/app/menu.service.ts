@@ -52,4 +52,8 @@ export class MenuService {
 
     return this.http.put(this.baseRoute + 'menu', JSON.stringify(menuUpdateData), httpOptions);
   }
+
+  deleteMenuItem(menuItemId: number) {
+    return this.http.delete(this.baseRoute + 'menu?id=' + menuItemId, httpOptions);
+  }
 }

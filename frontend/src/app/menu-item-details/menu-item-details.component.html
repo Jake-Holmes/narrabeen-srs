@@ -3,6 +3,6 @@
   <img src="https://jakeholmes.me:5000/images/{{item.image}}"/>
   <h2>{{ item.name }}</h2>
   <p>{{ item.description }}</p>
-  <p>{{ item.base_price }}</p>
+  <p>{{ item.base_price | currency }}</p>
   <button mat-flat-button color="primary" (click)="AddToOrder(item)">Add to order</button>
 </div>

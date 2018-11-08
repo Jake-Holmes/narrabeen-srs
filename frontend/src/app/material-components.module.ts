@@ -7,7 +7,8 @@ import {
   MatCheckboxModule,
   MatListModule,
   MatSnackBarModule,
-  MatChipsModule
+  MatChipsModule,
+  MatSelectModule
 } from '@angular/material';
 
 const materialModules: any[] = [
@@ -18,7 +19,8 @@ const materialModules: any[] = [
   MatInputModule,
   MatListModule,
   MatSnackBarModule,
-  MatChipsModule
+  MatChipsModule,
+  MatSelectModule
 ];
 
 @NgModule({
