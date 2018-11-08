@@ -8,7 +8,7 @@ from .common_functions import session_scope, generate_code
 @error_handler
 def add_table(request):
     table_data = request.get_json()
-    schema = TableSchema(exclude=("id",))
+    schema = TableSchema(dump_only=("id",))
     valid_table, errors = schema.load(table_data)
     if errors:
         return ("Error: unable to map object", 422)
@@ -20,6 +20,7 @@ def add_table(request):
             return ("Error: Table number taken", 400)
 
         session.add(table)
+        session.commit()
         new_table = schema.dump(table).data
 
     return new_table, 201
