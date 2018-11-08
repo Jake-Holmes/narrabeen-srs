@@ -6,7 +6,7 @@ import interface.schemas.reservation
 from interface.schemas.takeawayorder import TakeAwayOrderSchema
 
 class CustomerSchema(Schema):
-	id = fields.Integer(dump_only=True, required=True) # Ignore id field when deserializing object
+	id = fields.Integer(required=True) # Ignore id field when deserializing object
 	phone = fields.Str(required=True)
 	firstname = fields.Str(required=True)
 	lastname = fields.Str(required=True)
