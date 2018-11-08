@@ -44,8 +44,8 @@ order2 = Order("confirmed", "dinein")
 table1.order = order2 # Table1 links to Order1
 order2.order_items = [orderItem1] # Order1 has is associated with a collection of order items
 
-customer1 = Customer("911", "Joe", "Smith", "JSmith", True)
-customer2 = Customer("0912345678", "John", "Test", "Jusername", True)
+customer1 = Customer("911", "Hamm", "Burger")
+customer2 = Customer("0912345678", "Joe", "Blogs")
 
 # Add given instances to the session
 

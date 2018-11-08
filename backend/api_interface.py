@@ -144,12 +144,12 @@ def route_get_customer():
     response_body, response_code = customer_engine.get_customer(request)
     return jsonify(response_body), response_code
 
-@app.route('/customer', methods=['GET'])
+@app.route('/customer/takeaway', methods=['GET'])
 def route_get_takeaway_customer():
     response_body, response_code = customer_engine.get_takeaway_customer(request)
     return jsonify(response_body), response_code
 
-@app.route('/customer', methods=['GET'])
+@app.route('/customer/reservation', methods=['GET'])
 def route_get_customer_reservation():
     response_body, response_code = customer_engine.get_customer_reservation(request)
     return jsonify(response_body), response_code

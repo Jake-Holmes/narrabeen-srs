@@ -18,6 +18,12 @@ def add_menu_item(request):
 
     menu_item = MenuItem(**valid_menu_item)
     
+    if "image" in menu_data:
+        filename = valid_menu_item["name"].replace(" ","") + ".png"
+        menu_item.image = filename
+        with open("images/" + filename, "wb") as fh:
+            fh.write(base64.b64decode(menu_data["image"]))
+
     with session_scope() as session:
         if session.query(exists().where(MenuItem.name == menu_item.name)).scalar():
             return ("Error: Menu item already exists", 400)
@@ -30,16 +36,12 @@ def add_menu_item(request):
 @error_handler
 def delete_menu_item(request):
     id = request.args.get("id")
-    #schema = MenuItemSchema(many=True)
 
     with session_scope() as session:
         if session.query(exists().where(MenuItem.id == id)).scalar():
             session.query(MenuItem).filter(MenuItem.id == id).delete()
         else:
             return ("Error: Menu item does not exist", 400)
-
-    #menu_objects = session.query(MenuItem).all()
-    #menu_items, errors = schema.dump(menu_objects)
     
     return "Menu item successfully removed", 200
 
@@ -74,8 +76,9 @@ def edit_menu_item(request):
 
     with session_scope() as session:
         # Update the menu with the ID specified
-        if session.query(exists().where(MenuItem.id == valid_menu_data["id"])).scalar():
-            if session.query(exists().where(MenuItem.name == valid_menu_data["name"])).scalar():
+        menu_item = session.query(MenuItem).get(valid_menu_data["id"])
+        if menu_item != None:
+            if menu_item.name != valid_menu_data["name"] and session.query(exists().where(MenuItem.name == valid_menu_data["name"])).scalar():
                 return ("Error: This name already exists", 400)
             session.query(MenuItem).filter(MenuItem.id == valid_menu_data["id"]).update(valid_menu_data)
         else:
