@@ -19,7 +19,9 @@ $colors: (
   tertiary:   #f53d3d,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  Poultry:    #f53d3d,
+
 );
 
 
@@ -142,6 +144,16 @@ li {
   a{    
     font-size: 25px;
     font-family: 'Oswald', sans-serif;
+    margin: -10px 0 0;
+    padding: 0 0 0 0;
+    text-transform: uppercase;
+  }
+  
+
+
+  .mat-card-header a{    
+    font-size: 25px;
+    font-family: 'Oswald', sans-serif;
     align-content: center;
     align-items: center;
     text-align: justify;
@@ -162,7 +174,6 @@ li {
   .mathead{
     align-content: center;
     background-size: cover;
-    background-color: #444;
     text-transform: uppercase;
     text-align: center;
     align-content: center;
@@ -170,6 +181,8 @@ li {
     padding: 5px;
   }
   
+
+
   .order-item-grid {
     display: flex;
     flex-flow: row wrap;
