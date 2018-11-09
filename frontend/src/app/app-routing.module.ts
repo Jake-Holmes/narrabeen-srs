@@ -13,6 +13,9 @@ import { NoAccessComponent } from "./shared/no-access/no-access.component";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 import { TablemanagementCreateComponent } from './tablemanagement-create/tablemanagement-create.component';
 import { StaffHomeComponent } from './staff-home/staff-home.component';
+import { TableLoginComponent } from './table-login/table-login.component';
+import { TableQrComponent } from './table-qr/table-qr.component';
+
 
 
 
@@ -56,6 +59,17 @@ const routes: Routes = [
   {
     path:'staffHome',
     component: StaffHomeComponent
+  },
+
+  //Route for table login.
+  {
+    path: 'tableLogin',
+    component: TableLoginComponent
+  },
+  //Route for table landing page with qr code.
+  {
+    path: 'tableLanding',
+    component: TableQrComponent
   },
 
 ];

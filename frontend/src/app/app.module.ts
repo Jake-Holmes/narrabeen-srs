@@ -30,6 +30,8 @@ import { StaffLoginComponent } from './staff-login/staff-login.component';
 import { TablemanagementCreateComponent } from './tablemanagement-create/tablemanagement-create.component';
 import { StaffHomeComponent } from './staff-home/staff-home.component';
 import { AuthService } from './auth/auth.service';
+import { TableLoginComponent } from './table-login/table-login.component';
+import { TableQrComponent } from './table-qr/table-qr.component';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { AuthService } from './auth/auth.service';
     CheckoutComponent,
     StaffLoginComponent,
     TablemanagementCreateComponent,
-    StaffHomeComponent
+    StaffHomeComponent,
+    TableLoginComponent,
+    TableQrComponent
   ],
   imports: [
     BrowserModule,

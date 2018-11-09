@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthInfo } from './auth-info';
-import { throwError } from '../../../node_modules/rxjs';
 
 
 @Injectable({
@@ -27,18 +26,6 @@ export class AuthService {
     //formData.append('clientSecret', 'password123');
     formData.append('clientSecret', password);
 
-    /*await this.http.post<AuthInfo>('https://jakeholmes.me:5001/vaultish/vauth/v0/login', formData)
-      .subscribe(
-        data => {
-          this.authInfo.expiry = data.expiry.toString();
-          this.authInfo.sessionId = data.sessionId.toString();
-          this.authInfo.uuid = data.uuid.toString();
-          return true;
-        },
-        error => {
-          return false;
-        }
-      );*/
     try {
       this.authInfo = await this.loginRequest(formData);
       console.log(this.authInfo.sessionId);
