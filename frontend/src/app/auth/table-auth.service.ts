@@ -28,8 +28,12 @@ export class TableAuthService {
     return this.http.get<string>('https://jakeholmes.me:5000/table/login?passcode=' + passcode + '&id=' + id).toPromise();
   }
 
-  public returnQr(): string {
+  public getQrCode(): string {
     return this.qrcode;
+  }
+
+  public setQrCode(code: string) {
+    this.qrcode = code;
   }
 
   public returnQrUrl(): string {
