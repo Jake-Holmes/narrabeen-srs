@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthInfo } from './auth-info';
+import { throwError } from '../../../node_modules/rxjs';
 
 
 @Injectable({
@@ -20,11 +21,11 @@ export class AuthService {
   public async login(user: string, password: string): Promise<Boolean> {
 
     let formData: FormData = new FormData();
-    formData.append('username', 'narrabeen-admin');
-    //formData.append('username', user);
+    //formData.append('username', 'narrabeen-admin');
+    formData.append('username', user);
     formData.append('authType', 'secret');
-    formData.append('clientSecret', 'password123');
-    //formData.append('clientSecret', password);
+    //formData.append('clientSecret', 'password123');
+    formData.append('clientSecret', password);
 
     /*await this.http.post<AuthInfo>('https://jakeholmes.me:5001/vaultish/vauth/v0/login', formData)
       .subscribe(
@@ -38,14 +39,16 @@ export class AuthService {
           return false;
         }
       );*/
-    this.authInfo = await this.loginRequest(formData);
-    return false;
+    try {
+      this.authInfo = await this.loginRequest(formData);
+      console.log(this.authInfo.sessionId);
+      return true;
+    } catch(err) {
+      return false;
+    }
   }
 
   private async loginRequest(formData: FormData): Promise<AuthInfo> {
-    const authData = await this.http.post<AuthInfo>('https://jakeholmes.me:5001/vaultish/vauth/v0/login', formData).toPromise;
-    let authTmp = new AuthInfo();
-    Object.assign(authTmp, authData);
-    return authTmp;
+    return this.http.post<AuthInfo>('https://jakeholmes.me:5001/vaultish/vauth/v0/login', formData).toPromise();
   }
 }

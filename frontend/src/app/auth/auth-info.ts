@@ -9,9 +9,4 @@ export class AuthInfo {
         this.uuid = '',
         this.expiry = ''
     }
-
-    convert()
-    {
-        
-    }
 }
