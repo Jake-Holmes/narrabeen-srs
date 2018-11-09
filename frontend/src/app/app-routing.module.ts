@@ -5,7 +5,7 @@ import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.
 import { TablemanagementComponent } from "./tablemanagement/tablemanagement.component";
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { StaffLoginComponent} from './staff-login/staff-login.component';
+import { StaffLoginComponent } from './staff-login/staff-login.component';
 
 import { CheckoutComponent } from './checkout/checkout.component';
 
@@ -51,13 +51,13 @@ const routes: Routes = [
 
   //Routes for staff and administrator pages.
   {
-    path:'staffLogin',
+    path: 'staffLogin',
     component: StaffLoginComponent
   },
 
   //Routes for staff/administrator home.
   {
-    path:'staffHome',
+    path: 'staffHome',
     component: StaffHomeComponent
   },
 

@@ -50,7 +50,7 @@ import { TableQrComponent } from './table-qr/table-qr.component';
     TablemanagementCreateComponent,
     StaffHomeComponent,
     TableLoginComponent,
-    TableQrComponent
+    TableQrComponent,
   ],
   imports: [
     BrowserModule,
