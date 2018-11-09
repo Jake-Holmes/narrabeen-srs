@@ -164,8 +164,12 @@ def add_takeaway_order(request):
 		# get customer
 		customer = session.query(Customer).get(customer_id)
 		
+		for takeawayorder in customer.takeawayorders:
+			if takeawayorder.order.status != OrderStatus.paid:
+				return "Error: Customer already has takewayorder", 400
+
 		# create order
-		order = Order("confirmed", "dinein")
+		order = Order("confirmed", "takeaway")
 
 		# add order items to order
 		order_items = []
@@ -189,3 +193,18 @@ def add_takeaway_order(request):
 		new_takeawayorder, errors = TakeAwayOrderSchema().dump(takeawayorder)
 
 	return new_takeawayorder, 200
+
+@error_handler
+def mark_takeaway_order_as_paid(request):
+	takeaway_id = request.args.get("id", None)
+
+	with session_scope() as session:
+		takeaway_order = session.query(TakeAwayOrder).get(takeaway_id)
+		if takeaway_order != None:
+			takeaway_order.order.status = OrderStatus.paid
+			for order_item in takeaway_order.order.order_items:
+				order_item.status = OrderItemStatus.paid
+		else:
+			return "Bad request", 400
+
+	return "Takeaway order marked as paid", 200

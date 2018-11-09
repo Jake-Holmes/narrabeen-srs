@@ -54,6 +54,11 @@ def route_add_takeaway_order():
     response_body, response_code = order_engine.add_takeaway_order(request)
     return jsonify(response_body), response_code
 
+@app.route('/order/takeaway/bill', methods=['POST'])
+def route_mark_takeaway_order_as_paid():
+    response_body, response_code = order_engine.mark_takeaway_order_as_paid(request)
+    return jsonify(response_body), response_code
+
 ###----------MENU----------###
 @app.route('/menu', methods=['POST'])
 def route_add_menu_item():
