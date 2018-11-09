@@ -1,0 +1,16 @@
+.table-status__true{
+    background-color: darkred;
+}
+.table-status__false{
+    background-color: darkgreen;
+}
+.card {
+    border: none;
+    border-radius: 20px;
+    *{
+        color: white;
+    }
+    h1{
+        font-weight: bold;
+    }
+}

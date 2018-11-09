@@ -1,0 +1,63 @@
+<br>
+<div class="container" *ngIf="cartProducts.length > 0">
+  <div class="row">
+    <div class="col-8">
+      <div class="row">
+        <div class="col-4" *ngFor="let product of cartProducts">
+          <div class="item">
+            <div class="mb-r">
+
+              <div class="card card-cascade wider">
+
+                <a [routerLink]="['/menu-item', product.id ]">
+
+                  <div class="view overlay hm-white-slight">
+                    <img [src]="product.image" class="img-fluid" alt="" width="360px" height="640px">
+                    <a>
+                      <div class="mask waves-effect waves-light" mdbRippleRadius></div>
+                    </a>
+                  </div>
+                </a>
+
+                <div class="card-body text-center no-padding">
+                  <a class="text-muted">
+                    <h5>{{ product.type }}</h5>
+                  </a>
+                  <h5 class="card-title">
+                    <strong>
+                      <a [routerLink]="['/menu-item', product.id]">{{ product.name }}</a>
+                    </strong>
+                  </h5>
+
+                  <p class="card-text">{{ product.description }}</p>
+
+                  <div class="card-footer">
+                    <span class="left">$ {{ product.base_price }}</span>
+                    <span class="right">
+                      <a [routerLink]="['/menu-item', product.id]">
+                        <i class="tiny material-icons quick-view-buttons">remove_red_eye</i>
+                      </a>
+                      <a (click)="removeCartProduct(product)">
+                        <i class="tiny material-icons quick-view-buttons">delete</i>
+                      </a>
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <app-cart-calculator [products]="cartProducts"></app-cart-calculator>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" *ngIf="cartProducts.length === 0">
+  <app-no-products-found [title]="messageTitle" [description]="messageDescription"></app-no-products-found>
+</div>

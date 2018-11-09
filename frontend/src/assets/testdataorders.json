@@ -1,0 +1,170 @@
+[
+    {
+      "date_created": "2018-10-28T10:49:32.283632+00:00", 
+      "date_modified": "2018-10-28T10:49:32.283632+00:00", 
+      "id": 1, 
+      "menu_item": {
+        "active": true, 
+        "base_price": 19.99, 
+        "date_created": "2018-10-28T10:49:32.283538+00:00", 
+        "date_modified": "2018-10-28T10:49:32.283538+00:00", 
+        "description": "Serious steak", 
+        "id": 1, 
+        "image": "images/food.jpg", 
+        "menu_item_type": "Poultry", 
+        "name": "Steak"
+      }, 
+      "menu_item_id": 1, 
+      "order_id": 2, 
+      "price": 19.99, 
+      "slot": 1, 
+      "status": "OrderItemStatus.confirmed"
+    },
+    {
+        "date_created": "2018-11-03T15:23:24.283632+00:00", 
+        "date_modified": "2018-11-03T15:23:24.283632+00:00", 
+        "id": 1, 
+        "menu_item": {
+          "active": true, 
+          "base_price": 13.5, 
+          "date_created": "2018-11-03T15:23:24.283632+00:00", 
+          "date_modified": "2018-11-03T15:23:24.283632+00:00", 
+          "description": "spicy", 
+          "id": 1, 
+          "image": "images/food.jpg", 
+          "menu_item_type": "Poultry", 
+          "name": "Chicken"
+        }, 
+        "menu_item_id": 2, 
+        "order_id": 3, 
+        "price": 13.5, 
+        "slot": 2, 
+        "status": "OrderItemStatus.confirmed"
+      },
+      {
+        "date_created": "2018-10-28T10:49:32.283632+00:00", 
+        "date_modified": "2018-10-28T10:49:32.283632+00:00", 
+        "id": 1, 
+        "menu_item": {
+          "active": true, 
+          "base_price": 14.5, 
+          "date_created": "2018-10-28T10:49:32.283538+00:00", 
+          "date_modified": "2018-10-28T10:49:32.283538+00:00", 
+          "description": "spicy", 
+          "id": 1, 
+          "image": "images/food.jpg", 
+          "menu_item_type": "Poultry", 
+          "name": "Duck"
+        }, 
+        "menu_item_id": 3, 
+        "order_id": 2, 
+        "price": 14.5, 
+        "slot": 3, 
+        "status": "OrderItemStatus.confirmed"
+      },
+      {
+          "date_created": "2018-10-28T10:49:32.283632+00:00", 
+          "date_modified": "2018-10-28T10:49:32.283632+00:00", 
+          "id": 1, 
+          "menu_item": {
+            "active": true, 
+            "base_price": 16.5, 
+            "date_created": "2018-10-28T10:49:32.283538+00:00", 
+            "date_modified": "2018-10-28T10:49:32.283538+00:00", 
+            "description": "Non-Spicy", 
+            "id": 1, 
+            "image": "images/food.jpg", 
+            "menu_item_type": "Seafood", 
+            "name": "Fish"
+          }, 
+          "menu_item_id": 4, 
+          "order_id": 4, 
+          "price": 16.5, 
+          "slot": 4, 
+          "status": "OrderItemStatus.confirmed"
+        },
+        {
+            "date_created": "2018-10-28T10:49:32.283632+00:00", 
+            "date_modified": "2018-10-28T10:49:32.283632+00:00", 
+            "id": 1, 
+            "menu_item": {
+              "active": true, 
+              "base_price": 17.9, 
+              "date_created": "2018-10-28T10:49:32.283538+00:00", 
+              "date_modified": "2018-10-28T10:49:32.283538+00:00", 
+              "description": "Non-Spicy", 
+              "id": 1, 
+              "image": "images/food.jpg", 
+              "menu_item_type": "Meat", 
+              "name": "Beef"
+            }, 
+            "menu_item_id": 5, 
+            "order_id": 2, 
+            "price": 17.9, 
+            "slot": 5, 
+            "status": "OrderItemStatus.confirmed"
+          },
+          {
+              "date_created": "2018-10-28T10:49:32.283632+00:00", 
+              "date_modified": "2018-10-28T10:49:32.283632+00:00", 
+              "id": 1, 
+              "menu_item": {
+                "active": true, 
+                "base_price": 6.5, 
+                "date_created": "2018-10-28T10:49:32.283538+00:00", 
+                "date_modified": "2018-10-28T10:49:32.283538+00:00", 
+                "description": "Sweet", 
+                "id": 1, 
+                "image": "images/food.jpg", 
+                "menu_item_type": "Dessert", 
+                "name": "Apple Pie"
+              }, 
+              "menu_item_id": 6, 
+              "order_id": 8, 
+              "price": 6.5, 
+              "slot": 6, 
+              "status": "OrderItemStatus.confirmed"
+            },
+            {
+              "date_created": "2018-10-28T10:49:32.283632+00:00", 
+              "date_modified": "2018-10-28T10:49:32.283632+00:00", 
+              "id": 1, 
+              "menu_item": {
+                "active": true, 
+                "base_price": 14.5, 
+                "date_created": "2018-10-28T10:49:32.283538+00:00", 
+                "date_modified": "2018-10-28T10:49:32.283538+00:00", 
+                "description": "spicy", 
+                "id": 1, 
+                "image": "images/food.jpg", 
+                "menu_item_type": "Poultry", 
+                "name": "Duck"
+              }, 
+              "menu_item_id": 3, 
+              "order_id": 2, 
+              "price": 14.5, 
+              "slot": 3, 
+              "status": "OrderItemStatus.confirmed"
+            },
+            {
+                "date_created": "2018-10-28T10:49:32.283632+00:00", 
+                "date_modified": "2018-10-28T10:49:32.283632+00:00", 
+                "id": 1, 
+                "menu_item": {
+                  "active": true, 
+                  "base_price": 16.5, 
+                  "date_created": "2018-10-28T10:49:32.283538+00:00", 
+                  "date_modified": "2018-10-28T10:49:32.283538+00:00", 
+                  "description": "Non-Spicy", 
+                  "id": 1, 
+                  "image": "images/food.jpg", 
+                  "menu_item_type": "Seafood", 
+                  "name": "Fish"
+                }, 
+                "menu_item_id": 4, 
+                "order_id": 4, 
+                "price": 16.5, 
+                "slot": 4, 
+                "status": "OrderItemStatus.confirmed"
+              }
+  ]
