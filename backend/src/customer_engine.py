@@ -2,8 +2,9 @@ from .decorators import error_handler
 from .common_functions import string_to_bool, session_scope
 from db.schemas.customer import Customer
 from db.schemas.reservation import Reservation
-# from db.schemas.takeawayorder import Takeawayorder
-# from interface.schemas.takeawayorder import TakeawayorderSchema
+from db.schemas.takeawayorder import TakeAwayOrder
+from db.schemas.order import Order, OrderStatus
+from interface.schemas.takeawayorder import TakeAwayOrderSchema
 from interface.schemas.reservation import ReservationSchema
 from interface.schemas.customer import CustomerSchema
 from sqlalchemy import exists
@@ -42,18 +43,16 @@ def get_customer(request):
     return customer_item, 200
 
 @error_handler
-def get_takeaway_customer(request):
-    # param_phone = request.args.get("mobNum")
-    # schema = TakeawayorderSchema(many=True, exclude=("order.takeaway",))
-    #
-    # with session_scope() as session:
-    #     customer_object = session.query(Customer).filter(Customer.phone == param_phone).scalar()
-    #     # Search for customer id in takeawayorder
-    #     customer_takeaway = session.query(Takeawayorder).filter(Takeawayorder.customer_id == customer_object.id)
-    #     takeawayorder_item, errors = schema.dump(customer_takeaway)
-    #
-    # return takeawayorder_item, 200
-    return 200
+def get_customer_takeaway(request):
+    param_phone = request.args.get("mobNum")
+    schema = TakeAwayOrderSchema()
+    
+    with session_scope() as session:
+        customer_object = session.query(Customer).filter(Customer.phone == param_phone).scalar()
+        takeawayorder = session.query(TakeAwayOrder).filter(TakeAwayOrder.customer_id == customer_object.id and TakeAwayOrder.order.status != OrderStatus.paid).scalar()
+        new_takeawayorder, errors = schema.dump(takeawayorder)
+    
+    return new_takeawayorder, 200
 
 @error_handler
 def get_customer_reservation(request):

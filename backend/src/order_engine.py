@@ -4,9 +4,13 @@ from db.schemas.order import Order, OrderType, OrderStatus
 from db.schemas.table import Table
 from db.schemas.order_item import OrderItem, OrderItemStatus
 from db.schemas.menu_item import MenuItem
+from db.schemas.takeawayorder import TakeAwayOrder
+from db.schemas.customer import Customer
 from interface.schemas.order import OrderSchema
 from interface.schemas.order_item import OrderItemSchema
+from interface.schemas.takeawayorder import TakeAwayOrderSchema
 from sqlalchemy import exists
+from datetime import datetime
 
 # Business logic for the order module
 
@@ -88,7 +92,7 @@ def get_all_order_items(request):
 @error_handler
 def add_table_order(request):
 	qr_code = str(request.args.get("qr_code", None))
-	menu_item_dict = request.get_json()
+	menu_items_data = request.get_json()
 
 	with session_scope() as session:
 		table = session.query(Table).filter(Table.qr_code == qr_code).scalar()
@@ -102,7 +106,7 @@ def add_table_order(request):
 				return_msg = "Order items added to order"
 
 			order_items = []
-			for menu_item_id in menu_item_dict:
+			for menu_item_id in menu_items_data:
 				menu_item = session.query(MenuItem).get(int(menu_item_id))
 				order_item = OrderItem(None, float(menu_item.base_price), "confirmed", menu_item)
 				order.order_items.append(order_item)
@@ -113,7 +117,7 @@ def add_table_order(request):
 			session.add(order)
 		else:
 			return "Code incorrect", 401
-	
+
 	return return_msg, 200
 
 @error_handler
@@ -147,3 +151,41 @@ def pay_table_bill(request):
 			return "Code incorrect", 401
 
 	return order, 200
+
+@error_handler
+def add_takeaway_order(request):
+	menu_items_data = request.get_json()
+	customer_id = request.args.get("id", None)
+	pickup_time_data = request.args.get("time", None)
+
+	pickup_time = datetime.strptime(pickup_time_data, "%Y-%m-%dT%H:%M:%SZ")
+
+	with session_scope() as session:
+		# get customer
+		customer = session.query(Customer).get(customer_id)
+		
+		# create order
+		order = Order("confirmed", "dinein")
+
+		# add order items to order
+		order_items = []
+		for menu_item_id in menu_items_data:
+			menu_item = session.query(MenuItem).get(menu_item_id)
+			order_item = OrderItem(None, float(menu_item.base_price), "confirmed", menu_item)
+			order.order_items.append(order_item)
+			order_items.append(order_item)
+
+		session.add_all(order_items)
+		session.add(order)
+
+		# add takeaway order
+		takeawayorder = TakeAwayOrder(pickup_time)
+		takeawayorder.customer = customer
+		takeawayorder.order = order
+
+		session.add(takeawayorder)
+		session.commit()
+
+		new_takeawayorder, errors = TakeAwayOrderSchema().dump(takeawayorder)
+
+	return new_takeawayorder, 200
