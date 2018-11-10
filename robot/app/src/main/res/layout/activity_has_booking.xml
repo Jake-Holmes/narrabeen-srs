@@ -12,36 +12,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="First name: "
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="55dp"
-        android:text="Last name: "
+        android:text="Phone Number"
         android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/editText_first_name"
+        android:id="@+id/editText_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/textView"
         android:ems="10"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/editText_last_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_toEndOf="@+id/textView"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName|phone" />
 
     <Button
         android:id="@+id/btn_use_qr"

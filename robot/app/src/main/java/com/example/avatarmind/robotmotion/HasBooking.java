@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.avatarmind.robotmotion.http.ReservationAPI;
+
 import org.xguzm.pathfinding.grid.GridCell;
 import org.xguzm.pathfinding.grid.NavigationGrid;
 import org.xguzm.pathfinding.grid.finders.AStarGridFinder;
@@ -25,6 +27,8 @@ public class HasBooking extends Activity {
     NavigationGrid<GridCell> navGrid;
 
     private RobotMotion mRobotMotion = new RobotMotion();
+
+    ReservationAPI reservationAPI = new ReservationAPI();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,26 +66,20 @@ public class HasBooking extends Activity {
     public void submitWithInfo(View v) {
         Toast.makeText(this, "Submitting with info", Toast.LENGTH_SHORT).show();
         //get the customer info from the view
-        EditText firstNameET = (EditText) findViewById(R.id.editText_first_name);
-        EditText lastNameET = (EditText) findViewById(R.id.editText_last_name);
-        String firstName = firstNameET.getText().toString();
-        String lastName = lastNameET.getText().toString();
-        Toast.makeText(this, "First name: " + firstName + ", last name: " + lastName, Toast.LENGTH_LONG).show();
+        EditText phoneET = (EditText) findViewById(R.id.editText_phone);
+        String phone = phoneET.getText().toString();
+        Toast.makeText(this, "number: " + phone, Toast.LENGTH_LONG).show();
         //submit to the server
-        Random rand = new Random();
-        int n = rand.nextInt(100);
-        if (n < 50) {
-            //pretend it was a successful booking
-            Toast.makeText(this, "You have a booking", Toast.LENGTH_LONG).show();
-//            Intent intent = new Intent();
-//            intent.setClass(this, HasBooking.class);
-//            startActivity(intent);
-        }
-        else {
-            //pretend it wasn't a successful booking
-            Toast.makeText(this, "You don't have a booking", Toast.LENGTH_LONG).show();
-
-        }
+        reservationAPI.getReservationsByNumber(phone, (successful, data) -> {
+            if (successful) {
+                if (data.length > 0) {
+                    Toast.makeText(this, "Reservation Found", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else {
+                Toast.makeText(this, "Failed to get Reservation", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void cancel(View v) {
