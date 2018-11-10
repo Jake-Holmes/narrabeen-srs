@@ -61,7 +61,7 @@ public class ReservationAPI {
         });
     }
 
-    public void getReservationByID(String id, final ISRSCallback<Reservation> callback) {
+    public void getReservationByID(int id, final ISRSCallback<Reservation> callback) {
         Request request = new Request.Builder()
                 .url(API_URL + "/reservations?id=" + id)
                 .build();
@@ -83,10 +83,10 @@ public class ReservationAPI {
                 String json = response.body().string();
 //                Log.d(TAG, json);
                 try {
-//                    Reservation reservation = g.fromJson(json, Reservation.class);
-                    Reservation[] reservation = g.fromJson(json, Reservation[].class);
-                    callback.requestComplete(true, reservation[0]);
-//                    callback.requestComplete(true, reservation);
+                    Reservation reservation = g.fromJson(json, Reservation.class);
+//                    Reservation[] reservation = g.fromJson(json, Reservation[].class);
+//                    callback.requestComplete(true, reservation[0]);
+                    callback.requestComplete(true, reservation);
                 }
                 catch (JsonSyntaxException ex) {
                     Log.e(TAG, "Failed to get Reservation");

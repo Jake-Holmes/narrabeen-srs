@@ -16,6 +16,8 @@ import com.example.avatarmind.robotmotion.http.ReservationAPI;
 
 public class HasValidBooking extends Activity {
 
+    private static final String TAG = "HasValidBooking";
+
     ReservationAPI reservationAPI = new ReservationAPI();
     Reservation reservation;
     private Handler mHandler;
@@ -31,7 +33,8 @@ public class HasValidBooking extends Activity {
 
         //this class will tell the user that they have a vaild booking and will have a button that will launch the table usher activiy to start the ushering.
         Intent intent = getIntent();
-        String id = intent.getStringExtra("reservation_id");
+        int id = intent.getIntExtra("reservation_id", -5);
+        Log.d(TAG, "id: " + id);
 
         lastName = (TextView) findViewById(R.id.LNameEntered);
         firstName = (TextView) findViewById(R.id.FNameEntered);
@@ -45,7 +48,7 @@ public class HasValidBooking extends Activity {
             mHandler.post(() -> {
                 lastName.setText(reservation.customer.lastname);
                 firstName.setText(reservation.customer.firstname);
-                table.setText(reservation.table.id);
+//                table.setText(reservation.table.id);
             });
         });
     }

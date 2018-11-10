@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.robot.motion.RobotMotion;
 import android.text.TextUtils;
 import android.util.Log;
@@ -45,11 +47,12 @@ public class HasBooking extends Activity {
 
 
     public void submitWithInfo(View v) {
-        Toast.makeText(this, "Submitting with info", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Submitting with info", Toast.LENGTH_SHORT).show();
         //get the customer info from the view
         EditText phoneET = (EditText) findViewById(R.id.editText_phone);
         String phone = phoneET.getText().toString();
-        Toast.makeText(this, "number: " + phone, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "number: " + phone, Toast.LENGTH_LONG).show();
+        Handler mHandler = new Handler(Looper.getMainLooper());
         //submit to the server
         reservationAPI.getReservationsByNumber(phone, (successful, reservations) -> {
             if (successful) {
@@ -57,9 +60,11 @@ public class HasBooking extends Activity {
                     //Toast.makeText(this, "Reservation Found", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Reservation Found");
                     Log.d(TAG, TextUtils.join("\n", reservations));
-                    Intent intent = new Intent(this, HasValidBooking.class);
-                    intent.putExtra("reservation_id", reservations[0].id);
-                    startActivity(intent);
+                    mHandler.post(() -> {
+                        Intent intent = new Intent(this, HasValidBooking.class);
+                        intent.putExtra("reservation_id", reservations[0].id);
+                        startActivity(intent);
+                    });
                 }
             }
             else {
