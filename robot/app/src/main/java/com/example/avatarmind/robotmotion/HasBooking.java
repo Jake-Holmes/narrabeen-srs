@@ -1,8 +1,11 @@
 package com.example.avatarmind.robotmotion;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.robot.motion.RobotMotion;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -20,13 +23,11 @@ import java.util.Random;
 
 public class HasBooking extends Activity {
 
-    final int mapWidth = 7, mapHeight = 9;
+
 
     final String TAG = "HasBooking";
 
-    NavigationGrid<GridCell> navGrid;
 
-    private RobotMotion mRobotMotion = new RobotMotion();
 
     ReservationAPI reservationAPI = new ReservationAPI();
 
@@ -35,31 +36,11 @@ public class HasBooking extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_has_booking);
 
-        GridCell[][] cells = new GridCell[mapWidth][mapHeight];
-        for (int x = 0 ; x < mapWidth; x++){
-            for (int y = 0 ; y < mapHeight; y++){
-                cells[x][y] = new GridCell(x, y, true);
-            }
-        }
 
-        //cells[0][0].setWalkable(false); disable access to cell
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("location");
 
-        for (int i = 0; i <= 5; i++) {
-            cells[i][2].setWalkable(false);
-        }
 
-        cells[3][4].setWalkable(false);
-        cells[3][5].setWalkable(false);
-
-        for (int i = 3; i <= 6; i++) {
-            cells[i][6].setWalkable(false);
-        }
-
-        //create your cells with whatever data you need
-        //cells = createCells();
-
-        //create a navigation grid with the cells you just created
-        navGrid = new NavigationGrid<GridCell>(cells);
     }
 
 
@@ -70,14 +51,20 @@ public class HasBooking extends Activity {
         String phone = phoneET.getText().toString();
         Toast.makeText(this, "number: " + phone, Toast.LENGTH_LONG).show();
         //submit to the server
-        reservationAPI.getReservationsByNumber(phone, (successful, data) -> {
+        reservationAPI.getReservationsByNumber(phone, (successful, reservations) -> {
             if (successful) {
-                if (data.length > 0) {
-                    Toast.makeText(this, "Reservation Found", Toast.LENGTH_SHORT).show();
+                if (reservations.length > 0) {
+                    //Toast.makeText(this, "Reservation Found", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "Reservation Found");
+                    Log.d(TAG, TextUtils.join("\n", reservations));
+                    Intent intent = new Intent(this, HasValidBooking.class);
+                    intent.putExtra("reservation_id", reservations[0].id);
+                    startActivity(intent);
                 }
             }
             else {
-                Toast.makeText(this, "Failed to get Reservation", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Failed to get Reservation", Toast.LENGTH_LONG).show();
+                Log.e(TAG, "Failed to contact server");
             }
         });
     }
@@ -86,40 +73,7 @@ public class HasBooking extends Activity {
         finish();
     }
 
-    public void findPath() {
 
-        //or create your own pathfinder options:
-        GridFinderOptions opt = new GridFinderOptions();
-        opt.allowDiagonal = false;
-        opt.dontCrossCorners = true;
-        opt.isYDown = true; //change to false in real testing
-
-        //these should be stored as [x][y]
-        AStarGridFinder<GridCell> finder = new AStarGridFinder<GridCell>(GridCell.class, opt);
-
-        List<GridCell> pathToEnd = finder.findPath(5, 8, 3, 0, navGrid);
-
-        Log.d(TAG, "Got path");
-
-        String output;
-        StringBuilder str = new StringBuilder();
-        for(GridCell cell : pathToEnd) {
-            str.append("x: ").append(cell.x).append(", y: ").append(cell.y);
-            str.append("\n");
-        }
-        output = str.toString();
-
-        //output += "\n\nMatrix:\n" + printMatrix(cells);
-
-        Log.d(TAG, output);
-
-        //TextView tv = findViewById(R.id.output);
-
-        //tv.setText(output);
-
-//        mRobotMotion.startWalk(distance, 1, 0);
-
-    }
 
 
 
