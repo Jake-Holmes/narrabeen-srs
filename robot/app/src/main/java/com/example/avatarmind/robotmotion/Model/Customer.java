@@ -5,6 +5,7 @@ public class Customer {
     public String phone;
     public String firstname;
     public String lastname;
+    public Reservation[] reservations;
     public boolean status;
 
 

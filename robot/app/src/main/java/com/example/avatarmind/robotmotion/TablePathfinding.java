@@ -1,13 +1,7 @@
 package com.example.avatarmind.robotmotion;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
 import android.robot.motion.RobotMotion;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import org.xguzm.pathfinding.grid.GridCell;
 import org.xguzm.pathfinding.grid.NavigationGrid;
@@ -18,34 +12,16 @@ import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
-public class TableUsherActivity extends Activity {
-
-    private ImageView mTitleBack;
-
-    private Button mBtnMotors;
-
-    private Button mBtnHead;
-
-    private Button mBtnWheel;
-
-    private Button mBtnEmoji;
-
-    //this class will usher the customers to the table and will be displayed for the duration of the ushering.
+public class TablePathfinding {
+    private static int currentX = 2;
+    private static int currentY = 8;
 
     NavigationGrid<GridCell> navGrid;
 
     private RobotMotion mRobotMotion = new RobotMotion();
     final int mapWidth = 7, mapHeight = 9;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getActionBar() != null) {
-            getActionBar().hide();
-        }
-
-        initView();
-
+    public TablePathfinding() {
         GridCell[][] cells = new GridCell[mapWidth][mapHeight];
         for (int x = 0 ; x < mapWidth; x++){
             for (int y = 0 ; y < mapHeight; y++){
@@ -53,16 +29,8 @@ public class TableUsherActivity extends Activity {
                 cells[x][y].setWalkable(true);
             }
         }
-
-
-
-        findPath();
-
     }
 
-    private void initView() {
-        setContentView(R.layout.activity_table_usher);
-    }
 
     public void findPath() {
         //or create your own pathfinder options:
@@ -74,7 +42,7 @@ public class TableUsherActivity extends Activity {
         //these should be stored as [x][y]
         AStarGridFinder<GridCell> finder = new AStarGridFinder<GridCell>(GridCell.class, opt);
 
-        List<GridCell> pathToEnd = finder.findPath(2, 8, 4, 3, navGrid);
+        List<GridCell> pathToEnd = finder.findPath(currentX, currentY, 4, 3, navGrid);
 
         Log.d(TAG, "Got path");
 
@@ -137,7 +105,7 @@ public class TableUsherActivity extends Activity {
         t.start();
     }
 
-    double logicalGetDirection(GridCell cell1, GridCell cell2) {
+    private double logicalGetDirection(GridCell cell1, GridCell cell2) {
         //add angles for diagonals
         if (cell2.x == cell1.x && cell2.y < cell1.y) {
             //direction is forward
@@ -166,4 +134,15 @@ public class TableUsherActivity extends Activity {
         }
         return 0.0f;
     }
+
+
+
+    public static int getCurrentX() {
+        return currentX;
+    }
+
+    public static int getCurrentY() {
+        return currentY;
+    }
+
 }

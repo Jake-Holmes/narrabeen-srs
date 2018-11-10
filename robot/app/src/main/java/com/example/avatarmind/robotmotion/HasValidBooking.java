@@ -54,6 +54,7 @@ public class HasValidBooking extends Activity {
     }
 
     public void startUshering(View v) {
-
+        Intent intent = new Intent(this, TableUsherActivity.class);
+        startActivity(intent);
     }
 }
