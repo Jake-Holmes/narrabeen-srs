@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:onClick="has_booking"
             android:text="YES"
-            android:textStyle="bold" />
+            android:textStyle="bold" 
             android:textSize="@dimen/text_size" />
 
         <Button
@@ -41,7 +41,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="NO"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:onClick="no_booking"
             android:textSize="@dimen/text_size" />
 
     </LinearLayout>
