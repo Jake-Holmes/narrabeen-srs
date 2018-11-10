@@ -1,26 +1,48 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".SRSMainActivity">
 
-    <Button
-        android:id="@+id/has_booking"
-        android:layout_width="295dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:onClick="has_booking"
-        android:text="So you have a booking" />
+    <include layout="@layout/common_title" />
 
-    <Button
-        android:id="@+id/no_booking"
-        android:layout_width="291dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:text="No Booking" />
+    <TextView
+        android:id="@+id/confirm_booking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="27dp"
+        android:text="Do you have a booking?"
+        android:textAlignment="center"
+        android:textColor="#003366"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/has_booking"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="has_booking"
+            android:text="YES"
+            android:textSize="@dimen/text_size" />
+
+        <Button
+            android:id="@+id/no_booking"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="NO"
+            android:textSize="@dimen/text_size" />
 
 
-</RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
+
