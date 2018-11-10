@@ -55,8 +55,20 @@ session.commit()
 start = datetime.utcnow()
 end = start + timedelta(hours=2)
 reservation1 = Reservation(1.5, table1.id, customer1.id, start, end)
-
 session.add(reservation1)
+
+order2 = Order("confirmed", "takeaway")
+orderItem2 = OrderItem(1, steak.base_price, "confirmed", steak) # OrderItem1 has an association with menu item Steak
+order2.order_items = [orderItem2]
+session.add_all([orderItem2, order2])
+
+pickup = datetime.utcnow() + timedelta(hours=10)
+takeaway1 = TakeAwayOrder(pickup)
+takeaway1.customer = customer2
+takeaway1.order = order2
+
+session.add(takeaway1)
+
 session.commit()
 
 # Perform some queries

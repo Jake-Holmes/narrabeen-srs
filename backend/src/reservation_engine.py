@@ -22,13 +22,14 @@ def get_all_reservations(request):
 # gets a particular reservation using reservation id
 @error_handler
 def get_reservation(request):
-    reservationid = request.args.get("id", None)
-    schema = ReservationSchema(many=True,exclude=('table.order', 'table.qr_code', 'table.passcode',))
+    reservationid = int(request.args.get("id", None))
+    schema = ReservationSchema(exclude=('table.order', 'table.qr_code', 'table.passcode',))
 
     with session_scope() as session:
         if reservationid != None:
-            reservation_objects = session.query(Reservation).filter(Reservation.id == reservationid)
+            reservation_objects = session.query(Reservation).filter(Reservation.id == reservationid).scalar()
             reservation, errors = schema.dump(reservation_objects)
+
         else:
             return "Bad request: no reservation id", 400
 

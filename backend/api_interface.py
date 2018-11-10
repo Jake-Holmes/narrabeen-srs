@@ -49,6 +49,16 @@ def route_pay_table_bill():
     response_body, response_code = order_engine.pay_table_bill(request)
     return jsonify(response_body), response_code
 
+@app.route('/order/takeaway', methods=['POST'])
+def route_add_takeaway_order():
+    response_body, response_code = order_engine.add_takeaway_order(request)
+    return jsonify(response_body), response_code
+
+@app.route('/order/takeaway/bill', methods=['POST'])
+def route_mark_takeaway_order_as_paid():
+    response_body, response_code = order_engine.mark_takeaway_order_as_paid(request)
+    return jsonify(response_body), response_code
+
 ###----------MENU----------###
 @app.route('/menu', methods=['POST'])
 def route_add_menu_item():
@@ -145,8 +155,8 @@ def route_get_customer():
     return jsonify(response_body), response_code
 
 @app.route('/customer/takeaway', methods=['GET'])
-def route_get_takeaway_customer():
-    response_body, response_code = customer_engine.get_takeaway_customer(request)
+def route_get_customer_takeaway():
+    response_body, response_code = customer_engine.get_customer_takeaway(request)
     return jsonify(response_body), response_code
 
 @app.route('/customer/reservation', methods=['GET'])
