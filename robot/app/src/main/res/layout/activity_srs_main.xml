@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/BlackColor"
     tools:context=".SRSMainActivity">
 
     <include layout="@layout/common_title" />
@@ -11,10 +12,11 @@
         android:id="@+id/confirm_booking"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:text="Do you have a booking?"
         android:textAlignment="center"
-        android:textColor="#003366"
+        android:textColor="#ce2c38"
         android:textSize="25dp"
         android:textStyle="bold" />
 
@@ -30,6 +32,7 @@
             android:layout_weight="1"
             android:onClick="has_booking"
             android:text="YES"
+            android:textStyle="bold" />
             android:textSize="@dimen/text_size" />
 
         <Button
@@ -38,11 +41,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="NO"
+            android:textStyle="bold" />
             android:textSize="@dimen/text_size" />
-
 
     </LinearLayout>
 
 
 </LinearLayout>
-
