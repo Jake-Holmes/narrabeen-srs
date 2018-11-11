@@ -1,31 +1,38 @@
+<div class="title-container">
+  <h1 class="page-title">Table Management</h1>
+  <a mat-raised-button routerLink="/tablemanagement-create" color="primary">Create a Table</a>
+</div>
 <div class="row">
-  <div class="column-1">
-    <p>
-      Clickable table lists goes here
-    </p>
-  </div>
-  <div class="column-2">
-    <h2 class="mat-h2">Table #X</h2>
-    <div>
-      <span>Status: </span>
-      <span>Order status goes here</span>
+  <div class="col-3" *ngFor="let table of sortedTables">
+    <div class="card table-status__{{table.status}}">
+      <div class="card-body p-4">
+          <div class="title-container">
+              <h1>Table {{table.table_number}}</h1>
+              <a mat-raised-button [routerLink]="['/tablemanagement-create', {id: table.id}]" color="primary">Edit Table</a>
+          </div>
+          <div>
+            <span>Table is </span>
+            <span>{{table.status ? "Active":"Inactive"}}</span>
+          </div>
+          <div>
+            <span>Number of Seats: </span>
+            <span>{{table.seats}}</span>
+          </div>
+          <!-- <div>
+            <span>QR Code: </span>
+            <span>QR code of seats goes here</span>
+          </div>
+          <div>
+            <span>Passcode: </span>
+            <span>Passcode of seats goes here</span>
+          </div> -->
+          <div *ngIf="table.order != null">
+            <p>Order Items</p>
+          </div>
+          <!-- TODO Loop over Orders when the order component is ready instead of menu items only because it's useless atm -->
+          <app-menu-item-details *ngFor="let item of table.order?.order_items" [item]="item.menu_item" [order-mode]="false" ></app-menu-item-details>
+      </div>
     </div>
-    <div>
-      <span># of Seats: </span>
-      <span># of seats goes here</span>
-    </div>
-    <div>
-      <span>QR Code: </span>
-      <span>QR code of seats goes here</span>
-    </div>
-    <div>
-      <span>Passcode: </span>
-      <span>Passcode of seats goes here</span>
-    </div>
-    <div>
-      <p>Order Items</p>
-    </div>
-    <mat-card>#x Order item goes here</mat-card>
-    <mat-card>#x Order item goes here</mat-card>
+    
   </div>
 </div>

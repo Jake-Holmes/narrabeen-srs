@@ -1,0 +1,30 @@
+.table-status__true {
+    background-color: darkgreen;
+}
+.table-status__false {
+    background-color: darkred;
+}
+.card {
+    border: none;
+    border-radius: 20px;
+    * {
+        color: white;
+    }
+    h1 {
+        font-weight: bold;
+    }
+}
+.page-title {
+    padding-bottom: 25px;
+}
+.title-container{
+    h1 {
+        display: inline-block;
+    }
+    a {
+        float: right;
+    }
+}
+::ng-deep .menu-item-container img[_ngcontent-c4] {
+    max-width: 100%;
+}

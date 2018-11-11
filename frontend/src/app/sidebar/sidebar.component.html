@@ -1,31 +1,45 @@
-<nav>
-  <ul>
+<!-- Please place links and icons to the correct pages that will appear in each toolbar in the correct sections.-->
+<nav *ngIf="showToolbar()">
+  <ul *ngIf="isStaff()">
+    <!--All Staff page navigation icons goes here.-->
     <li>
-      <a routerLink=""  matTooltip="Menu" matTooltipPosition="right">
-        <i class="material-icons">local_dining</i>
+      <a routerLink="">
+        <i class="material-icons">supervised_user_circle</i>
       </a>
     </li>
     <li>
-        <a routerLink="tablemanagement" matTooltip="Table Mangement" matTooltipPosition="right">
-          <i class="material-icons">table_chart</i>
-        </a>
-    </li>
-    <li>
-      <a routerLink="kitchen-view" matTooltip="Kitchen View" matTooltipPosition="right">
+      <a routerLink="tablemanagement">
         <i class="material-icons">table_chart</i>
       </a>
     </li>
     <li>
-      <a routerLink="shopping-cart" matTooltip="Shopping Cart" matTooltipPosition="right">
+      <a routerLink="kitchen-view">
+        <i class="material-icons">table_chart</i>
+      </a>
+    </li>
+    <li>
+      <a routerLink="shopping-cart">
         <i class="material-icons">shopping_cart
-          <!-- <span class="mt-2">2</span> -->
         </i>
       </a>
     </li>
     <li>
-        <a routerLink="menu-admin" matTooltip="Menu Management" matTooltipPosition="right">
-            <i class="material-icons">assignment</i>
+        <a routerLink="staffLogin">
+          <i class="material-icons">cancel
+          </i>
         </a>
       </li>
+  </ul>
+  <!--All Site Navigation Icons goes here.-->
+  <ul *ngIf="isSite()">
+    <li>
+      <a routerLink="">
+        <i class="material-icons">supervised_user_circle</i>
+      </a>
+    </li>
+  </ul>
+  <!--All Table Navigation Icons goes here.-->
+  <ul *ngIf="isTable()">
+
   </ul>
 </nav>

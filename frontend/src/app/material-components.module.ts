@@ -9,7 +9,8 @@ import {
   MatSnackBarModule,
   MatChipsModule,
   MatSelectModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSlideToggleModule
 } from '@angular/material';
 
 const materialModules: any[] = [
@@ -22,7 +23,8 @@ const materialModules: any[] = [
   MatSnackBarModule,
   MatChipsModule,
   MatSelectModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSlideToggleModule
 ];
 
 @NgModule({

@@ -5,7 +5,6 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CheckoutComponent } from "./checkout.component";
 import { BillingDetailsComponent } from './billing-details/billing-details.component';
-import { ProductsComponent } from './products/products.component';
 import { ResultComponent } from './result/result.component';
 
 @NgModule({
@@ -14,7 +13,6 @@ import { ResultComponent } from './result/result.component';
     CheckoutComponent,
     CheckoutNavbarComponent,
     BillingDetailsComponent,
-    ProductsComponent,
     ResultComponent
   ],
   exports: [CheckoutComponent]

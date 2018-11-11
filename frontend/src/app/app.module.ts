@@ -6,10 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MaterialComponentsModule} from './material-components.module';
+import { ReactiveFormsModule} from '@angular/forms';
 import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.component';
 import { TablemanagementComponent } from './tablemanagement/tablemanagement.component';
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
@@ -20,10 +21,16 @@ import { NoProductsFoundComponent } from './shared/no-products-found/no-products
 import { CartCalculatorComponent } from './cart-calculator/cart-calculator.component';
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { CheckoutNavbarComponent } from "./checkout/checkout-navbar/checkout-navbar.component";
+import { CheckoutNavbarComponent } from './checkout/checkout-navbar/checkout-navbar.component';
 import { BillingDetailsComponent } from './checkout/billing-details/billing-details.component';
 import { ResultComponent } from './checkout/result/result.component';
 import { StaffLoginComponent } from './staff-login/staff-login.component';
+import { TablemanagementCreateComponent } from './tablemanagement-create/tablemanagement-create.component';
+import { StaffHomeComponent } from './staff-home/staff-home.component';
+import { AuthService } from './auth/auth.service';
+import { TableLoginComponent } from './table-login/table-login.component';
+import { TableQrComponent } from './table-qr/table-qr.component';
+import { MaterialComponentsModule } from './material-components.module';
 
 @NgModule({
   declarations: [
@@ -42,18 +49,25 @@ import { StaffLoginComponent } from './staff-login/staff-login.component';
     CheckoutComponent,
     BillingDetailsComponent,
     ResultComponent,
-    StaffLoginComponent
+    StaffLoginComponent,
+    TablemanagementCreateComponent,
+    StaffHomeComponent,
+    TableLoginComponent,
+    TableQrComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    HttpModule,
     BrowserAnimationsModule,
-    MaterialComponentsModule
+    MaterialComponentsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

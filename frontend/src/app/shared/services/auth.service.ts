@@ -31,7 +31,7 @@ export class AuthService {
 
     loggedUser.$key = "1";
     loggedUser.userName = "Nick";
-    loggedUser.emailId = "Nick@nick.com"l;
+    loggedUser.emailId = "Nick@nick.com";
     loggedUser.phoneNumber = "04dontcallm3";
     //loggedUser.isAdmin = user.email === "admin@gmail.com" ? true : false;
     loggedUser.isAdmin = true;
