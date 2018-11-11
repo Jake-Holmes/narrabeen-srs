@@ -53,7 +53,7 @@ import { MaterialComponentsModule } from './material-components.module';
     TablemanagementCreateComponent,
     StaffHomeComponent,
     TableLoginComponent,
-    TableQrComponent
+    TableQrComponent,
   ],
   imports: [
     BrowserModule,
