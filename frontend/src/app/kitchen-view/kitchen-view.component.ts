@@ -12,7 +12,7 @@ import { OrderItem } from '../shared/models/orderitem';
 
 export class KitchenViewComponent implements OnInit {
 
-
+  orderIt: OrderItem;
   order$: OrderItem[];  
   orderItems$ : MenuItem[];
   menu$: MenuItem[];
@@ -22,6 +22,7 @@ export class KitchenViewComponent implements OnInit {
   menuTypes: String[] = [];
   today = new Date();
   type:String[]=[];
+  stat: string;
   
 
 
@@ -31,7 +32,7 @@ export class KitchenViewComponent implements OnInit {
   ) { }
   
   public toggleNamedColor(item: OrderItem): void {
-    for (let i = 0; i < this.order$.length; i++) {
+    /*for (let i = 0; i < this.order$.length; i++) {
       if (this.order$[i] === item) {
         if(item.ionicNamedColor === 'primary') { 
           item.ionicNamedColor = 'accent'
@@ -45,24 +46,53 @@ export class KitchenViewComponent implements OnInit {
         }
         else {
           item.ionicNamedColor = 'primary'
-          item.cardColor = 'lightGrey'
+          item.cardColor = 'white'
           item.buttonStatus="Ordered"
         }
+        break;
+      }
+    }*/
+    for (let i = 0; i < this.order$.length; i++) {
+      if (this.order$[i] === item) {
+        if(this.order$[i].status === 'confirmed') {
+          this.order$[i].status = 'inprogress'; 
+                this.order$[i].cardColor = '#FFB74D';
+          this.orderService.editOrderItem(item,'inprogress');
+        } 
+        else if(this.order$[i].status === 'inprogress') {
+          this.order$[i].status = 'ready'; 
+                this.order$[i].cardColor = '#9CCC65';
+                this.orderService.editOrderItem(item,'ready');
+        } 
+        else if(this.order$[i].status === 'ready') {
+          this.order$[i].status = 'confirmed'; 
+              this.order$[i].cardColor = '#CFD8DC'
+              this.orderService.editOrderItem(item,'confirmed');
+        } 
         break;
       }
     }
   }
 
-  public toggleColor(): void {
-    if(this.type === ["Poultry"]) { 
-      // this.typeColor = 'lightPink'
-    } 
-    else {
-      // this.typeColor='LightGreen'
-    }
-  }
+ /* public toggleColor(item: OrderItem): void {
+    for (let i = 0; i < this.order$.length; i++) {
+      if (item[i].menu_item.menu_item_type === 'Poultry'){
+        item.typeColor = 'lightRed'
+      }
+        else if (item.menu_item.menu_item_type === 'Meat'){
+          item.typeColor = 'lightGreen'
+        }
+        else if (item.menu_item.menu_item_type === 'Seafood'){
+          item.typeColor = 'lightPink'
+        }
+        else {
+          item.typeColor = 'lightBlue'
+        }
+      }
+    }*/
 
   ngOnInit() {    
+    
     this.GetOrder();
     this.GetMenu();
   }
@@ -87,7 +117,34 @@ export class KitchenViewComponent implements OnInit {
         this.order$ = data;
         this.order$['ionicNamedColor'] = 'primary';
         this.order$['cardColor'] = 'lightGrey';
-        this.order$['typeColor'] = 'red';
+        for (let i = 0; i < this.order$.length; i++) {
+          if (this.order$[i].menu_item.menu_item_type === 'Poultry'){
+            this.order$[i].typeColor = '#4DB6AC'
+          }
+            else if (this.order$[i].menu_item.menu_item_type === 'Seafood'){
+              this.order$[i].typeColor = '#00ACC1'
+            }
+            else if (this.order$[i].menu_item.menu_item_type === 'Meat'){
+              this.order$[i].typeColor = 'indianred'
+            }
+            else {
+              this.order$[i].typeColor = '#B39DDB'
+            }
+          }
+          for (let i = 0; i < this.order$.length; i++) {
+            if (this.order$[i].status === 'confirmed'){
+              this.order$[i].cardColor = '#CFD8DC'
+            }
+              else if (this.order$[i].status === 'inprogress'){
+                this.order$[i].cardColor = '#FFB74D'
+              }
+              else if (this.order$[i].status === 'ready'){
+                this.order$[i].cardColor = '#9CCC65'
+              }
+              else {
+                this.order$[i].cardColor = 'lightBlue'
+              }
+            }
         this.order$['timeFormatted'] = [];
         this.order$['buttonStatus'] = "Ordered"
         this.type = this.GetMenuTypes(this.order$);

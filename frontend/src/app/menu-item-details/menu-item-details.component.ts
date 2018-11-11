@@ -12,11 +12,6 @@ import { CartService } from '../cart.service';
 })
 export class MenuItemDetailsComponent implements OnInit {
 
-  item: MenuItem;
-
-  @Input('item') inputItem: MenuItem;
-  @Input('order-mode') orderMode: boolean
-
   constructor(
     private route: ActivatedRoute,
     private menuService: MenuService,
@@ -24,28 +19,20 @@ export class MenuItemDetailsComponent implements OnInit {
     private location: Location
   ) { }
 
-  ngOnInit() {
-    console.log(this.inputItem);
-    if (this.inputItem !== undefined) {
-      this.item = this.inputItem;
-    }
-    else
-      this.GetMenuItem();
+  @Input() item: MenuItem;
 
-    if (this.orderMode === undefined)
-      this.orderMode = true;
+  ngOnInit() {
+    // If item was not passed as a param, get from routeLink url params
+    if (!this.item) {
+      this.GetMenuItem();
+    }
   }
 
   GetMenuItem(): void {
     const id = +this.route.snapshot.paramMap.get('id');
 
     // TODO remove id checking logic from here when api integrated
-    this.menuService.getMenuItem(id).subscribe(menuItem => {
-      this.item = menuItem.find(mItem => mItem.id === id);
-      console.log(this.item);
-    });
-    // const menuItems = await this.menuService.getMenuItem(id);
-    // this.item = menuItems.find(item => item.id === id);
+    this.menuService.getMenuItem(id).subscribe(menuItem => this.item = menuItem);
   }
 
   AddToOrder(item: MenuItem): void {

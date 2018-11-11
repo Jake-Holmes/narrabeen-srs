@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -20,11 +21,12 @@ import { ReactiveFormsModule} from "@angular/forms";
 import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.component';
 import { TablemanagementComponent } from './tablemanagement/tablemanagement.component';
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
+import { MenuAdminComponent } from './menu-admin/menu-admin.component';
+import { MenuItemAdminComponent } from './menu-item-admin/menu-item-admin.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { NoProductsFoundComponent } from './shared/no-products-found/no-products-found.component';
 import { CartCalculatorComponent } from './cart-calculator/cart-calculator.component';
-
-import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { StaffLoginComponent } from './staff-login/staff-login.component';
 import { TablemanagementCreateComponent } from './tablemanagement-create/tablemanagement-create.component';
@@ -32,7 +34,6 @@ import { StaffHomeComponent } from './staff-home/staff-home.component';
 import { AuthService } from './auth/auth.service';
 import { TableLoginComponent } from './table-login/table-login.component';
 import { TableQrComponent } from './table-qr/table-qr.component';
-
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import { TableQrComponent } from './table-qr/table-qr.component';
     MenuItemDetailsComponent,
     TablemanagementComponent,
     KitchenViewComponent,
+    MenuAdminComponent,
+    MenuItemAdminComponent,
     ShoppingCartComponent,
     NoProductsFoundComponent,
     CartCalculatorComponent,
@@ -55,9 +58,11 @@ import { TableQrComponent } from './table-qr/table-qr.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     HttpModule,
     BrowserAnimationsModule,
+<<<<<<< HEAD
     MatCardModule,
     MatGridListModule,
     MatButtonModule,
@@ -66,6 +71,9 @@ import { TableQrComponent } from './table-qr/table-qr.component';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule
+=======
+    MaterialComponentsModule
+>>>>>>> ee57a5f880ccf0cc7640349a95123e95ce2db86f
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

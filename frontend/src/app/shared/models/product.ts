@@ -10,4 +10,3 @@ export class Product {
     date_created: string;
     date_modified: string;
   }
-  

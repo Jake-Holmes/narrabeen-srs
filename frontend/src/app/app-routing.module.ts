@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.component';
-import { TablemanagementComponent } from "./tablemanagement/tablemanagement.component";
+import { TablemanagementComponent } from './tablemanagement/tablemanagement.component';
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { StaffLoginComponent} from './staff-login/staff-login.component';
@@ -19,6 +19,9 @@ import { TableQrComponent } from './table-qr/table-qr.component';
 
 
 
+import { MenuItemAdminComponent } from './menu-item-admin/menu-item-admin.component';
+import { MenuAdminComponent } from './menu-admin/menu-admin.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -27,6 +30,14 @@ const routes: Routes = [
   {
     path: 'menu-item/:id',
     component: MenuItemDetailsComponent
+  },
+  {
+    path: 'menu-admin',
+    component: MenuAdminComponent
+  },
+  {
+    path: 'menu-item-create-edit',
+    component: MenuItemAdminComponent
   },
   {
     path: 'tablemanagement',
@@ -48,10 +59,9 @@ const routes: Routes = [
     path: 'checkout',
     component: CheckoutComponent
   },
-
-  //Routes for staff and administrator pages.
+  // Routes for staff and administrator pages.
   {
-    path:'staffLogin',
+    path: 'staffLogin',
     component: StaffLoginComponent
   },
 

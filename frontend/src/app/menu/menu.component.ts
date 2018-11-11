@@ -28,14 +28,14 @@ export class MenuComponent implements OnInit {
   }
 
   GetMenu(): void {
-    this.menuService.GetMenu().subscribe(data => {
+    this.menuService.GetMenu(true).subscribe(data => {
       this.menu$ = data;
       this.menuTypes = this.GetMenuTypes(data);
     });
   }
 
   GetMenuTypes(data): String[] {
-    const typeList = data.map((menuItem: MenuItem) => menuItem.type);
+    const typeList = data.map((menuItem: MenuItem) => menuItem.menu_item_type);
 
     // Unique Type List
     return typeList.filter((value, index, self) => self.indexOf(value) === index);
@@ -43,7 +43,6 @@ export class MenuComponent implements OnInit {
 
   SelectMenuItem(menuItem: MenuItem): void {
     this.cartService.AddItem(menuItem);
-    localStorage.setItem("avct_item", JSON.stringify(this.selectedMenuItems));
+    localStorage.setItem('avct_item', JSON.stringify(this.selectedMenuItems));
   }
-
 }

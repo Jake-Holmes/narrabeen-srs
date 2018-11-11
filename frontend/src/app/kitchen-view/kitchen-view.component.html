@@ -1,14 +1,15 @@
 <nav class="navbar navbar-light bg-dark">
     <a class="navbar-brand text-danger" href="#">Narrabeen</a>
+    <a class="navbar-brand"> kitchen display</a>
+    <!--<button class="btn btn-dark">ORDERED</button>
     <button class="btn btn-dark">ORDERED</button>
-    <button class="btn btn-dark">ORDERED</button>
-    <button class="btn btn-dark">ORDERED</button>
+    <button class="btn btn-dark">ORDERED</button>-->
   </nav>
 
 <div class="order-item-grid">
   <div class="order-item-container" *ngFor="let item of order$">
     <mat-card class="order-item-card" [style.background]="item.cardColor">
-      <mat-card-header (InIt)="toggleColor()"  [ngStyle]="item.typeColor" class="mathead">
+      <mat-card-header [style.background]="item.typeColor" class="mathead">
           <a>{{item.menu_item.menu_item_type}}</a>
       </mat-card-header>
 
@@ -24,7 +25,8 @@
           <h5>{{today| date:'HH:mm:ss'}}</h5>-->
         
           <h5>Place Item In Slot: {{item.slot}}</h5>
-          <button mat-raised-button (click)="toggleNamedColor(item)">NEEDS FIXING</button>
+          <h5>{{item.status}}</h5>
+          <button mat-raised-button (click)="toggleNamedColor(item)">{{item.status}}</button>
       </mat-card-content>
     </mat-card>
   </div>

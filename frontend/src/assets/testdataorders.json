@@ -18,7 +18,7 @@
       "order_id": 2, 
       "price": 19.99, 
       "slot": 1, 
-      "status": "OrderItemStatus.confirmed"
+      "status": "inprogress"
     },
     {
         "date_created": "2018-11-03T15:23:24.283632+00:00", 
@@ -39,7 +39,7 @@
         "order_id": 3, 
         "price": 13.5, 
         "slot": 2, 
-        "status": "OrderItemStatus.confirmed"
+        "status": "inprogress"
       },
       {
         "date_created": "2018-10-28T10:49:32.283632+00:00", 
@@ -60,7 +60,7 @@
         "order_id": 2, 
         "price": 14.5, 
         "slot": 3, 
-        "status": "OrderItemStatus.confirmed"
+        "status": "inprogress"
       },
       {
           "date_created": "2018-10-28T10:49:32.283632+00:00", 
@@ -81,7 +81,7 @@
           "order_id": 4, 
           "price": 16.5, 
           "slot": 4, 
-          "status": "OrderItemStatus.confirmed"
+          "status": "ready"
         },
         {
             "date_created": "2018-10-28T10:49:32.283632+00:00", 
@@ -102,7 +102,7 @@
             "order_id": 2, 
             "price": 17.9, 
             "slot": 5, 
-            "status": "OrderItemStatus.confirmed"
+            "status": "confirmed"
           },
           {
               "date_created": "2018-10-28T10:49:32.283632+00:00", 
@@ -123,7 +123,7 @@
               "order_id": 8, 
               "price": 6.5, 
               "slot": 6, 
-              "status": "OrderItemStatus.confirmed"
+              "status": "confirmed"
             },
             {
               "date_created": "2018-10-28T10:49:32.283632+00:00", 
@@ -144,7 +144,7 @@
               "order_id": 2, 
               "price": 14.5, 
               "slot": 3, 
-              "status": "OrderItemStatus.confirmed"
+              "status": "confirmed"
             },
             {
                 "date_created": "2018-10-28T10:49:32.283632+00:00", 
@@ -165,6 +165,6 @@
                 "order_id": 4, 
                 "price": 16.5, 
                 "slot": 4, 
-                "status": "OrderItemStatus.confirmed"
+                "status": "confirmed"
               }
   ]

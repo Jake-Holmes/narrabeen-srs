@@ -7,30 +7,31 @@
     <h2> {{ type }} </h2>
     <div class="menu-item-grid">
       <div class="menu-item-container" *ngFor="let item of menu$">
-        <mat-card class="menu-item-card" *ngIf="item.type == type">
+        <mat-card class="menu-item-card" *ngIf="item.menu_item_type == type">
           <mat-card-header>
             <mat-card-title>
-              <h3>
-                <a style='text-decoration: none;' routerLink='/menu-item/{{item.id}}'>{{ item.name | titlecase }}</a>
-              </h3>
+              
+                <a style='text-decoration: none;' routerLink='/menu-item/{{item.id}}'>
+                  {{ item.name | titlecase }}</a>
+              
             </mat-card-title>
           </mat-card-header>
-
+          <img mat-card-image src="https://jakeholmes.me:5000/images/{{item.image}}"/>
           <mat-card-content>
-              <p>
+            <div style="flex-grow: 1"></div>
+              <p style="margin-bottom: auto;">
                   {{ item.description }}
               </p>
             </mat-card-content>
             
             <mat-card-actions>
-              <button mat-button (click)="SelectMenuItem(item)">Add to order</button>
+              <button mat-flat-button color="primary" (click)="SelectMenuItem(item)">Add to order</button>
               <span style="float: right;">{{ item.base_price | currency }}</span>
             </mat-card-actions>
         </mat-card>
       </div>
     </div>
   </div>
-
   <!-- <div *ngIf="selectedMenuItems.length > 0">
     <h2>Cart</h2>
     <div *ngFor="let item of selectedMenuItems">
