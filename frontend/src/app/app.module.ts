@@ -20,12 +20,16 @@ import { NoProductsFoundComponent } from './shared/no-products-found/no-products
 import { CartCalculatorComponent } from './cart-calculator/cart-calculator.component';
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutNavbarComponent } from "./checkout/checkout-navbar/checkout-navbar.component";
+import { BillingDetailsComponent } from './checkout/billing-details/billing-details.component';
+import { ResultComponent } from './checkout/result/result.component';
 import { StaffLoginComponent } from './staff-login/staff-login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
+    CheckoutNavbarComponent,
     MenuComponent,
     MenuItemDetailsComponent,
     TablemanagementComponent,
@@ -36,6 +40,8 @@ import { StaffLoginComponent } from './staff-login/staff-login.component';
     NoProductsFoundComponent,
     CartCalculatorComponent,
     CheckoutComponent,
+    BillingDetailsComponent,
+    ResultComponent,
     StaffLoginComponent
   ],
   imports: [

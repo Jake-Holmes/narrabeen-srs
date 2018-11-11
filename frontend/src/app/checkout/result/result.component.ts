@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from '../../cart.service';
+import { Location } from '@angular/common';
+import { MenuItem } from '../../shared/models/menuitem';
+
 
 @Component({
   selector: 'app-result',
@@ -6,8 +10,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit {
+  checkoutProducts: MenuItem[];
+  date: number;
+  totalPrice = 0;
 
-  constructor() { }
+  constructor(
+    private cartService: CartService,
+    private location: Location,
+  ) {
+
+    const products = this.cartService.getLocalCartProducts();
+
+    this.checkoutProducts = products;
+
+    products.forEach(product => {
+      this.totalPrice += product.base_price;
+    });
+
+    this.date = Date.now();
+   }
 
   ngOnInit() {
   }

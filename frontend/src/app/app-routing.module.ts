@@ -8,11 +8,12 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { StaffLoginComponent} from './staff-login/staff-login.component';
 
 import { CheckoutComponent } from './checkout/checkout.component';
+import { BillingDetailsComponent } from './checkout/billing-details/billing-details.component';
+import { ResultComponent } from './checkout/result/result.component';
+
 
 import { NoAccessComponent } from './shared/no-access/no-access.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-
-
 
 import { MenuItemAdminComponent } from './menu-item-admin/menu-item-admin.component';
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
@@ -54,6 +55,14 @@ const routes: Routes = [
   {
     path: 'staffLogin',
     component: StaffLoginComponent
+  },
+  {
+    path: "checkout/billing-details",
+    component: BillingDetailsComponent
+  },
+  {
+    path: "checkout/result",
+    component: ResultComponent
   }
 ];
 
