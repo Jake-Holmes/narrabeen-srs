@@ -52,14 +52,15 @@ public class NoBookingActivity extends Activity implements View.OnClickListener 
 
 
         mPhoneEditText.setOnFocusChangeListener((View v, boolean hasFocus) -> {
-            if (!hasFocus) {
+            String phone = mPhoneEditText.getText().toString();
+            if (!hasFocus && !phone.equals("")) {
                 mFirstNameEditText.setEnabled(true);
                 mLastNameEditText.setEnabled(true);
 
 
                 //check if this phone number belongs to a customer
                 reservationAPI.getCustomerByNumber(mPhoneEditText.getText().toString(), (successful, customer) -> {
-                    if (successful) {
+                    if (successful && customer.firstname != null) {
                         mhandler.post(() -> {
                             Toast.makeText(this, "We found your details! Please Click Confirm!", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, customer.toString());
