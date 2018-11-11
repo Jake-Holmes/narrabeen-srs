@@ -49,10 +49,10 @@ def get_customer_takeaway(request):
     
     with session_scope() as session:
         customer_object = session.query(Customer).filter(Customer.phone == param_phone).scalar()
-        takeawayorder = session.query(TakeAwayOrder).filter(TakeAwayOrder.customer_id == customer_object.id and TakeAwayOrder.order.status != OrderStatus.paid).scalar()
-        new_takeawayorder, errors = schema.dump(takeawayorder)
+        current_takeawayorder = session.query(TakeAwayOrder, Order).filter(TakeAwayOrder.customer_id == customer_object.id).filter(Order.takeaway_id == TakeAwayOrder.id).filter(Order.status != OrderStatus.paid).scalar()
+        current_takeawayorder, errors = schema.dump(current_takeawayorder)
     
-    return new_takeawayorder, 200
+    return current_takeawayorder, 200
 
 @error_handler
 def get_customer_reservation(request):
