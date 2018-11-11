@@ -6,8 +6,6 @@ import { CartService } from '../../cart.service';
 import { Location } from '@angular/common';
 import { MenuItem } from '../../shared/models/menuitem';
 
-
-
 @Component({
   selector: 'app-billing-details',
   templateUrl: './billing-details.component.html',
@@ -22,9 +20,34 @@ export class BillingDetailsComponent implements OnInit {
     private billingService: BillingService,
     private cartService: CartService,
     private location: Location
-  ) { }
+  ) {
+    this.userDetail = new CustomerDetail();
+    this.products = cartService.getLocalCartProducts();
+   }
 
   ngOnInit() {
+  }
+
+  updateUserDetails(form: NgForm) {
+    const data = form.value;
+
+    data["emailId"] = this.userDetails.emailId;
+    data["userId"] = this.userDetails.$key;
+    let totalPrice = 0;
+    const products = [];
+    this.products.forEach(product => {
+      delete product["$key"];
+      totalPrice += product.base_price;
+      products.push(product);
+    });
+
+    data["products"] = products;
+
+    data["totalPrice"] = totalPrice;
+
+    data["billingDate"] = Date.now();
+
+    //this.billingService.createBillings(data);
   }
 
 }
