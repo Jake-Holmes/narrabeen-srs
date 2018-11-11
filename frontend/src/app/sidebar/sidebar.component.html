@@ -2,25 +2,6 @@
 If isPrivilaged, it will show up on logged in pages and staff pages. If isNotPrivilaged, the icon will show up in not logged in pages.-->
 <nav *ngIf="showToolbar()">
   <ul>
-<<<<<<< HEAD
-    <li>
-      <a routerLink=""  matTooltip="Menu" matTooltipPosition="right">
-        <i class="material-icons">local_dining</i>
-      </a>
-    </li>
-    <li>
-        <a routerLink="tablemanagement" matTooltip="Table Mangement" matTooltipPosition="right">
-          <i class="material-icons">table_chart</i>
-        </a>
-    </li>
-    <li>
-      <a routerLink="kitchen-view" matTooltip="Kitchen View" matTooltipPosition="right">
-        <i class="material-icons">table_chart</i>
-      </a>
-    </li>
-    <li>
-      <a routerLink="shopping-cart" matTooltip="Shopping Cart" matTooltipPosition="right">
-=======
     <li *ngIf="isPrivilaged()">
       <a routerLink="">
         <i class="material-icons">supervised_user_circle</i>
@@ -38,24 +19,15 @@ If isPrivilaged, it will show up on logged in pages and staff pages. If isNotPri
     </li>
     <li *ngIf="isPrivilaged()">
       <a routerLink="shopping-cart">
->>>>>>> master
         <i class="material-icons">shopping_cart
           <!-- <span class="mt-2">2</span> -->
         </i>
       </a>
     </li>
-<<<<<<< HEAD
-    <li>
-        <a routerLink="menu-admin" matTooltip="Menu Management" matTooltipPosition="right">
-            <i class="material-icons">assignment</i>
-        </a>
-      </li>
-=======
     <li *ngIf="isNotPrivilaged()">
       <a routerLink="">
         <i class="material-icons">supervised_user_circle</i>
       </a>
     </li>
->>>>>>> master
   </ul>
 </nav>
