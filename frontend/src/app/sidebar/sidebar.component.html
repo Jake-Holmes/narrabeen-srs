@@ -1,33 +1,39 @@
-<!-- To set this up, set up the incon and link as normal. type in either isPrivilaged() or isNotPrivilaged() in *ngIf.
-If isPrivilaged, it will show up on logged in pages and staff pages. If isNotPrivilaged, the icon will show up in not logged in pages.-->
+<!-- Please place links and icons to the correct pages that will appear in each toolbar in the correct sections.-->
 <nav *ngIf="showToolbar()">
-  <ul>
-    <li *ngIf="isPrivilaged()">
+  <ul *ngIf="isStaff()">
+    <!--All Staff page navigation icons goes here.-->
+    <li>
       <a routerLink="">
         <i class="material-icons">supervised_user_circle</i>
       </a>
     </li>
-    <li *ngIf="isPrivilaged()">
-        <a routerLink="tablemanagement">
-          <i class="material-icons">table_chart</i>
-        </a>
+    <li>
+      <a routerLink="tablemanagement">
+        <i class="material-icons">table_chart</i>
+      </a>
     </li>
-    <li *ngIf="isPrivilaged()">
+    <li>
       <a routerLink="kitchen-view">
         <i class="material-icons">table_chart</i>
       </a>
     </li>
-    <li *ngIf="isPrivilaged()">
+    <li>
       <a routerLink="shopping-cart">
         <i class="material-icons">shopping_cart
-          <!-- <span class="mt-2">2</span> -->
         </i>
       </a>
     </li>
-    <li *ngIf="isNotPrivilaged()">
+  </ul>
+  <!--All Site Navigation Icons goes here.-->
+  <ul *ngIf="isSite()">
+    <li>
       <a routerLink="">
         <i class="material-icons">supervised_user_circle</i>
       </a>
     </li>
+  </ul>
+  <!--All Table Navigation Icons goes here.-->
+  <ul *ngIf="isTable()">
+
   </ul>
 </nav>
