@@ -16,7 +16,6 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule} from "@angular/forms";
 import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.component';
 import { TablemanagementComponent } from './tablemanagement/tablemanagement.component';
