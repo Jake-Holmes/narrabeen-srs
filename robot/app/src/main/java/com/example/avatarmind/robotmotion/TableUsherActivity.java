@@ -18,7 +18,7 @@ import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
-public class TableUsherActivity extends Activity {
+public class TableUsherActivity extends Activity implements View.OnClickListener {
 
     private ImageView mTitleBack;
 
@@ -45,6 +45,7 @@ public class TableUsherActivity extends Activity {
         }
 
         initView();
+        initListener();
 
         GridCell[][] cells = new GridCell[mapWidth][mapHeight];
         for (int x = 0 ; x < mapWidth; x++){
@@ -61,7 +62,13 @@ public class TableUsherActivity extends Activity {
     }
 
     private void initView() {
+
         setContentView(R.layout.activity_table_usher);
+        mTitleBack = (ImageView) findViewById(R.id.common_title_back);
+    }
+
+    private void initListener() {
+        mTitleBack.setOnClickListener(this);
     }
 
     public void findPath() {
@@ -165,5 +172,18 @@ public class TableUsherActivity extends Activity {
             return 315.0f;
         }
         return 0.0f;
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.common_title_back:
+                finish();
+                break;
+            default:
+                break;
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.avatarmind.robotmotion;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.avatarmind.robotmotion.http.ReservationAPI;
@@ -23,26 +25,34 @@ import org.xguzm.pathfinding.grid.finders.GridFinderOptions;
 import java.util.List;
 import java.util.Random;
 
-public class HasBooking extends Activity {
+public class HasBooking extends Activity implements View.OnClickListener {
 
-
+    private ImageView mTitleBack;
 
     final String TAG = "HasBooking";
-
-
 
     ReservationAPI reservationAPI = new ReservationAPI();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_has_booking);
-
 
         Intent intent = getIntent();
         String str = intent.getStringExtra("location");
 
+        initView();
+        initListener();
 
+    }
+
+    private void initView() {
+        setContentView(R.layout.activity_has_booking);
+        mTitleBack = (ImageView) findViewById(R.id.common_title_back);
+
+    }
+
+    private void initListener() {
+        mTitleBack.setOnClickListener(this);
     }
 
 
@@ -79,12 +89,15 @@ public class HasBooking extends Activity {
         });
     }
 
-    public void cancel(View v) {
-        finish();
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.common_title_back:
+                finish();
+                break;
+            default:
+                break;
+        }
+
     }
-
-
-
-
-
 }

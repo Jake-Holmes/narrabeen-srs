@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/BlackColor"
+    android:background="@color/WhiteShade"
     tools:context=".SRSMainActivity">
 
     <include layout="@layout/common_title" />
@@ -16,7 +16,7 @@
         android:layout_marginTop="10dp"
         android:text="Do you have a booking?"
         android:textAlignment="center"
-        android:textColor="#ce2c38"
+        android:textColor="@color/BlackColor"
         android:textSize="25dp"
         android:textStyle="bold" />
 

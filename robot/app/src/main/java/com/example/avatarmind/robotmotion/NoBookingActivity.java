@@ -21,11 +21,12 @@ import java.util.Date;
 /** This class just handles the customer when they don't have a booking, which means making a reservation and getting the new table*/
 
 
-public class NoBookingActivity extends Activity {
+public class NoBookingActivity extends Activity implements View.OnClickListener {
 
     private EditText mPhoneEditText;
     private EditText mFirstNameEditText;
     private EditText mLastNameEditText;
+    private ImageView mTitleBack;
 
     ReservationAPI reservationAPI = new ReservationAPI();
 
@@ -84,14 +85,17 @@ public class NoBookingActivity extends Activity {
         });
     }
 
+
     private void initView() {
         setContentView(R.layout.activity_no_booking);
+        mTitleBack = (ImageView) findViewById(R.id.common_title_back);
 
     }
 
     private void initListener() {
-
+        mTitleBack.setOnClickListener(this);
     }
+
 
     public void createReservation(View v) {
         if (loadedCustomer != null) {
@@ -147,7 +151,17 @@ public class NoBookingActivity extends Activity {
         return newReservation;
     }
 
-    private void getFreeTables() {
+    
         //TODO
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.common_title_back:
+                finish();
+                break;
+            default:
+                break;
+        }
+
     }
 }
