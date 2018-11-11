@@ -32,6 +32,9 @@ public class HasValidBooking extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_has_valid_booking);
+        initView();
+        initListener();
 
 
         //this class will tell the user that they have a vaild booking and will have a button that will launch the table usher activiy to start the ushering.
@@ -55,12 +58,10 @@ public class HasValidBooking extends Activity implements View.OnClickListener {
             });
         });
 
-        initView();
-        initListener();
     }
 
     private void initView() {
-        setContentView(R.layout.activity_has_valid_booking);
+
         mTitleBack = (ImageView) findViewById(R.id.common_title_back);
 
     }
