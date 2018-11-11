@@ -62,7 +62,6 @@ import { TableQrComponent } from './table-qr/table-qr.component';
     HttpClientModule,
     HttpModule,
     BrowserAnimationsModule,
-<<<<<<< HEAD
     MatCardModule,
     MatGridListModule,
     MatButtonModule,
@@ -71,9 +70,6 @@ import { TableQrComponent } from './table-qr/table-qr.component';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule
-=======
-    MaterialComponentsModule
->>>>>>> ee57a5f880ccf0cc7640349a95123e95ce2db86f
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
