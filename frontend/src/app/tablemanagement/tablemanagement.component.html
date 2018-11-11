@@ -1,9 +1,15 @@
-<a mat-raised-button routerLink="/tablemanagement-create" color="primary">Create a Table</a>
+<div class="title-container">
+  <h1 class="page-title">Table Management</h1>
+  <a mat-raised-button routerLink="/tablemanagement-create" color="primary">Create a Table</a>
+</div>
 <div class="row">
-  <div class="col-3" *ngFor="let table of sortedTables" [routerLink]="['/tablemanagement-create', {id: table.id}]">
+  <div class="col-3" *ngFor="let table of sortedTables">
     <div class="card table-status__{{table.status}}">
       <div class="card-body p-4">
-          <h1>Table {{table.table_number}}</h1>
+          <div class="title-container">
+              <h1>Table {{table.table_number}}</h1>
+              <a mat-raised-button [routerLink]="['/tablemanagement-create', {id: table.id}]" color="primary">Edit Table</a>
+          </div>
           <div>
             <span>Table is </span>
             <span>{{table.status ? "Active":"Inactive"}}</span>
