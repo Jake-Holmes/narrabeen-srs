@@ -12,8 +12,13 @@ import { BillingDetailsComponent } from './checkout/billing-details/billing-deta
 import { ResultComponent } from './checkout/result/result.component';
 
 
-import { NoAccessComponent } from './shared/no-access/no-access.component';
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { NoAccessComponent } from "./shared/no-access/no-access.component";
+import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
+import { TablemanagementCreateComponent } from './tablemanagement-create/tablemanagement-create.component';
+import { StaffHomeComponent } from './staff-home/staff-home.component';
+import { TableLoginComponent } from './table-login/table-login.component';
+import { TableQrComponent } from './table-qr/table-qr.component';
+
 
 import { MenuItemAdminComponent } from './menu-item-admin/menu-item-admin.component';
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
@@ -40,6 +45,10 @@ const routes: Routes = [
     component: TablemanagementComponent
   },
   {
+    path: 'tablemanagement-create',
+    component: TablemanagementCreateComponent
+  },
+  {
     path: 'kitchen-view',
     component: KitchenViewComponent
   },
@@ -57,17 +66,35 @@ const routes: Routes = [
     component: StaffLoginComponent
   },
   {
-    path: "checkout/billing-details",
+    path: 'checkout/billing-detail',
     component: BillingDetailsComponent
   },
   {
-    path: "checkout/result",
+    path: 'checkout/result',
     component: ResultComponent
-  }
+  },
+
+  // Routes for staff/administrator home.
+  {
+    path: 'staffHome',
+    component: StaffHomeComponent
+  },
+
+  // Route for table login.
+  {
+    path: 'tableLogin',
+    component: TableLoginComponent
+  },
+  // Route for table landing page with qr code.
+  {
+    path: 'tableLanding',
+    component: TableQrComponent
+  },
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

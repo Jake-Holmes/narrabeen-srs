@@ -12,4 +12,13 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
+  sidebar = {
+    buttons: [
+      { link: '', icon: 'supervised_user_circle' },
+      { link: 'tablemanagement', icon: 'table_chart' },
+      { link: 'kitchen-view', icon: 'table_chart' },
+      { link: 'shopping-cart', icon: 'shopping_cart' },
+    ]
+  };
+
 }
