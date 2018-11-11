@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import { OrderItem } from './shared/models/orderitem';
-import {Http, Response, Headers, RequestOptions} from "@angular/http";
+import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { Observable, BehaviorSubject } from 'rxjs';
 import { isNgTemplate } from '@angular/compiler';
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MenuItem } from './shared/models/menuitem';
  
 const httpOptions = {
