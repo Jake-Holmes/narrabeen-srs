@@ -82,10 +82,8 @@ export class SidebarComponent implements OnInit {
 
   private setPrivilages(array: string[], url: string) {
     if (array.indexOf(url) == 1 || array.indexOf(url) == 0) {
-      var s  = array.indexOf(url);
       return true;
     } else {
-      var s  = array.indexOf(url);
       return false;
     }
   }
