@@ -5,6 +5,7 @@ import { User, CustomerDetail } from "./../../shared/models/customer";
 import { CartService } from '../../cart.service';
 import { Location } from '@angular/common';
 import { MenuItem } from '../../shared/models/menuitem';
+import { AuthService } from "./../../shared/services/auth.service";
 
 @Component({
   selector: 'app-billing-details',
@@ -17,12 +18,14 @@ export class BillingDetailsComponent implements OnInit {
   userDetail: CustomerDetail;
 
   constructor(
+    authService: AuthService,
     private billingService: BillingService,
     private cartService: CartService,
     private location: Location
   ) {
     this.userDetail = new CustomerDetail();
     this.products = cartService.getLocalCartProducts();
+    this.userDetails = authService.getLoggedInUser();
    }
 
   ngOnInit() {

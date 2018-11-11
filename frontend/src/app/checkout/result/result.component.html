@@ -11,11 +11,11 @@
           <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6">
               <address>
-                <strong>ikismail</strong>
+                <strong>Corey Theman</strong>
                 <br>
-                Tamil Nadu, IN 600094
+                Sydney, NSW 2146
                 <br>
-                <abbr title="Phone">P:</abbr> (+91) 8124794942
+                <abbr title="Phone">P:</abbr> (+61) 432768916
               </address>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 text-right">
@@ -35,7 +35,6 @@
               <thead>
                 <tr>
                   <th>Product</th>
-                  <td></td>
                   <th class="text-center">Price</th>
                   <th class="text-center">Total</th>
                 </tr>
@@ -43,15 +42,15 @@
               <tbody>
                 <tr *ngFor="let product of products">
                   <td class="col-md-9">
-                    <h6><em>{{product.productName}}</em></h6>
+                    <h6><em>{{product.name}}</em></h6>
                   </td>
                   <td></td>
-                  <td class="col-md-1 text-center">₹ {{product.productPrice}}</td>
-                  <td class="col-md-1 text-center">₹ {{product.productPrice}}</td>
+                  <td class="col-md-1 text-center">$ {{product.base_price}}</td>
+                  <td class="col-md-1 text-center">${{product.base_price}}</td>
                 </tr>
                 <tr>
-                  <td>   </td>
-                  <td>   </td>
+                  <td>{{product.name}}</td>
+                  <td>$ {{product.base_price}}</td>
                   <td class="text-right">
                     <p>
                       <strong>Subtotal: </strong>
@@ -64,9 +63,6 @@
                     <p>
                       <strong>{{totalPrice}}</strong>
                     </p>
-                    <p>
-                      <strong>₹ {{tax}}</strong>
-                    </p>
                   </td>
                 </tr>
                 <tr>
@@ -76,7 +72,7 @@
                     <p><strong>Total: </strong></p>
                   </td>
                   <td class="text-center text-danger">
-                    <h4><strong>₹ {{totalPrice + tax }}</strong></h4>
+                    <h4><strong>$ {{totalPrice }}</strong></h4>
                   </td>
                 </tr>
               </tbody>

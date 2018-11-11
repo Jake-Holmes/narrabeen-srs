@@ -25,6 +25,7 @@ export class ResultComponent implements OnInit {
 
     products.forEach(product => {
       this.totalPrice += product.base_price;
+      console.log(product)
     });
 
     this.date = Date.now();
