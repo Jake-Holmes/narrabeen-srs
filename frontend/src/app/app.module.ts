@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule} from '@angular/forms';
@@ -37,6 +38,7 @@ import { MaterialComponentsModule } from './material-components.module';
     AppComponent,
     SidebarComponent,
     CheckoutNavbarComponent,
+    PageNotFoundComponent,
     MenuComponent,
     MenuItemDetailsComponent,
     TablemanagementComponent,

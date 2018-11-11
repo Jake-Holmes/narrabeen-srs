@@ -14,6 +14,7 @@ import { ResultComponent } from './checkout/result/result.component';
 
 import { NoAccessComponent } from "./shared/no-access/no-access.component";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
+
 import { TablemanagementCreateComponent } from './tablemanagement-create/tablemanagement-create.component';
 import { StaffHomeComponent } from './staff-home/staff-home.component';
 import { TableLoginComponent } from './table-login/table-login.component';
@@ -25,7 +26,7 @@ import { MenuAdminComponent } from './menu-admin/menu-admin.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'menu',
     component: MenuComponent
   },
   {
@@ -60,20 +61,19 @@ const routes: Routes = [
     path: 'checkout',
     component: CheckoutComponent
   },
+  {
+    path: "checkout/billing-details",
+    component: BillingDetailsComponent
+  },
+  {
+    path: "checkout/result",
+    component: ResultComponent
+  },
   // Routes for staff and administrator pages.
   {
     path: 'staffLogin',
     component: StaffLoginComponent
   },
-  {
-    path: 'checkout/billing-detail',
-    component: BillingDetailsComponent
-  },
-  {
-    path: 'checkout/result',
-    component: ResultComponent
-  },
-
   // Routes for staff/administrator home.
   {
     path: 'staffHome',
@@ -90,7 +90,10 @@ const routes: Routes = [
     path: 'tableLanding',
     component: TableQrComponent
   },
-
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
