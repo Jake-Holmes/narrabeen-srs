@@ -4,8 +4,10 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.example.avatarmind.robotmotion.Model.Customer;
+import com.example.avatarmind.robotmotion.Model.MakeReservation;
 import com.example.avatarmind.robotmotion.Model.Reservation;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 
@@ -29,7 +31,7 @@ public class ReservationAPI {
             .build();
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
-    Gson g = new Gson();
+    Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:dd'Z'").create();
 
     public void getAllReservations(final ISRSCallback<Reservation[]> callback) {
         Request request = new Request.Builder()
@@ -85,7 +87,7 @@ public class ReservationAPI {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String json = response.body().string();
-//                Log.d(TAG, json);
+                Log.d(TAG, json);
                 try {
                     Reservation reservation = g.fromJson(json, Reservation.class);
 //                    Reservation[] reservation = g.fromJson(json, Reservation[].class);
@@ -121,7 +123,7 @@ public class ReservationAPI {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String json = response.body().string();
-//                Log.d(TAG, json);
+                Log.d(TAG, json);
                 try {
                     Reservation[] reservation = g.fromJson(json, Reservation[].class); //change to
                     callback.requestComplete(true, reservation);
@@ -214,9 +216,14 @@ public class ReservationAPI {
         });
     }
 
-    public void setReservation(Reservation reservation, final ISRSCallback<Customer> callback) {
+    public void setReservation(String mobNumber, MakeReservation reservation, final ISRSCallback<Reservation> callback) {
+        String resvString = g.toJson(reservation);
+        Log.d(TAG, resvString);
+        RequestBody body = RequestBody.create(JSON, resvString);
+
         Request request = new Request.Builder()
-                .url(API_URL + "/customer?mobNum=")
+                .url(API_URL + "/customer?mobNum=" + mobNumber + "&table=" + reservation.table_id)
+                .post(body)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -236,8 +243,8 @@ public class ReservationAPI {
                 String json = response.body().string();
 //                Log.d(TAG, json);
                 try {
-                    Customer customer = g.fromJson(json, Customer.class); //change to
-                    callback.requestComplete(true, customer);
+                    Reservation reservation = g.fromJson(json, Reservation.class); //change to
+                    callback.requestComplete(true, reservation );
                 }
                 catch (JsonSyntaxException ex) {
                     Log.e(TAG, json);

@@ -12,7 +12,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.avatarmind.robotmotion.Model.Customer;
+import com.example.avatarmind.robotmotion.Model.MakeReservation;
+import com.example.avatarmind.robotmotion.Model.Reservation;
 import com.example.avatarmind.robotmotion.http.ReservationAPI;
+
+import java.util.Date;
 
 /** This class just handles the customer when they don't have a booking, which means making a reservation and getting the new table*/
 
@@ -56,7 +60,7 @@ public class NoBookingActivity extends Activity {
                 reservationAPI.getCustomerByNumber(mPhoneEditText.getText().toString(), (successful, customer) -> {
                     if (successful) {
                         mhandler.post(() -> {
-                            Toast.makeText(this, "Customer found", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "We found your details! Please Click Confirm!", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, customer.toString());
                             mFirstNameEditText.setText(customer.firstname);
                             mLastNameEditText.setText(customer.lastname);
@@ -74,7 +78,7 @@ public class NoBookingActivity extends Activity {
                         });
                     }
                 });
-                Toast.makeText(this, "unfocus", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "unfocus", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -90,9 +94,21 @@ public class NoBookingActivity extends Activity {
     }
 
     public void createReservation(View v) {
-        if (loadedCustomer == null) {
+        if (loadedCustomer != null) {
             //this is a customer that already exists in the system, just just create reservation with id.
             Toast.makeText(this, "Customer loaded", Toast.LENGTH_SHORT).show();
+
+            reservationAPI.setReservation(mPhoneEditText.getText().toString(), makeReservation(), (successful, reservation) -> {
+                if (successful) {
+                    Intent intent = new Intent(this, HasValidBooking.class);
+                    intent.putExtra("reservation_id", reservation.id);
+                    startActivity(intent);
+                }
+                else {
+                    //Toast.makeText(this, "Failed to create Reservation", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Failed to create Reservation");
+                }
+            });
         }
         else {
             //create customer and create reservation
@@ -101,7 +117,37 @@ public class NoBookingActivity extends Activity {
             loadedCustomer.firstname = mFirstNameEditText.getText().toString();
             loadedCustomer.lastname = mLastNameEditText.getText().toString();
             loadedCustomer.phone = mPhoneEditText.getText().toString();
-
+            reservationAPI.createCustomer(loadedCustomer, (successful, customer) -> {
+                if (successful)
+                    reservationAPI.setReservation(mPhoneEditText.getText().toString(), makeReservation(), (reservationSuccessful, reservation) -> {
+                        if (reservationSuccessful) {
+                            Intent intent = new Intent(this, HasValidBooking.class);
+                            intent.putExtra("reservation_id", reservation.id);
+                            startActivity(intent);
+                        }
+                        else {
+                            Log.e(TAG, "Failed to create Reservation");
+                        }
+                    });
+                else {
+                    //Toast.makeText(this, "Failed to create your customer account", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Failed to create your customer account");
+                }
+            });
         }
+    }
+
+    private MakeReservation makeReservation() {
+        MakeReservation newReservation = new MakeReservation();
+        newReservation.customer_id = loadedCustomer.id;
+        newReservation.duration = 1;
+        newReservation.start_time = new Date();
+        newReservation.table_id = 1;
+        newReservation.generateEndDate();
+        return newReservation;
+    }
+
+    private void getFreeTables() {
+        //TODO
     }
 }

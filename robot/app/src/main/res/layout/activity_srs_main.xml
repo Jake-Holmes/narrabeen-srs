@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:onClick="has_booking"
             android:text="YES"
-            android:textStyle="bold" 
+            android:textStyle="bold"
             android:textSize="@dimen/text_size" />
 
         <Button

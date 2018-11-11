@@ -66,6 +66,11 @@ public class HasBooking extends Activity {
                         startActivity(intent);
                     });
                 }
+                else {
+                    mHandler.post(() -> {
+                        Toast.makeText(this, "You have no reservations", Toast.LENGTH_LONG).show();
+                    });
+                }
             }
             else {
                 //Toast.makeText(this, "Failed to get Reservation", Toast.LENGTH_LONG).show();

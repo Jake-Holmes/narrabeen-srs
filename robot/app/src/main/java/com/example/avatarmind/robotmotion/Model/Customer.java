@@ -1,7 +1,7 @@
 package com.example.avatarmind.robotmotion.Model;
 
 public class Customer {
-    public String id;
+    public int id;
     public String phone;
     public String firstname;
     public String lastname;
