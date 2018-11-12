@@ -8,7 +8,7 @@ import { BillingDetailsComponent } from './billing-details/billing-details.compo
 import { ResultComponent } from './result/result.component';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, CheckoutRoutingModule],
+ imports: [CommonModule, SharedModule, CheckoutRoutingModule],
   declarations: [
     CheckoutComponent,
     CheckoutNavbarComponent,

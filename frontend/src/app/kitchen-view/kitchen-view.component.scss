@@ -180,6 +180,18 @@ li {
     text-align: center;
     padding: 5px;
   }
+
+  .mathead2{
+    align-content: center;
+    background-size: cover;
+    background-color: #444;
+    color: #f4f4f4;
+    text-transform: uppercase;
+    text-align: center;
+    align-content: center;
+    text-align: center;
+    padding: 5px;
+  }
   
 
 
@@ -191,12 +203,12 @@ li {
       align-content: center;
       text-align: center;
       padding: 0px;
-      width: 230px;
+      width: 250px;
       margin: 8px;
       .order-item-card-content{
         align-content: center;
         text-align: center;
-        padding: 5px;
+        padding: 0px;
       }
   
       // @media screen and (max-width: 700px) {
