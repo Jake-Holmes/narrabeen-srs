@@ -10,7 +10,7 @@ import {
   MatChipsModule,
   MatSelectModule,
   MatTooltipModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
 } from '@angular/material';
 
 const materialModules: any[] = [

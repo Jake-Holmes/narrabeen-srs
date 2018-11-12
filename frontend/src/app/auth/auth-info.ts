@@ -3,10 +3,9 @@ export class AuthInfo {
     uuid: string;
     expiry: string;
 
-    constructor() 
-    {
-        this.sessionId = '',
-        this.uuid = '',
-        this.expiry = ''
+    constructor() {
+        this.sessionId = '';
+        this.uuid = '';
+        this.expiry = '';
     }
 }

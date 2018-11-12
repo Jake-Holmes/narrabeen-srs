@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OrderItem } from './shared/models/orderitem';
- 
+import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Observable, BehaviorSubject } from 'rxjs';
+import { isNgTemplate } from '@angular/compiler';
+import { MenuItem } from './shared/models/menuitem';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -13,13 +17,11 @@ const httpOptions = {
 })
 
 export class OrderService {
-  
+
   public http1;
-  
   private baseRoute = 'https://jakeholmes.me:5000/';
-  
-  constructor(private http: HttpClient) { 
-    
+
+  constructor(private http: HttpClient) {
     this.http1 = http;
   }
 
@@ -27,6 +29,13 @@ export class OrderService {
     let orderRoute = 'order/items/all';
     return this.http.get<OrderItem[]>(this.baseRoute + orderRoute);
     //return this.http.get<OrderItem[]>('assets/testdataorders.json');
+  }
+
+  createTakeawayOrder(menuitems: MenuItem[]) {
+    const orderRoute = 'order/takeaway?id=' + 1 + '&time=' + '2012-10-09T19:00:55Z',
+          menuItemIds = menuitems.map((menuItem: MenuItem) => menuItem.id);
+
+    return this.http.post(this.baseRoute + orderRoute, JSON.stringify(menuItemIds), httpOptions);
   }
 
   getOrderItem(id: number) {

@@ -8,13 +8,18 @@
       </a>
     </li>
     <li>
-      <a routerLink="tablemanagement">
+      <a routerLink="tablemanagement"  matTooltip="Table Management" matTooltipPosition="right">
         <i class="material-icons">table_chart</i>
       </a>
     </li>
     <li>
-      <a routerLink="kitchen-view">
+      <a routerLink="kitchen-view"  matTooltip="Kitchen View" matTooltipPosition="right">
         <i class="material-icons">table_chart</i>
+      </a>
+    </li>
+    <li>
+      <a routerLink="menu-admin"  matTooltip="Menu Management" matTooltipPosition="right">
+        <i class="material-icons">assignment</i>
       </a>
     </li>
     <li>
@@ -27,12 +32,12 @@
   <!--All Site Navigation Icons goes here.-->
   <ul *ngIf="isSite()">
     <li>
-      <a routerLink="">
-        <i class="material-icons">supervised_user_circle</i>
+      <a routerLink="menu"  matTooltip="Menu" matTooltipPosition="right">
+        <i class="material-icons">fastfood</i>
       </a>
     </li>
     <li>
-      <a routerLink="shopping-cart">
+      <a routerLink="shopping-cart"  matTooltip="Checkout" matTooltipPosition="right">
         <i class="material-icons">shopping_cart</i>
       </a>
     </li>

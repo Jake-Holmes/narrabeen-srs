@@ -19,7 +19,7 @@ export class AuthService {
 
   public async login(user: string, password: string): Promise<Boolean> {
 
-    let formData: FormData = new FormData();
+    const formData: FormData = new FormData();
     formData.append('username', user);
     formData.append('authType', 'secret');
     formData.append('clientSecret', password);
@@ -28,7 +28,7 @@ export class AuthService {
       this.authInfo = await this.loginRequest(formData);
       console.log(this.authInfo.sessionId);
       return true;
-    } catch(err) {
+    } catch (err) {
       return false;
     }
   }

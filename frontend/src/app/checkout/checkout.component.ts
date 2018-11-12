@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Location } from '@angular/common';
 import { MenuItem } from '../shared/models/menuitem';
+import { OrderService } from '../order.service';
 
 
 
@@ -17,7 +18,8 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private location: Location
+    private location: Location,
+    private orderService: OrderService
   ) {
     // document.getElementById("shippingTab").style.display = "none";
     // document.getElementById("billingTab").style.display = "none";
@@ -33,6 +35,11 @@ export class CheckoutComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  confirmOrder() {
+    const products = this.cartService.getLocalCartProducts();
+    this.orderService.createTakeawayOrder(products);
   }
 
 }

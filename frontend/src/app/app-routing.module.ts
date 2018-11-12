@@ -62,7 +62,7 @@ const routes: Routes = [
     component: CheckoutComponent
   },
   {
-    path: "checkout/billing-details",
+    path: 'checkout/billing-details',
     component: BillingDetailsComponent
   },
   {
