@@ -3,6 +3,8 @@ import { MenuService } from '../menu.service';
 import { MenuItem } from '../shared/models/menuitem';
 import { CartService } from '../cart.service';
 import {MatSnackBar} from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { TableAuthService } from '../auth/table-auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -19,13 +21,21 @@ export class MenuComponent implements OnInit {
   today = new Date();
 
   constructor(
+    private route: ActivatedRoute,
+    private tableAuth: TableAuthService,
     private menuService: MenuService,
     private cartService: CartService
     ) { }
 
   ngOnInit() {
+    const qrCode = this.route.snapshot.queryParams.code;
+
     this.GetMenu();
     this.cartService.items$.subscribe(i => this.selectedMenuItems = i);
+
+    if (qrCode) {
+      this.tableAuth.setQrCode(qrCode);
+    }
   }
 
   GetMenu(): void {
