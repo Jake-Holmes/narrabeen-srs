@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -99,19 +101,44 @@ public class NoBookingActivity extends Activity implements View.OnClickListener 
 
 
     public void createReservation(View v) {
+        Handler mHandler = new Handler(Looper.getMainLooper());
         if (loadedCustomer != null) {
             //this is a customer that already exists in the system, just just create reservation with id.
             Toast.makeText(this, "Customer loaded", Toast.LENGTH_SHORT).show();
 
-            reservationAPI.setReservation(mPhoneEditText.getText().toString(), makeReservation(), (successful, reservation) -> {
+//            reservationAPI.setReservation(mPhoneEditText.getText().toString(), makeReservation(), (successful, reservation) -> {
+//                if (successful) {
+//                    Intent intent = new Intent(this, HasValidBooking.class);
+//                    intent.putExtra("reservation_id", reservation.id);
+//                    startActivity(intent);
+//                }
+//                else {
+//                    //Toast.makeText(this, "Failed to create Reservation", Toast.LENGTH_SHORT).show();
+//                    Log.e(TAG, "Failed to create Reservation");
+//                }
+//            });
+
+            reservationAPI.getReservationsByNumber(loadedCustomer.phone, (successful, reservations) -> {
                 if (successful) {
-                    Intent intent = new Intent(this, HasValidBooking.class);
-                    intent.putExtra("reservation_id", reservation.id);
-                    startActivity(intent);
+                    if (reservations.length > 0) {
+                        //Toast.makeText(this, "Reservation Found", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "Reservation Found");
+                        Log.d(TAG, TextUtils.join("\n", reservations));
+                        mHandler.post(() -> {
+                            Intent intent = new Intent(this, HasValidBooking.class);
+                            intent.putExtra("reservation_id", reservations[0].id);
+                            startActivity(intent);
+                        });
+                    }
+                    else {
+                        mHandler.post(() -> {
+                            Toast.makeText(this, "You have no reservations", Toast.LENGTH_LONG).show();
+                        });
+                    }
                 }
                 else {
-                    //Toast.makeText(this, "Failed to create Reservation", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "Failed to create Reservation");
+                    //Toast.makeText(this, "Failed to get Reservation", Toast.LENGTH_LONG).show();
+                    Log.e(TAG, "Failed to contact server");
                 }
             });
         }
@@ -122,21 +149,46 @@ public class NoBookingActivity extends Activity implements View.OnClickListener 
             loadedCustomer.firstname = mFirstNameEditText.getText().toString();
             loadedCustomer.lastname = mLastNameEditText.getText().toString();
             loadedCustomer.phone = mPhoneEditText.getText().toString();
-            reservationAPI.createCustomer(loadedCustomer, (successful, customer) -> {
-                if (successful)
-                    reservationAPI.setReservation(mPhoneEditText.getText().toString(), makeReservation(), (reservationSuccessful, reservation) -> {
-                        if (reservationSuccessful) {
+//            reservationAPI.createCustomer(loadedCustomer, (successful, customer) -> {
+//                if (successful)
+//                    reservationAPI.setReservation(mPhoneEditText.getText().toString(), makeReservation(), (reservationSuccessful, reservation) -> {
+//                        if (reservationSuccessful) {
+//                            Intent intent = new Intent(this, HasValidBooking.class);
+//                            intent.putExtra("reservation_id", reservation.id);
+//                            startActivity(intent);
+//                        }
+//                        else {
+//                            Log.e(TAG, "Failed to create Reservation");
+//                        }
+//                    });
+//                else {
+//                    //Toast.makeText(this, "Failed to create your customer account", Toast.LENGTH_SHORT).show();
+//                    Log.e(TAG, "Failed to create your customer account");
+//                }
+//            });
+
+
+            reservationAPI.getReservationsByNumber("555", (successful, reservations) -> {
+                if (successful) {
+                    if (reservations.length > 0) {
+                        //Toast.makeText(this, "Reservation Found", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "Reservation Found");
+                        Log.d(TAG, TextUtils.join("\n", reservations));
+                        mHandler.post(() -> {
                             Intent intent = new Intent(this, HasValidBooking.class);
-                            intent.putExtra("reservation_id", reservation.id);
+                            intent.putExtra("reservation_id", reservations[0].id);
                             startActivity(intent);
-                        }
-                        else {
-                            Log.e(TAG, "Failed to create Reservation");
-                        }
-                    });
+                        });
+                    }
+                    else {
+                        mHandler.post(() -> {
+                            Toast.makeText(this, "You have no reservations", Toast.LENGTH_LONG).show();
+                        });
+                    }
+                }
                 else {
-                    //Toast.makeText(this, "Failed to create your customer account", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "Failed to create your customer account");
+                    //Toast.makeText(this, "Failed to get Reservation", Toast.LENGTH_LONG).show();
+                    Log.e(TAG, "Failed to contact server");
                 }
             });
         }

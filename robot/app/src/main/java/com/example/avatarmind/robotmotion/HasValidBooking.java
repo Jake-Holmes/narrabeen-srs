@@ -32,6 +32,9 @@ public class HasValidBooking extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar() != null) {
+            getActionBar().hide();
+        }
         setContentView(R.layout.activity_has_valid_booking);
         initView();
         initListener();

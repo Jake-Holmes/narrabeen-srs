@@ -36,6 +36,9 @@ public class HasBooking extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getActionBar() != null) {
+            getActionBar().hide();
+        }
 
         Intent intent = getIntent();
         String str = intent.getStringExtra("location");

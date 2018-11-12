@@ -31,7 +31,8 @@ public class ReservationAPI {
             .build();
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
-    Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:dd'Z'").create();
+//    Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssSSSXXX").create();
+    Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssSSS'+00:00'").create();
 
     public void getAllReservations(final ISRSCallback<Reservation[]> callback) {
         Request request = new Request.Builder()
@@ -157,7 +158,7 @@ public class ReservationAPI {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String json = response.body().string();
-//                Log.d(TAG, json);
+                Log.d(TAG, json);
                 try {
                     Customer customer = g.fromJson(json, Customer.class); //change to
                     callback.requestComplete(true, customer);
@@ -202,7 +203,7 @@ public class ReservationAPI {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String json = response.body().string();
-//                Log.d(TAG, json);
+                Log.d(TAG, json);
                 try {
                     Customer customer = g.fromJson(json, Customer.class); //change to
                     callback.requestComplete(true, customer);
@@ -241,7 +242,7 @@ public class ReservationAPI {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String json = response.body().string();
-//                Log.d(TAG, json);
+                Log.e(TAG, json);
                 try {
                     Reservation reservation = g.fromJson(json, Reservation.class); //change to
                     callback.requestComplete(true, reservation );
