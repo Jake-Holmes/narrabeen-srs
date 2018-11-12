@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { MenuItem } from '../shared/models/menuitem';
 import { MenuService } from '../menu.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-menu-item-admin',
@@ -22,10 +23,13 @@ export class MenuItemAdminComponent implements OnInit {
     private route: ActivatedRoute,
     private menuService: MenuService,
     private location: Location,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
+    this.authGuard();
     this.GetMenuItem();
   }
 
@@ -77,5 +81,12 @@ export class MenuItemAdminComponent implements OnInit {
 
   GoBack(): void {
     this.location.back();
+  }
+
+  private async authGuard() {
+    if (!await this.authService.authguard()) {
+      this.router.navigate(['/staffLogin']);
+    }
+    return true;
   }
 }
