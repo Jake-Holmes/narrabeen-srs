@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { MenuItem } from '../shared/models/menuitem';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-menu-admin',
@@ -15,12 +14,10 @@ export class MenuAdminComponent implements OnInit {
 
   constructor(
     private menuService: MenuService,
-    private router: Router,
-    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.authGuard();
     this.GetMenu();
   }
 
@@ -31,13 +28,7 @@ export class MenuAdminComponent implements OnInit {
   }
 
   CreateNewItem(): void {
+    console.log('Navigating!');
     this.router.navigate(['/menu-item-create-edit']);
-  }
-
-  private async authGuard() {
-    if (!await this.authService.authguard()) {
-      this.router.navigate(['/staffLogin']);
-    }
-    return true;
   }
 }

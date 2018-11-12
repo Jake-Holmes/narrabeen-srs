@@ -5,15 +5,16 @@ import { MenuItemDetailsComponent } from './menu-item-details/menu-item-details.
 import { TablemanagementComponent } from './tablemanagement/tablemanagement.component';
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { StaffLoginComponent} from './staff-login/staff-login.component';
+import { StaffLoginComponent } from './staff-login/staff-login.component';
 
 import { CheckoutComponent } from './checkout/checkout.component';
 import { BillingDetailsComponent } from './checkout/billing-details/billing-details.component';
 import { ResultComponent } from './checkout/result/result.component';
 
 
-import { NoAccessComponent } from './shared/no-access/no-access.component';
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { NoAccessComponent } from "./shared/no-access/no-access.component";
+import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
+
 import { TablemanagementCreateComponent } from './tablemanagement-create/tablemanagement-create.component';
 import { StaffHomeComponent } from './staff-home/staff-home.component';
 import { TableLoginComponent } from './table-login/table-login.component';
@@ -24,10 +25,6 @@ import { MenuItemAdminComponent } from './menu-item-admin/menu-item-admin.compon
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: MenuComponent
-  },
   {
     path: 'menu',
     component: MenuComponent
@@ -64,20 +61,19 @@ const routes: Routes = [
     path: 'checkout',
     component: CheckoutComponent
   },
+  {
+    path: "checkout/billing-details",
+    component: BillingDetailsComponent
+  },
+  {
+    path: "checkout/result",
+    component: ResultComponent
+  },
   // Routes for staff and administrator pages.
   {
     path: 'staffLogin',
     component: StaffLoginComponent
   },
-  {
-    path: 'checkout/billing-detail',
-    component: BillingDetailsComponent
-  },
-  {
-    path: 'checkout/result',
-    component: ResultComponent
-  },
-
   // Routes for staff/administrator home.
   {
     path: 'staffHome',
@@ -97,7 +93,7 @@ const routes: Routes = [
   {
     path: '**',
     component: PageNotFoundComponent
-  },
+  }
 ];
 
 @NgModule({
