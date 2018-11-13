@@ -1,4 +1,3 @@
-import { CheckoutRoutingModule } from './checkout.routing';
 import { SharedModule } from './../shared/shared.module';
 import { CheckoutNavbarComponent } from './checkout-navbar/checkout-navbar.component';
 import { NgModule } from '@angular/core';
@@ -8,7 +7,7 @@ import { BillingDetailsComponent } from './billing-details/billing-details.compo
 import { ResultComponent } from './result/result.component';
 
 @NgModule({
- imports: [CommonModule, SharedModule, CheckoutRoutingModule],
+ imports: [CommonModule, SharedModule,],
   declarations: [
     CheckoutComponent,
     CheckoutNavbarComponent,
