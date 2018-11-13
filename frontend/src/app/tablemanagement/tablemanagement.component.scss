@@ -25,6 +25,22 @@
         float: right;
     }
 }
-::ng-deep .menu-item-container img[_ngcontent-c4] {
-    max-width: 100%;
-}
+::ng-deep {
+    button.mat-raised-button {
+        display: none;
+    }
+    .menu-item-container[_ngcontent-c4] {
+        margin-top: -16px !important;
+        img, button {
+            display: none;
+        }
+        p {
+            margin: 0;
+        }
+    }
+    h2 {
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+    }
+} 

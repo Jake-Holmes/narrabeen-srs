@@ -27,7 +27,7 @@
             <span>Passcode of seats goes here</span>
           </div> -->
           <div *ngIf="table.order != null">
-            <p>Order Items</p>
+            <p><u>Order Items</u></p>
           </div>
           <!-- TODO Loop over Orders when the order component is ready instead of menu items only because it's useless atm -->
           <app-menu-item-details *ngFor="let item of table.order?.order_items" [item]="item.menu_item" [order-mode]="false" ></app-menu-item-details>
