@@ -1,22 +1,61 @@
 <h1>Reservations</h1>
 
 <div>
-  <div id='calendar'>
-    <!-- <mat-form-field> -->
-      <input matInput [matDatepicker]="myDatepicker" placeholder="please select date"> 
-      <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-      <mat-datepicker #myDatepicker></mat-datepicker>
+  <div>
+    <mat-card id = 'phone'>
+      <mat-card-title>Customer details</mat-card-title>
+      <input #mobNum type="tel" matInput placeholder="Mobile phone">
+      <input #custFName matInput placeholder="First name">
+      <input #custLName matInput placeholder="Last name">
+    </mat-card>
+  </div>
+
+  <div id='calendar'> 
+    <mat-card>
+      <mat-card-title>Select reservation date:</mat-card-title>
+      <!-- <mat-form-field> -->
+        <input matInput #datevalue [min]="mindate" [max]="maxdate" [matDatepicker]="myDatepicker" placeholder="please select date" (dateChange) = "getcurrenttablelist(datevalue.value)" disabled> 
+        <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker disabled="false"></mat-datepicker>
+      <!-- </mat-form-field> -->
+    </mat-card>
       <!-- <input type="text" matInput placeholder="Input"> -->
-    <!-- </mat-form-field> -->
+   
       
   </div>
   <div id='tables'>
     table goes here
+    <mat-card>
+      <mat-card-title>Select table:</mat-card-title>
+      <mat-form-field>
+      <mat-select placeholder="Table list" [(ngModel)]="tablevalue" (selectionChange) = "getcurrenttimelist(tablevalue)" [disabled] = "disabletablelist">
+        <!-- <mat-option *ngFor="let tables of currenttablelist.tablelist; let i = index" [value]="i" > -->
+        <mat-option *ngFor="let tables of currenttablelist.tablelist | keyvalue" [value]="tables.key">
+          {{tables.key}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    </mat-card>
   </div>
+
   <div id='times'>
     times goes here
+    <mat-card>
+      <mat-card-title>Select time slot:</mat-card-title>
+      <mat-form-field>
+      <mat-select placeholder="Times list" [(ngModel)]="timevalue" (selectionChange) = "enablesubmit()" [disabled]= "disabletimelist" >
+        <!-- <mat-option *ngFor="let times of currenttimelist.timelist; let j = index" [value]="j"> -->
+        <mat-option *ngFor="let times of currenttimelist.timelist | keyvalue" [value]="times.key" [disabled] = "times.value.reserved">
+          {{times.key}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    </mat-card>
   </div>
-</div>
-<div id='datepicker'>
-    
+  <div id=calendar>
+    some text
+      <mat-card>
+        <button id="submit" mat-raised-button color="primary" (click) = "submit(datevalue.value, tablevalue, timevalue, mobNum.value, custFName.value, custLName.value)" [disabled] = "disabledbutton">Submit</button>
+      </mat-card>
+    </div>
 </div>

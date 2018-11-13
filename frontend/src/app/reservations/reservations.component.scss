@@ -1,9 +1,15 @@
-#calendar, #tables, #times {
+#calendar, #tables, #times, #phone {
     width: 300px;
-    height: 300px;
+    //height: 300px;
     margin-right: 10px;
-    float: left;
-    border: 1px solid red;
+    //float: left;
+    //border: 1px solid red;
+}
+mat-card-title{
+    font-size: 20px;
+}
+input{
+    width: 80%;
 }
 // mat-form-field{
 //     padding:0;
