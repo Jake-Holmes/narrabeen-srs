@@ -41,7 +41,9 @@ export class BillingDetailsComponent implements OnInit {
     this.userDetail.lastName = data['lastName'];
     this.userDetail.emailId = data['email'];
     this.userDetail.phoneNumber = data['phoneNumber'];
-    this.orderService.createCustomer(this.userDetail).subscribe(data => { console.log(data) });
+    this.orderService.createCustomer(this.userDetail).subscribe(res => { 
+      console.log(data);
+    });
 
     this.router.navigateByUrl('/checkout/result');
   }
@@ -64,10 +66,5 @@ export class BillingDetailsComponent implements OnInit {
     } else {
       return true;
     }
-  }
-
-  confirmOrder() {
-    const products = this.cartService.getLocalCartProducts();
-    this.orderService.createTakeawayOrder(products);
   }
 }

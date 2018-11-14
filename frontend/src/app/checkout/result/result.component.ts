@@ -15,6 +15,7 @@ export class ResultComponent implements OnInit {
   checkoutProducts: MenuItem[];
   qrCode = null;
   takeAwayCustomer = false;
+  orderPlaced = false;
   date: number;
   totalPrice = 0;
   receiptNo: String; 
@@ -66,9 +67,9 @@ export class ResultComponent implements OnInit {
     const products = this.cartService.getLocalCartProducts();
 
     if (this.takeAwayCustomer == true) {
-      this.orderService.createTakeawayOrder(products).subscribe(data => { console.log(data) });
+      this.orderService.createTakeawayOrder(products).subscribe(data => { console.log(data); this.orderPlaced=true; });
     } else {
-      this.orderService.createOrder(products, this.qrCode).subscribe(data => { console.log(data) });
+      this.orderService.createOrder(products, this.qrCode).subscribe(data => { console.log(data); this.orderPlaced=true; });
     }
   }
 }

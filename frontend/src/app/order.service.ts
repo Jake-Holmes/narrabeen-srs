@@ -53,8 +53,8 @@ export class OrderService {
 
   createOrder(menuitems: MenuItem[], qrCode: String) {
     let now = moment().format().split("+")[0] + "Z";
-    const orderRoute = 'order/table?code=' + qrCode;
-    const menuItemIds = menuitems.map((menuItem: MenuItem) => menuItem.id.toString());
+    const orderRoute = 'order/table?qr_code=' + qrCode;
+    const menuItemIds = menuitems.map((menuItem: MenuItem) => menuItem.id);
 
     return this.http.post(this.baseRoute + orderRoute, JSON.stringify(menuItemIds), httpOptions);
   }
