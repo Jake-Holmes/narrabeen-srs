@@ -5,6 +5,8 @@ import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { Observable, BehaviorSubject } from 'rxjs';
 import { isNgTemplate } from '@angular/compiler';
 import { MenuItem } from './shared/models/menuitem';
+import { TableAuthService } from './auth/table-auth.service';
+
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,7 +23,7 @@ export class OrderService {
   public http1;
   private baseRoute = 'https://jakeholmes.me:5000/';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private tableAuth: TableAuthService) {
     this.http1 = http;
   }
 

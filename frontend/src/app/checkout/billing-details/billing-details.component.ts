@@ -5,8 +5,9 @@ import { User, CustomerDetail } from "./../../shared/models/customer";
 import { CartService } from '../../cart.service';
 import { Location } from '@angular/common';
 import { MenuItem } from '../../shared/models/menuitem';
-import { AuthService } from "./../../shared/services/auth.service";
 import { TableAuthService } from "../../auth/table-auth.service";
+import { OrderService } from './../../order.service';
+
 
 @Component({
   selector: 'app-billing-details',
@@ -17,17 +18,18 @@ export class BillingDetailsComponent implements OnInit {
   userDetails: User;
   products: MenuItem[];
   userDetail: CustomerDetail;
+  qrCode = null;
+  takeAwayCustomer = false;
 
   constructor(
-    authService: AuthService,
-    private tableAuthService: TableAuthService,
     private billingService: BillingService,
     private cartService: CartService,
-    private location: Location
+    private location: Location,
+    private orderService: OrderService,
+    private tableAuth: TableAuthService
   ) {
     this.userDetail = new CustomerDetail();
     this.products = cartService.getLocalCartProducts();
-    this.userDetails = authService.getLoggedInUser();
    }
 
   ngOnInit() {
@@ -37,7 +39,6 @@ export class BillingDetailsComponent implements OnInit {
     const data = form.value;
 
     data["emailId"] = this.userDetails.emailId;
-    data["userId"] = this.userDetails.$key;
     let totalPrice = 0;
     const products = [];
     this.products.forEach(product => {
@@ -55,4 +56,28 @@ export class BillingDetailsComponent implements OnInit {
     //this.billingService.createBillings(data);
   }
 
+  checkCustomer() {
+    this.qrCode = this.tableAuth.getQrCode();
+    if (this.qrCode == null || this.qrCode == "" || this.qrCode.length < 1) {
+      this.takeAwayCustomer = true;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  checkTable() {
+    this.qrCode = this.tableAuth.getQrCode();
+    if (this.qrCode == null || this.qrCode == "" || this.qrCode.length < 1) {
+      this.takeAwayCustomer = false;
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  confirmOrder() {
+    const products = this.cartService.getLocalCartProducts();
+    this.orderService.createTakeawayOrder(products);
+  }
 }

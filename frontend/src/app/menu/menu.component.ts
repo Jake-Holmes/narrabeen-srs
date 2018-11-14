@@ -28,6 +28,7 @@ export class MenuComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    // Check if route has a QR code passed as a paramter
     const qrCode = this.route.snapshot.queryParams.code;
 
     this.GetMenu();

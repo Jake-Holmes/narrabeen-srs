@@ -3,30 +3,27 @@
 <div class="board-inner" id="status-buttons">
   <ul class="nav nav-tabs" id="myTab">
 
-    <!-- circular user icon -->
+    <!-- circular cart icon -->
     <li id="productsTab" style="margin: auto">
-      <a [routerLink]="['/checkouts', {outlets: {'checkOutlet': ['/']}}]" routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }" data-toggle="tab" title="Product Summary">
+      <a [routerLink]="['/checkout']" data-toggle="tab" title="Product Summary">
         <span class="round-tabs one">
             <i class="material-icons" aria-hidden="true">shopping_cart</i>
         </span>
       </a>
     </li>
     
-    <!-- circular home icon -->
+    <!-- circular check icon -->
     <li id="billingTab" style="margin: auto">
-      <a [routerLink]="['/checkouts', {outlets: {'checkOutlet': ['billing-details']}}]" routerLinkActive="active"
-        data-toggle="tab" title="Confirmation">
+      <a [routerLink]="['/checkout/billing-details']" data-toggle="tab" title="Confirmation">
         <span class="round-tabs three">
           <i class="material-icons" aria-hidden="true">check_circle</i>
         </span>
       </a>
     </li>
 
-    <!-- circular ok icon -->
+    <!-- circular card icon -->
     <li id="resultTab" style="margin: auto">
-      <a [routerLink]="['/checkouts', {outlets: {'checkOutlet': ['result']}}]" routerLinkActive="active" data-toggle="tab"
-        title="Payment">
+      <a [routerLink]="['/checkout/result']" data-toggle="tab" title="Payment">
         <span class="round-tabs four">
           <i class="material-icons" aria-hidden="true">credit_card</i>
         </span>
