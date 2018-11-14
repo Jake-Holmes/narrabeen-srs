@@ -28,7 +28,6 @@ export class OrderService {
   GetOrder() {
     let orderRoute = 'order/items/all';
     return this.http.get<OrderItem[]>(this.baseRoute + orderRoute);
-    //return this.http.get<OrderItem[]>('assets/testdataorders.json');
   }
 
   createTakeawayOrder(menuitems: MenuItem[]) {
@@ -73,28 +72,4 @@ export class OrderService {
       orderitem.status = "orderitem.status";
     });
   }
-
- // order/items?id:=orderItem_id&status:=orderItem_status&slot:=orderItem_slot
-
-  /*editOrderItem():void {
-      /*let orderUpdateData = {
-      id: 1,
-      status: 'inprogress',
-      slot: 3
-      };
-      //https://jakeholmes.me:5000/order/items?id=1&status=ready&slot=3
-    //return this.http.patch(this.baseRoute+'order/items?',JSON.stringify(orderUpdateData),httpOptions);
-     this.http.put("https://jakeholmes.me:5000/order/items", { id: 1, status: "inprogress", slot: 2 });
-}
-  editOrderItem (ordr: OrderItem): Observable<any> {
-    return this.http.put("https://jakeholmes.me:5000/order/items", ordr, httpOptions);
-  }*/
-
-  /*GetOrder() {
-    
-    //return this.http.get<MenuItem[]>('assets/testdata.json');
-    //return this.http.get<OrderItem[]>('assets/testdataorders.json');
-    return this.http.get<OrderItem[]>('https://jakeholmes.me:5000/order/items/all');
-    //return this.http.get<MenuItem[]>('assets/testdata.json');
-  }*/
 }

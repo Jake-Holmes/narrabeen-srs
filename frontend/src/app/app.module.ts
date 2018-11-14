@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
@@ -32,6 +34,7 @@ import { AuthService } from './auth/auth.service';
 import { TableLoginComponent } from './table-login/table-login.component';
 import { TableQrComponent } from './table-qr/table-qr.component';
 import { MaterialComponentsModule } from './material-components.module';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,7 @@ import { MaterialComponentsModule } from './material-components.module';
     StaffHomeComponent,
     TableLoginComponent,
     TableQrComponent,
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +71,11 @@ import { MaterialComponentsModule } from './material-components.module';
     MaterialComponentsModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      timeOut: 1500,
+      preventDuplicates: true
+    })
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

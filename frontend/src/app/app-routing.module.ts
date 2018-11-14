@@ -19,6 +19,7 @@ import { TablemanagementCreateComponent } from './tablemanagement-create/tablema
 import { StaffHomeComponent } from './staff-home/staff-home.component';
 import { TableLoginComponent } from './table-login/table-login.component';
 import { TableQrComponent } from './table-qr/table-qr.component';
+import { ReservationsComponent } from "./reservations/reservations.component"
 
 
 import { MenuItemAdminComponent } from './menu-item-admin/menu-item-admin.component';
@@ -84,6 +85,11 @@ const routes: Routes = [
   {
     path: 'tableLogin',
     component: TableLoginComponent
+  },
+  //Route for reservation
+  {
+    path: 'reservations',
+    component: ReservationsComponent
   },
   // Route for table landing page with qr code.
   {

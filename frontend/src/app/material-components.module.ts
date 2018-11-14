@@ -11,6 +11,8 @@ import {
   MatSelectModule,
   MatTooltipModule,
   MatSlideToggleModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 const materialModules: any[] = [
@@ -24,7 +26,9 @@ const materialModules: any[] = [
   MatChipsModule,
   MatSelectModule,
   MatTooltipModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ];
 
 @NgModule({

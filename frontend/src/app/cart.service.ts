@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MenuItem } from './shared/models/menuitem';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +12,20 @@ export class CartService {
   items: MenuItem[] = [];
   totalProductsInCart = 0;
 
-  constructor() { }
+  constructor(private toastr: ToastrService)
+  { }
 
   AddItem(item: MenuItem) {
     item.index = this.totalProductsInCart;
     this.items.push(item);
     this.items$.next(this.items);
     this.totalProductsInCart++;
-  }
 
-  RemoveItem(item: MenuItem) {
-    // this.items; TODO implement this
+    this.toastr.info('Product Adding to the cart', 'Adding Product to Cart', {timeOut: 1000});
+
+    setTimeout(() => {
+      this.getLocalCartProducts();
+    }, 500);
   }
 
   CreateOrder() {
