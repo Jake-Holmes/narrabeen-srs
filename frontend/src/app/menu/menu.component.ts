@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { MenuItem } from '../shared/models/menuitem';
 import { CartService } from '../cart.service';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-menu',

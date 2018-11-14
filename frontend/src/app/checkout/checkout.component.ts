@@ -32,6 +32,7 @@ export class CheckoutComponent implements OnInit {
     products.forEach(product => {
       this.totalPrice += product.base_price;
     });
+    this.totalPrice = +(this.totalPrice.toFixed(2));
    }
 
   ngOnInit() {

@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
@@ -69,6 +71,11 @@ import { ReservationsComponent } from './reservations/reservations.component';
     MaterialComponentsModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      timeOut: 1000,
+      preventDuplicates: true
+    })
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
