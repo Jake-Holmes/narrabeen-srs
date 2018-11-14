@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrderItem } from '../shared/models/orderitem';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OrderService } from '../order.service';
+import { MatTable } from '@angular/material';
+import { Router } from '@angular/router'
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,9 +19,10 @@ const httpOptions = {
 export class WaiterViewComponent implements OnInit {
   private orderItems: OrderItem[];
   private displayedColumns: string[];
+  @ViewChild(MatTable) waiterTable: MatTable<OrderItem>
+  
 
   constructor(
-    private orderService: OrderService,
     private http: HttpClient,
   ) {
     this.displayedColumns = ['id', 'slot', 'dishName', 'button']
@@ -29,17 +32,27 @@ export class WaiterViewComponent implements OnInit {
     this.assignOrderItems();
   }
 
-  private async assignOrderItems() {
+  private async assignOrderItems(): Promise<Boolean> {
     this.orderItems = await this.getOrderItems();
+    return true;
   }
 
   private async getOrderItems(): Promise<OrderItem[]> {
     return this.http.get<OrderItem[]>('https://jakeholmes.me:5000/order/items/all?status=ready').toPromise();
   }
 
-  public changeStatus(id: number) {
+  public async changeStatus(id: number) {
+    //var tmpObject = await this.findItemFromId(id);
+    //this.orderItems.splice(tmpObject);
     var link = 'https://jakeholmes.me:5000/order/items?id='+ id +'&status=delivered&slot=0';
-    this.http.put(link, null, httpOptions).subscribe();
-    this.assignOrderItems();
+    await this.http.put(link, null, httpOptions).subscribe();
+    await this.assignOrderItems();
+    //this.waiterTable.renderRows();
+    location.reload()
   }
+
+  /*
+  private async findItemFromId(id: number):Promise<number> {
+    return this.orderItems.indexOf(this.orderItems.find(obj => obj.id == id));
+  }*/
 }

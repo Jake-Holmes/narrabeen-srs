@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
+import { MatTableModule} from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -76,6 +77,7 @@ import { NoAccessComponent } from './shared/no-access/no-access.component';
     HttpModule,
     BrowserAnimationsModule,
     MaterialComponentsModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
