@@ -37,12 +37,16 @@ import { MaterialComponentsModule } from './material-components.module';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { WaiterViewComponent } from './waiter-view/waiter-view.component';
 
+// import { NoProductsFoundComponent } from "./shared/no-products-found/no-products-found.component";
+// import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { NoAccessComponent } from './shared/no-access/no-access.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     CheckoutNavbarComponent,
-    // PageNotFoundComponent,
+    PageNotFoundComponent,
     MenuComponent,
     MenuItemDetailsComponent,
     TablemanagementComponent,
@@ -50,7 +54,8 @@ import { WaiterViewComponent } from './waiter-view/waiter-view.component';
     MenuAdminComponent,
     MenuItemAdminComponent,
     ShoppingCartComponent,
-    // NoProductsFoundComponent,
+    NoProductsFoundComponent,
+    NoAccessComponent,
     CartCalculatorComponent,
     CheckoutComponent,
     BillingDetailsComponent,
