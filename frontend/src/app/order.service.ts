@@ -74,4 +74,9 @@ export class OrderService {
       orderitem.status = "orderitem.status";
     });
   }
+
+  UpdateStatus(orderId: number, status: string) {
+    const orderRoute = 'order/items?id=' + orderId + '&status=' + status;
+    return this.http.put(this.baseRoute + orderRoute, {}, httpOptions);
+  }
 }
