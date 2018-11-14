@@ -26,18 +26,23 @@
     }
 }
 ::ng-deep {
-    .menu-item-container {
-        margin-top: 0 !important;
-        img, button {
+    .card {
+        button.mat-raised-button {
             display: none;
         }
-        p {
-            margin: 0;
+        .menu-item-container {
+            margin-top: 0 !important;
+            img, button {
+                display: none;
+            }
+            p {
+                margin: 0;
+            }
         }
-    }
-    h2 {
-        padding: 0;
-        margin: 0;
-        font-size: 14px;
+        h2 {
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+        }
     }
 } 
