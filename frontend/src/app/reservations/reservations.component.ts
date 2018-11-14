@@ -16,12 +16,12 @@ import { Router } from '@angular/router';
 export class ReservationsComponent implements OnInit {
   returnedtablelist: Table[] = [];
   returnedreservationslist: Reservations[] = [];
-  // timelist: TimeObj[] = [];
-  // tablelist: MyTable[] = [];
+  timelist: TimeObj[] = [];
+  tablelist: MyTable[] = [];
   datelist: DateObj[] = [];
 
-  currenttablelist: MyTable[] = [];
-  currenttimelist: TimeObj[] = [];
+  currenttablelist: DateObj = new DateObj([]);
+  currenttimelist: MyTable = new MyTable([]);
 
   datestring: string;
   mindate: Date;
@@ -29,6 +29,9 @@ export class ReservationsComponent implements OnInit {
   disabletablelist: boolean;
   disabletimelist: boolean;
   disabledbutton: boolean;
+
+  tablevalue: string;
+  timevalue: string;
 
   constructor(private service: TableService, private service2: ReservationsService, private router: Router,) {
 
@@ -136,7 +139,7 @@ export class ReservationsComponent implements OnInit {
     this.disabledbutton = false;
   }
 
-  async submit(date: string, table: number, time: string, mobNum: string, fname: string, lname: string)
+  async submit(date: string, table: string, time: string, mobNum: string, fname: string, lname: string)
   {
     let returnedcustomer = await this.service2.getCustomer(mobNum)
 
@@ -156,12 +159,12 @@ export class ReservationsComponent implements OnInit {
     submitresservation.start_time = start_time
     submitresservation.end_time = end_time;
     submitresservation.duration = duration
-    submitresservation.table_id = table
+    submitresservation.table_id = +table
 
     if(returnedcustomer.id != null){
       submitresservation.customer_id = returnedcustomer.id
       //ENABLE TO START MAKING RESERVATIONS
-      let returnedreservation = await this.service2.createReservation(mobNum, table, submitresservation) 
+      let returnedreservation = await this.service2.createReservation(mobNum, +table, submitresservation) 
       alert("Reservation made.");
       this.router.navigate(['menu'])
     }

@@ -10,17 +10,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 
-import { NoProductsFoundComponent } from "./no-products-found/no-products-found.component";
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { NoAccessComponent } from './no-access/no-access.component';
+// import { NoProductsFoundComponent } from "./no-products-found/no-products-found.component";
+// import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+// import { NoAccessComponent } from './no-access/no-access.component';
 
 
 @NgModule({
   declarations: [
     // AppComponent,
-    NoProductsFoundComponent,
-    PageNotFoundComponent,
-    NoAccessComponent
+    // NoProductsFoundComponent,
+    // PageNotFoundComponent,
+    // NoAccessComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +32,9 @@ import { NoAccessComponent } from './no-access/no-access.component';
     MatButtonModule
   ],
   exports: [
-    NoProductsFoundComponent,
-    NoAccessComponent,
-    PageNotFoundComponent
+    // NoProductsFoundComponent,
+    // NoAccessComponent,
+    // PageNotFoundComponent
   ],
   providers: [],
   bootstrap: []

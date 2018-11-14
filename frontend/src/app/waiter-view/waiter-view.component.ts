@@ -17,6 +17,7 @@ const httpOptions = {
 export class WaiterViewComponent implements OnInit {
   private orderItems: OrderItem[];
   private displayedColumns: string[];
+
   constructor(
     private orderService: OrderService,
     private http: HttpClient,

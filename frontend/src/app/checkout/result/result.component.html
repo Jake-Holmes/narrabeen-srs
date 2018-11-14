@@ -3,9 +3,6 @@
     <app-checkout-navbar></app-checkout-navbar>
     
     <div class="mt-5 mb-5" id="receipt">
-      <a name="" style="position: relative; float: right" id="" class="btn btn-primary" href="javascript:;;" role="button"
-      (click)="downloadReceipt()"><i class="fa fa-download"></i> Receipt</a>
-      
       <div class="row">
         <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3" style="margin: auto">
           <div class="row">
@@ -18,12 +15,17 @@
                 <abbr title="Phone">P:</abbr> (+61) 432768916
               </address>
             </div>
+            <div *ngIf="!checkCustomer()" class="col-xs-6 col-sm-6 col-md-6">
+              <address>
+                <strong>Table Order for Table: {{ tableId }}</strong>
+              </address>
+            </div>
             <div class="col-xs-6 col-sm-6 col-md-6 text-right">
               <p>
-                <em>Date: {{date | date}}</em>
+                <em> <strong>Date:</strong> {{date | date}}</em>
               </p>
               <p>
-                <em>Receipt #: {{ receipNo }}</em>
+                <em><strong>Receipt #:</strong> {{ receiptNo }}</em>
               </p>
             </div>
           </div>
@@ -35,35 +37,19 @@
               <thead>
                 <tr>
                   <th>Product</th>
+                  <th></th>
                   <th class="text-center">Price</th>
                   <th class="text-center">Total</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let product of products">
+                <tr *ngFor="let product of checkoutProducts">
                   <td class="col-md-9">
                     <h6><em>{{product.name}}</em></h6>
                   </td>
                   <td></td>
-                  <td class="col-md-1 text-center">$ {{product.base_price}}</td>
                   <td class="col-md-1 text-center">${{product.base_price}}</td>
-                </tr>
-                <tr>
-                  <td>{{product.name}}</td>
-                  <td>$ {{product.base_price}}</td>
-                  <td class="text-right">
-                    <p>
-                      <strong>Subtotal: </strong>
-                    </p>
-                    <p>
-                      <strong>Tax: </strong>
-                    </p>
-                  </td>
-                  <td class="text-center">
-                    <p>
-                      <strong>{{totalPrice}}</strong>
-                    </p>
-                  </td>
+                  <td class="col-md-1 text-center">${{product.base_price}}</td>
                 </tr>
                 <tr>
                   <td>   </td>
@@ -72,13 +58,13 @@
                     <p><strong>Total: </strong></p>
                   </td>
                   <td class="text-center text-danger">
-                    <h4><strong>$ {{totalPrice }}</strong></h4>
+                    <h4><strong>${{totalPrice }}</strong></h4>
                   </td>
                 </tr>
               </tbody>
             </table>
             <div class="float-right">
-                <a class="btn btn-success btn-lg btn-bloc">Order Now<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-success btn-lg btn-bloc" (click)="ConfirmOrder()">Order Now<span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
           </div>
         </div>

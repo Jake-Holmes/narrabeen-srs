@@ -37,7 +37,7 @@ export class TableAuthService {
   }
 
   public returnQrUrl(): string {
-    return 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://127.0.0.1:5000/menu?code=' + this.qrcode;
+    return 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://rytek.me:1996/menu?code=' + this.qrcode;
   }
 
   public async authguard(): Promise<Boolean> {

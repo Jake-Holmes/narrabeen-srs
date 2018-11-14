@@ -7,7 +7,7 @@ import { TableAuthService } from '../auth/table-auth.service';
   styleUrls: ['./table-qr.component.scss']
 })
 export class TableQrComponent implements OnInit {
-  private qrcode: string;
+  qrcode: string;
   constructor(
     private tableAuthService: TableAuthService,
   ) {
