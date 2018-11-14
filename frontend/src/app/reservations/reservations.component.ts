@@ -37,8 +37,6 @@ export class ReservationsComponent implements OnInit {
   async ngOnInit() {
     this.returnedtablelist = await this.service.getAllTables()
     this.returnedreservationslist = await this.service2.getAllReservations();
-
-    console.log(this.returnedreservationslist)
     
     this.mindate = new Date();
     this.maxdate = new Date();
@@ -47,34 +45,9 @@ export class ReservationsComponent implements OnInit {
     this.disabletimelist = true;
     this.disabledbutton = true;
 
-
-    // for (var counter = 9; counter < 22; counter = counter+2)
-    // {
-    //   var stringval;
-    //   if (counter < 10)
-    //   {
-    //     stringval = "0" + counter + ":00";
-    //   }
-    //   else
-    //   {
-    //     stringval = counter + ":00"
-    //   }
-    //   this.timelist[stringval] = new TimeObj(stringval)
-    // }
-
-    // console.log(this.timelist)
-
-    // this.returnedtablelist.forEach(table => {
-    //   this.tablelist[table.id] = new MyTable(this.timelist)
-    // });
-
-    // console.log(this.tablelist)
-
     let datetoday = new Date();
     let datetwoweeks = new Date();
     datetwoweeks.setDate(datetoday.getDate()+14);
-    console.log(datetoday)
-    console.log(datetwoweeks)
     for(let today = datetoday; today<=datetwoweeks; today.setDate(today.getDate()+1))
     {
       let dd = datetoday.getDate();
@@ -100,24 +73,18 @@ export class ReservationsComponent implements OnInit {
           }
           timelist[stringval] = new TimeObj(stringval)
         }
-        console.log(timelist)
 
         tablelist[table.id] = new MyTable(timelist)
       });
-      console.log(tablelist)
       //end
 
       this.datelist[datestring] = new DateObj(tablelist);
     }
-    console.log(this.datelist)
-   
-    console.log("HELLO GJKHBSGDFHJKLSDFBJKS");
 
 
     //gotta add comparitor for reserved times
     if(this.returnedreservationslist != null){
       this.returnedreservationslist.forEach(reservation =>{
-        console.log(reservation)
         let tempstarttime = new Date(reservation.start_time);
         let datestring = tempstarttime.getUTCFullYear() + "-" +  (tempstarttime.getUTCMonth()+1) + "-" + tempstarttime.getUTCDate();
         let timestring;
@@ -129,56 +96,49 @@ export class ReservationsComponent implements OnInit {
         {
           timestring = tempstarttime.getUTCHours()
         }
-        if(tempstarttime.getUTCMinutes() < 10)
-        {
-          timestring = timestring + ":0" + tempstarttime.getUTCMinutes()
-        }
-        else
-        {
-          timestring = timestring + ":" + tempstarttime.getUTCMinutes()
-        }
+        timestring = timestring + ":00"
+        // if(tempstarttime.getUTCMinutes() < 10)
+        // {
+        //   timestring = timestring + ":0" + tempstarttime.getUTCMinutes()
+        // }
+        // else
+        // {
+        //   timestring = timestring + ":" + tempstarttime.getUTCMinutes()
+        // }
+
         //timestring = tempstarttime.getUTCHours() + ":" + tempstarttime.getUTCMinutes();
 
-        this.datelist[datestring].tablelist[reservation.table["id"]].timelist[timestring].reserved = true;
-        console.log(this.datelist[datestring].tablelist[reservation.table["id"]])
-        console.log(this.datelist[datestring].tablelist[reservation.table["id"]].timelist[timestring])
+        if(tempstarttime.getUTCHours() > 8 && tempstarttime.getUTCHours() < 22){
+          this.datelist[datestring].tablelist[reservation.table["id"]].timelist[timestring].reserved = true;
+        }
+        // console.log(this.datelist[datestring].tablelist[reservation.table["id"]].timelist[timestring])
       });
     }
   }
 
 
   getcurrenttablelist(input: string){
-    //input = input.replace(/\//g,"-");
     let tempdate = input.split("/");
     this.datestring = tempdate[2] + "-" + tempdate[0] + "-" + tempdate[1];
-    console.log(this.datestring);
     this.currenttablelist = this.datelist[this.datestring];
-    console.log(this.datelist[this.datestring]);
     this.disabletablelist = false;
     this.disabletimelist = true;
     this.disabledbutton = true;
-    // this.disabledbutton = this.requiredFormControl.hasError('required');
   }
 
   getcurrenttimelist(input: string){
-    console.log(input)
     this.currenttimelist = this.datelist[this.datestring].tablelist[input] //long way so that compiler doesnt complain
-    console.log(this.currenttimelist)
     this.disabletimelist = false;
     this.disabledbutton = true;
-    // this.disabledbutton = this.requiredFormControl.hasError('required');
   }
   
   enablesubmit(){
     this.disabledbutton = false;
-    // this.disabledbutton = this.requiredFormControl.hasError('required');
   }
 
   async submit(date: string, table: number, time: string, mobNum: string, fname: string, lname: string)
   {
-    console.log(mobNum, fname, lname)
     let returnedcustomer = await this.service2.getCustomer(mobNum)
-    console.log(returnedcustomer.id)
 
 
     let tempdate = date.split("/");
@@ -202,7 +162,6 @@ export class ReservationsComponent implements OnInit {
       submitresservation.customer_id = returnedcustomer.id
       //ENABLE TO START MAKING RESERVATIONS
       let returnedreservation = await this.service2.createReservation(mobNum, table, submitresservation) 
-      console.log(returnedreservation);
       alert("Reservation made.");
       this.router.navigate(['menu'])
     }
@@ -227,8 +186,6 @@ export class ReservationsComponent implements OnInit {
         }
       }
     }
-    console.log(date + "||" + table + "||" + time + "||" + start_time + "||" + end_time)
-    
   }
 
 }
