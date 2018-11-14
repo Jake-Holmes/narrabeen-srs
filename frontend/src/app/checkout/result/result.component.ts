@@ -35,7 +35,7 @@ export class ResultComponent implements OnInit {
       this.totalPrice += product.base_price;
       console.log(product);
     });
-
+    this.totalPrice = +(this.totalPrice.toFixed(2));
     this.date = Date.now();
    }
 

@@ -36,15 +36,15 @@ export class OrderService {
   createTakeawayOrder(menuitems: MenuItem[]) {
     let now = moment().format().split("+")[0] + "Z";
     const orderRoute = 'order/takeaway?id=' + Math.floor(Math.random() * Math.floor(300)) + '&time=' + now;
-    const menuItemIds = menuitems.map((menuItem: MenuItem) => menuItem.id);
+    const menuItemIds = menuitems.map((menuItem: MenuItem) => menuItem.id.toString());
 
     return this.http.post(this.baseRoute + orderRoute, JSON.stringify(menuItemIds), httpOptions);
   }
 
   createOrder(menuitems: MenuItem[], qrCode: String) {
-    let now = moment().format().split("+")[0] + "Z"; // add this 2 of 4
+    let now = moment().format().split("+")[0] + "Z";
     const orderRoute = 'order/table?code=' + qrCode;
-    const menuItemIds = menuitems.map((menuItem: MenuItem) => menuItem.id);
+    const menuItemIds = menuitems.map((menuItem: MenuItem) => menuItem.id.toString());
 
     return this.http.post(this.baseRoute + orderRoute, JSON.stringify(menuItemIds), httpOptions);
   }
