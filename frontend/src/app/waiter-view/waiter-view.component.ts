@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrderItem } from '../shared/models/orderitem';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OrderService } from '../order.service';
-import { MatTable } from '@angular/material';
-import { Router } from '@angular/router'
+import { TableService } from '../table.service';
+import { Table } from '../table';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,42 +18,59 @@ const httpOptions = {
   styleUrls: ['./waiter-view.component.scss']
 })
 export class WaiterViewComponent implements OnInit {
-  private orderItems: OrderItem[];
-  private displayedColumns: string[];
-  @ViewChild(MatTable) waiterTable: MatTable<OrderItem>
-  
+  private displayedColumns = ['menu-item', 'slot', 'deliver-btn'];
+  private orderItems: OrderItem[] = [];
+  private tables: TableDisplay[] = [];
 
   constructor(
+    private orderService: OrderService,
+    private tableService: TableService,
     private http: HttpClient,
   ) {
-    this.displayedColumns = ['id', 'slot', 'dishName', 'button']
   }
 
   ngOnInit() {
-    this.assignOrderItems();
+    const self = this;
+    this.GetTables();
+
+    setInterval(() => {
+      self.GetTables();
+    }, 6000);
   }
 
-  private async assignOrderItems(): Promise<Boolean> {
-    this.orderItems = await this.getOrderItems();
-    return true;
+  public async getOrderItems() {
+    this.http.get<OrderItem[]>('https://jakeholmes.me:5000/order/items/all?status=ready').subscribe(data => {
+      this.orderItems = data;
+      console.log(this.orderItems);
+    });
+    console.log(this.orderItems);
   }
 
-  private async getOrderItems(): Promise<OrderItem[]> {
-    return this.http.get<OrderItem[]>('https://jakeholmes.me:5000/order/items/all?status=ready').toPromise();
+  async GetTables() {
+    const tables = await this.tableService.getAllTables();
+    const self = this;
+    self.tables = [];
+
+    tables.forEach(element => {
+      if (element.order) {
+        self.tables.push(new TableDisplay(element));
+      }
+    });
   }
 
-  public async changeStatus(id: number) {
-    //var tmpObject = await this.findItemFromId(id);
-    //this.orderItems.splice(tmpObject);
-    var link = 'https://jakeholmes.me:5000/order/items?id='+ id +'&status=delivered&slot=0';
-    await this.http.put(link, null, httpOptions).subscribe();
-    await this.assignOrderItems();
-    //this.waiterTable.renderRows();
-    location.reload()
+  DeliverOrder(orderId: number) {
+    const self = this;
+    this.orderService.UpdateStatus(orderId, 'delivered')
+    .subscribe(res => {
+      self.GetTables();
+    });
   }
+}
 
-  /*
-  private async findItemFromId(id: number):Promise<number> {
-    return this.orderItems.indexOf(this.orderItems.find(obj => obj.id == id));
-  }*/
+class TableDisplay {
+  readyItems: OrderItem[];
+
+  constructor(private table: Table) {
+    this.readyItems = this.table.order.order_items.filter((element) => element.status === 'ready');
+  }
 }
