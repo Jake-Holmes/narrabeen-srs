@@ -39,7 +39,7 @@ export class ResultComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.receiptNo = Math.random().toString(36).substring(7);
+    this.receiptNo = Math.random().toString(36).slice(-8).toUpperCase();
   }
 
   checkCustomer() {
@@ -60,5 +60,9 @@ export class ResultComponent implements OnInit {
     } else {
       return true;
     }
+  }
+
+  ConfirmOrder() {
+    console.log("Im Trying")
   }
 }
