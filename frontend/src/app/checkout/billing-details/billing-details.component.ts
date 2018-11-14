@@ -6,6 +6,7 @@ import { CartService } from '../../cart.service';
 import { Location } from '@angular/common';
 import { MenuItem } from '../../shared/models/menuitem';
 import { AuthService } from "./../../shared/services/auth.service";
+import { TableAuthService } from "../../auth/table-auth.service";
 
 @Component({
   selector: 'app-billing-details',
@@ -19,6 +20,7 @@ export class BillingDetailsComponent implements OnInit {
 
   constructor(
     authService: AuthService,
+    private tableAuthService: TableAuthService,
     private billingService: BillingService,
     private cartService: CartService,
     private location: Location

@@ -13,7 +13,7 @@ export class CartService {
   totalProductsInCart = 0;
 
   constructor(private toastr: ToastrService)
-  {   }
+  { }
 
   AddItem(item: MenuItem) {
     item.index = this.totalProductsInCart;
@@ -21,17 +21,11 @@ export class CartService {
     this.items$.next(this.items);
     this.totalProductsInCart++;
 
-    console.log("hi");
-    this.toastr.info('Product Adding to the cart', 'Adding Product to Cart', {
-      timeOut: 1000});
+    this.toastr.info('Product Adding to the cart', 'Adding Product to Cart', {timeOut: 1000});
 
     setTimeout(() => {
       this.getLocalCartProducts();
     }, 500);
-  }
-
-  RemoveItem(item: MenuItem) {
-    // this.items; TODO implement this
   }
 
   CreateOrder() {

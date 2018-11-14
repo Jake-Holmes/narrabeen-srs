@@ -73,7 +73,7 @@ import { ReservationsComponent } from './reservations/reservations.component';
     ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
-      timeOut: 1000,
+      timeOut: 1500,
       preventDuplicates: true
     })
   ],
