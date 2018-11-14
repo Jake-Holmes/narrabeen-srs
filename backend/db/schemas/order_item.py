@@ -14,6 +14,7 @@ class OrderItemStatus(enum.Enum):
     inprogress = 2
     ready = 3
     paid = 4
+    delivered = 5
 
 class OrderItem(Base):
     __tablename__ = 'orderitems'

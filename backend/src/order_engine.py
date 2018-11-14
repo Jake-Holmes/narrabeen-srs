@@ -36,6 +36,7 @@ def edit_order_status(request):
 	param_slot = request.args.get("slot")
 	# Counter to track number of ready order items in specific order
 	ready_count = 0
+	delivered_count = 0
 
 	with session_scope() as session:
 		order_item = session.query(OrderItem).get(param_id)
@@ -51,11 +52,17 @@ def edit_order_status(request):
 		for items in list_same_order:
 			if items.status=="ready":
 				ready_count = ready_count + 1
+			if items.status=="delivered":
+				delivered_count = delivered_count + 1
 		# Check if all order items are ready
 		if ready_count==rows_count:
 			# All order items are ready, change order status to ready
 			order = session.query(Order).get(order_item.order_id)
 			order.status = "ready"
+
+		if delivered_count==rows_count:
+			order = session.query(Order).get(order_item.order_id)
+			order.status = "delivered"
 
 	return ("Edit order status successful", 200)
 
