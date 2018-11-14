@@ -13,7 +13,7 @@ import { Table } from '../table';
 export class WaiterViewComponent implements OnInit {
   private displayedColumns = ['menu-item', 'deliver-btn'];
   private orderItems: OrderItem[] = [];
-  private tables: Table[] = [];
+  private tables: TableDisplay[] = [];
 
   constructor(
     private orderService: OrderService,
@@ -23,7 +23,12 @@ export class WaiterViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    const self = this;
     this.GetTables();
+
+    setInterval(() => {
+      self.GetTables();
+    }, 6000);
   }
 
   public async getOrderItems() {
@@ -35,13 +40,15 @@ export class WaiterViewComponent implements OnInit {
   }
 
   async GetTables() {
-    let tables = await this.tableService.getAllTables();
-    // tables.forEach(element => {
-    //   element.order?.order_items = element.order?.order_items.filter(i => i.status === 'ready');
-    // });
+    const tables = await this.tableService.getAllTables();
+    const self = this;
+    self.tables = [];
 
-    this.tables = tables;
-
+    tables.forEach(element => {
+      if (element.order) {
+        self.tables.push(new TableDisplay(element));
+      }
+    });
   }
 
   DeliverOrder(orderId: number) {
@@ -50,5 +57,13 @@ export class WaiterViewComponent implements OnInit {
     .subscribe(res => {
       self.GetTables();
     });
+  }
+}
+
+class TableDisplay {
+  readyItems: OrderItem[];
+
+  constructor(private table: Table) {
+    this.readyItems = this.table.order.order_items.filter((element) => element.status === 'ready');
   }
 }

@@ -7,7 +7,7 @@ export class ITable {
     qr_code?: string;
     passcode: string;
     status: boolean;
-    order?: OrderItem;
+    order?: any;
     reservations?: any[]; //convert to reservations object once a class is created
 }
 
@@ -18,7 +18,7 @@ export class Table implements ITable {
     public qr_code?: string;
     public passcode: string;
     public status: boolean;
-    public order?: OrderItem;
+    public order?: any;
     public reservations?: any[]; //convert to reservations object once a class is created
 
     constructor(table?: ITable) {
