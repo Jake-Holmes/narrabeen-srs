@@ -28,6 +28,10 @@ import { MenuAdminComponent } from './menu-admin/menu-admin.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: MenuComponent
+  },
+  {
     path: 'menu',
     component: MenuComponent
   },
