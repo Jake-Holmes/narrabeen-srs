@@ -176,6 +176,7 @@ export class ReservationsComponent implements OnInit {
       // this.router.navigate(['reservations'])
       this.tablevalue = '';
       this.timevalue = '';
+      this.ngOnInit();
     }
     else
     {
