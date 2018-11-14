@@ -9,7 +9,7 @@ import { OrderService } from '../order.service';
   styleUrls: ['./waiter-view.component.scss']
 })
 export class WaiterViewComponent implements OnInit {
-  private orderItems: OrderItem[];
+  orderItems: OrderItem[];
   constructor(
     private orderService: OrderService,
     private http: HttpClient,
