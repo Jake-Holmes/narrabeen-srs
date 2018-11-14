@@ -9,7 +9,8 @@ import { OrderService } from '../order.service';
   styleUrls: ['./waiter-view.component.scss']
 })
 export class WaiterViewComponent implements OnInit {
-  private orderItems: OrderItem[];
+  private displayedColumns = ['id'];
+  private orderItems: OrderItem[] = [];
   constructor(
     private orderService: OrderService,
     private http: HttpClient,
@@ -23,8 +24,8 @@ export class WaiterViewComponent implements OnInit {
   public async getOrderItems() {
     this.http.get<OrderItem[]>('https://jakeholmes.me:5000/order/items/all?status=ready').subscribe(data => {
       this.orderItems = data;
-      console.log(this.orderItems.toString())
+      console.log(this.orderItems);
     });
-    console.log(this.orderItems.toString())
+    console.log(this.orderItems);
   }
 }
