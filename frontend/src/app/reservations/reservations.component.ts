@@ -157,6 +157,7 @@ export class ReservationsComponent implements OnInit {
     this.disabletablelist = false;
     this.disabletimelist = true;
     this.disabledbutton = true;
+    // this.disabledbutton = this.requiredFormControl.hasError('required');
   }
 
   getcurrenttimelist(input: string){
@@ -165,10 +166,12 @@ export class ReservationsComponent implements OnInit {
     console.log(this.currenttimelist)
     this.disabletimelist = false;
     this.disabledbutton = true;
+    // this.disabledbutton = this.requiredFormControl.hasError('required');
   }
   
   enablesubmit(){
     this.disabledbutton = false;
+    // this.disabledbutton = this.requiredFormControl.hasError('required');
   }
 
   async submit(date: string, table: number, time: string, mobNum: string, fname: string, lname: string)
@@ -211,10 +214,17 @@ export class ReservationsComponent implements OnInit {
       newcustomer.lastname = lname;
       
       let proceed = confirm("New user detected. Would you like to proceed and signup?")
+      
       if (proceed)
       {
-        let returnedcustomer = await this.service2.createCustomer(newcustomer);
-        document.getElementById("submit").click();
+        if(fname != '' && lname != ''){
+          let returnedcustomer = await this.service2.createCustomer(newcustomer);
+          document.getElementById("submit").click();
+        }
+        else
+        {
+          alert("Please fill in your first name and last name in the customer details section.")
+        }
       }
     }
     console.log(date + "||" + table + "||" + time + "||" + start_time + "||" + end_time)
