@@ -36,8 +36,8 @@ export class OrderService {
     const customerRoute = 'customer';
     const params = {
       phone : userDetail.phoneNumber,
-      firstName : userDetail.firstName,
-      lastName : userDetail.lastName
+      firstname : userDetail.firstName,
+      lastname : userDetail.lastName
     }
 
     return this.http.post(this.baseRoute + customerRoute, JSON.stringify(params), httpOptions);
@@ -88,7 +88,7 @@ export class OrderService {
 
   changeStatus(orderitem, i) {
     let that = this;
-    let urlStr = 'https://jakeholmes.me:5000/order/items?id='+orderitem.id+'&status='+orderitem.status+'&slot='+orderitem.slot
+    let urlStr = this.baseRoute + 'order/items?id='+orderitem.id+'&status='+orderitem.status+'&slot='+orderitem.slot
     this.http1.putUrl(urlStr, {}, res => {
       console.dir(res);
       orderitem.status = "orderitem.status";
