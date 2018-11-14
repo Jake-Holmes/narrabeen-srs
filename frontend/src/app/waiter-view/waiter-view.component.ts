@@ -18,7 +18,7 @@ const httpOptions = {
   styleUrls: ['./waiter-view.component.scss']
 })
 export class WaiterViewComponent implements OnInit {
-  private displayedColumns = ['menu-item', 'deliver-btn'];
+  private displayedColumns = ['menu-item', 'slot', 'deliver-btn'];
   private orderItems: OrderItem[] = [];
   private tables: TableDisplay[] = [];
 
@@ -27,7 +27,6 @@ export class WaiterViewComponent implements OnInit {
     private tableService: TableService,
     private http: HttpClient,
   ) {
-    this.displayedColumns = ['id', 'slot', 'dishName', 'button']
   }
 
   ngOnInit() {

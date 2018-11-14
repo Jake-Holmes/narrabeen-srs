@@ -1,23 +1,26 @@
 <div class="row">
-  <div class="col-sm-6 col-md-4" *ngFor="let table of tables">
-    <div *ngIf="table.readyItems.length > 0">
+  <div class="col-md-6 col-lg-4" *ngFor="let table of tables">
+    <div *ngIf="table.readyItems.length > 0" style="margin-bottom: 16px;">
       <h2>Table {{table.table.table_number}}</h2>
       <table mat-table [dataSource]='table.readyItems'>
         <ng-container matColumnDef="menu-item">
+          <th mat-header-cell *matHeaderCellDef> Dish </th>
           <td mat-cell *matCellDef="let orderItem"> {{orderItem.menu_item.name}} </td>
         </ng-container>
 
-        <!-- <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> Status </th>
-            <td mat-cell *matCellDef="let orderItem"> {{orderItem.status}} </td>
-          </ng-container> -->
+        <ng-container matColumnDef="slot">
+            <th mat-header-cell *matHeaderCellDef> Slot </th>
+            <td mat-cell *matCellDef="let orderItem"> {{orderItem.slot}} </td>
+          </ng-container>
     
         <ng-container matColumnDef="deliver-btn">
-          <td mat-cell *matCellDef="let orderItem"> 
+            <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let orderItem" style="text-align:right;"> 
               <button mat-flat-button color="primary" (click)="DeliverOrder(orderItem.id)">Deliver</button>
           </td>
         </ng-container>
-    
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>

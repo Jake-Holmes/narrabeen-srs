@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
-import { OrderComponent } from './models/order/order.component';
+// import { OrderComponent } from './models/order/order.component';
 
 // import { NoProductsFoundComponent } from "./no-products-found/no-products-found.component";
 // import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
