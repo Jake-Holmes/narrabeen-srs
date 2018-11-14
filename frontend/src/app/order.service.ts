@@ -6,6 +6,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { isNgTemplate } from '@angular/compiler';
 import { MenuItem } from './shared/models/menuitem';
 import { TableAuthService } from './auth/table-auth.service';
+import * as moment from 'moment';
 
 
 const httpOptions = {
@@ -33,8 +34,17 @@ export class OrderService {
   }
 
   createTakeawayOrder(menuitems: MenuItem[]) {
-    const orderRoute = 'order/takeaway?id=' + 1 + '&time=' + '2012-10-09T19:00:55Z',
-          menuItemIds = menuitems.map((menuItem: MenuItem) => menuItem.id);
+    let now = moment().format().split("+")[0] + "Z";
+    const orderRoute = 'order/takeaway?id=' + Math.floor(Math.random() * Math.floor(300)) + '&time=' + now;
+    const menuItemIds = menuitems.map((menuItem: MenuItem) => menuItem.id);
+
+    return this.http.post(this.baseRoute + orderRoute, JSON.stringify(menuItemIds), httpOptions);
+  }
+
+  createOrder(menuitems: MenuItem[], qrCode: String) {
+    let now = moment().format().split("+")[0] + "Z"; // add this 2 of 4
+    const orderRoute = 'order/table?code=' + qrCode;
+    const menuItemIds = menuitems.map((menuItem: MenuItem) => menuItem.id);
 
     return this.http.post(this.baseRoute + orderRoute, JSON.stringify(menuItemIds), httpOptions);
   }

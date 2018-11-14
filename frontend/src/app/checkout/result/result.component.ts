@@ -24,7 +24,8 @@ export class ResultComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private location: Location,
-    private tableAuth: TableAuthService
+    private tableAuth: TableAuthService,
+    private orderService: OrderService
   ) {
     const products = this.cartService.getLocalCartProducts();
 
@@ -63,6 +64,12 @@ export class ResultComponent implements OnInit {
   }
 
   ConfirmOrder() {
-    console.log("Im Trying")
+    const products = this.cartService.getLocalCartProducts();
+
+    if (this.takeAwayCustomer == true) {
+      this.orderService.createTakeawayOrder(products).subscribe(data => { console.log(data) });
+    } else {
+      this.orderService.createOrder(products, this.qrCode).subscribe(data => { console.log(data) });
+    }
   }
 }
