@@ -28,7 +28,7 @@
       <mat-form-field>
       <mat-select placeholder="Available table numbers (required)" [(ngModel)]="tablevalue" (selectionChange) = "getcurrenttimelist(tablevalue)" [disabled] = "disabletablelist">
         <!-- <mat-option *ngFor="let tables of currenttablelist.tablelist; let i = index" [value]="i" > -->
-        <mat-option *ngFor="let tables of currenttablelist.tablelist | keyvalue" [value]="tables.key">
+        <mat-option *ngFor="let tables of currenttablelist | keyvalue" [value]="tables.key">
           {{tables.key}}
         </mat-option>
       </mat-select>
@@ -42,7 +42,7 @@
       <mat-form-field>
         <mat-select placeholder="Available time slots (required)" [(ngModel)]="timevalue" (selectionChange) = "enablesubmit()" [disabled]= "disabletimelist" >
           <!-- <mat-option *ngFor="let times of currenttimelist.timelist; let j = index" [value]="j"> -->
-          <mat-option *ngFor="let times of currenttimelist.timelist | keyvalue" [value]="times.key" [disabled] = "times.value.reserved">
+          <mat-option *ngFor="let times of currenttimelist | keyvalue" [value]="times.key" [disabled] = "times.value.reserved">
             {{times.key}}
           </mat-option>
         </mat-select>

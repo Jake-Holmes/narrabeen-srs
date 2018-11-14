@@ -6,6 +6,7 @@ import { Table, ITable } from '../table';
 import { ReservationsService } from "../reservations.service"
 import { DateObj, TimeObj, MyTable, Reservations, IReservations, ICustomer } from "../reservation"
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reservations',
@@ -20,8 +21,10 @@ export class ReservationsComponent implements OnInit {
   tablelist: MyTable[] = [];
   datelist: DateObj[] = [];
 
-  currenttablelist: DateObj = new DateObj([]);
-  currenttimelist: MyTable = new MyTable([]);
+  // currenttablelist: DateObj = new DateObj([]);
+  // currenttimelist: MyTable = new MyTable([]);
+  currenttablelist: MyTable[];
+  currenttimelist: TimeObj[];
 
   datestring: string;
   mindate: Date;
@@ -33,7 +36,7 @@ export class ReservationsComponent implements OnInit {
   tablevalue: string;
   timevalue: string;
 
-  constructor(private service: TableService, private service2: ReservationsService, private router: Router,) {
+  constructor(private service: TableService, private service2: ReservationsService, private router: Router, private toastr: ToastrService) {
 
    }
 
@@ -123,16 +126,19 @@ export class ReservationsComponent implements OnInit {
   getcurrenttablelist(input: string){
     let tempdate = input.split("/");
     this.datestring = tempdate[2] + "-" + tempdate[0] + "-" + tempdate[1];
-    this.currenttablelist = this.datelist[this.datestring];
+    this.currenttablelist = this.datelist[this.datestring].tablelist;
     this.disabletablelist = false;
     this.disabletimelist = true;
     this.disabledbutton = true;
+    this.tablevalue = '';
+    this.timevalue = '';
   }
 
   getcurrenttimelist(input: string){
-    this.currenttimelist = this.datelist[this.datestring].tablelist[input] //long way so that compiler doesnt complain
+    this.currenttimelist = this.datelist[this.datestring].tablelist[input].timelist //long way so that compiler doesnt complain
     this.disabletimelist = false;
     this.disabledbutton = true;
+    this.timevalue = '';
   }
   
   enablesubmit(){
@@ -165,8 +171,11 @@ export class ReservationsComponent implements OnInit {
       submitresservation.customer_id = returnedcustomer.id
       //ENABLE TO START MAKING RESERVATIONS
       let returnedreservation = await this.service2.createReservation(mobNum, +table, submitresservation) 
-      alert("Reservation made.");
-      this.router.navigate(['menu'])
+      //alert("Reservation made.");
+      this.toastr.success("Reservation made")
+      // this.router.navigate(['reservations'])
+      this.tablevalue = '';
+      this.timevalue = '';
     }
     else
     {
@@ -185,7 +194,8 @@ export class ReservationsComponent implements OnInit {
         }
         else
         {
-          alert("Please fill in your first name and last name in the customer details section.")
+          //alert("Please fill in your first name and last name in the customer details section.")
+          this.toastr.error("Please fill in your first name and last name in the customer details section.")
         }
       }
     }
