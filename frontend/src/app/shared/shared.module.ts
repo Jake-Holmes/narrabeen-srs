@@ -22,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     // NoProductsFoundComponent,
     // PageNotFoundComponent,
     // NoAccessComponent
-  OrderComponent],
+  ],
   imports: [
     BrowserModule,
     // AppRoutingModule,
