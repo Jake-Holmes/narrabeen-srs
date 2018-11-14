@@ -18,6 +18,8 @@ export class ResultComponent implements OnInit {
   date: number;
   totalPrice = 0;
   receiptNo: String; 
+  OrderName: String = "Test Test";
+  tableId: String = "7";
 
   constructor(
     private cartService: CartService,
