@@ -17,7 +17,7 @@
     <string name="provide_angle">Angle</string>
     <string name="null_angle">Angle cannot be empty, please type in an angle.</string>
     <string name="wrong_angle">Invalid angle</string>
-    <string name="ipal_robot">iPal Robot Motion</string>
+    <string name="ipal_robot">Narrabeen Robot</string>
     <string name="unit_motors">MOTORS</string>
     <string name="unit_head">HEAD</string>
     <string name="unit_wheel">WHEEL</string>

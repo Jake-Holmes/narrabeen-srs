@@ -35,17 +35,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
 
         mTitleBack = (ImageView) findViewById(R.id.common_title_back);
-        //mBtnMotors = (Button) findViewById(R.id.main_motors);
-        //mBtnHead = (Button) findViewById(R.id.main_head);
-        //mBtnWheel = (Button) findViewById(R.id.main_wheel);
+        mBtnMotors = (Button) findViewById(R.id.main_motors);
+        mBtnHead = (Button) findViewById(R.id.main_head);
+        mBtnWheel = (Button) findViewById(R.id.main_wheel);
         mBtnEmoji = (Button) findViewById(R.id.main_emoji);
     }
 
     private void initListener() {
         mTitleBack.setOnClickListener(this);
-        //mBtnMotors.setOnClickListener(this);
-        //mBtnHead.setOnClickListener(this);
-        //mBtnWheel.setOnClickListener(this);
+        mBtnMotors.setOnClickListener(this);
+        mBtnHead.setOnClickListener(this);
+        mBtnWheel.setOnClickListener(this);
         mBtnEmoji.setOnClickListener(this);
     }
 
@@ -53,6 +53,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
+            case R.id.main_motors:
+                intent.setClass(MainActivity.this, MotorsActivity.class);
+                break;
+            case R.id.main_head:
+                intent.setClass(MainActivity.this, HeadActivity.class);
+                break;
+            case R.id.main_wheel:
+                intent.setClass(MainActivity.this, WheelActivity.class);
+                break;
             case R.id.main_emoji:
                 intent.setClass(MainActivity.this, EmojiActivity.class);
                 break;

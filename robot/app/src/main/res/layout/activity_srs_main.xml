@@ -3,32 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:background="@color/WhiteShade"
+    tools:context=".SRSMainActivity">
 
     <include layout="@layout/common_title" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/confirm_booking"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <Button
-        android:id="@+id/main_motors"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="@string/unit_motors"
-        android:textSize="@dimen/text_size" />
-
-        <Button
-            android:id="@+id/main_head"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/unit_head"
-            android:textSize="@dimen/text_size" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Do you have a booking?"
+        android:textAlignment="center"
+        android:textColor="@color/BlackColor"
+        android:textSize="25dp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,21 +26,26 @@
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/main_wheel"
+            android:id="@+id/has_booking"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/unit_wheel"
+            android:onClick="has_booking"
+            android:text="YES"
+            android:textStyle="bold"
             android:textSize="@dimen/text_size" />
 
         <Button
-            android:id="@+id/main_emoji"
+            android:id="@+id/no_booking"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/unit_emoji"
+            android:text="NO"
+            android:textStyle="bold"
+            android:onClick="no_booking"
             android:textSize="@dimen/text_size" />
 
     </LinearLayout>
+
 
 </LinearLayout>
