@@ -42,7 +42,7 @@ import { WaiterViewComponent } from './waiter-view/waiter-view.component';
     AppComponent,
     SidebarComponent,
     CheckoutNavbarComponent,
-    // PageNotFoundComponent,
+    PageNotFoundComponent,
     MenuComponent,
     MenuItemDetailsComponent,
     TablemanagementComponent,
