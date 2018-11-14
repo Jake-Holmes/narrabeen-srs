@@ -35,6 +35,7 @@ import { TableLoginComponent } from './table-login/table-login.component';
 import { TableQrComponent } from './table-qr/table-qr.component';
 import { MaterialComponentsModule } from './material-components.module';
 import { ReservationsComponent } from './reservations/reservations.component';
+import { WaiterViewComponent } from './waiter-view/waiter-view.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ReservationsComponent } from './reservations/reservations.component';
     StaffHomeComponent,
     TableLoginComponent,
     TableQrComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    WaiterViewComponent
   ],
   imports: [
     BrowserModule,

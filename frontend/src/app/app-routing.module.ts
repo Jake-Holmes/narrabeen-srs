@@ -6,6 +6,7 @@ import { TablemanagementComponent } from './tablemanagement/tablemanagement.comp
 import { KitchenViewComponent } from './kitchen-view/kitchen-view.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { StaffLoginComponent } from './staff-login/staff-login.component';
+import { WaiterViewComponent } from './waiter-view/waiter-view.component';
 
 import { CheckoutComponent } from './checkout/checkout.component';
 import { BillingDetailsComponent } from './checkout/billing-details/billing-details.component';
@@ -95,6 +96,11 @@ const routes: Routes = [
   {
     path: 'tableLanding',
     component: TableQrComponent
+  },
+  //Route for waiter order dish management page.
+  {
+    path: 'waiter-view',
+    component: WaiterViewComponent
   },
   {
     path: '**',
