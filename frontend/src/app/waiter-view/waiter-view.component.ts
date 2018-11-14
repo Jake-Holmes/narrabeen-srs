@@ -1,9 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrderItem } from '../shared/models/orderitem';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OrderService } from '../order.service';
 import { TableService } from '../table.service';
 import { Table } from '../table';
+import { Router } from '@angular/router';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Component({
   selector: 'app-waiter-view',
@@ -20,6 +27,7 @@ export class WaiterViewComponent implements OnInit {
     private tableService: TableService,
     private http: HttpClient,
   ) {
+    this.displayedColumns = ['id', 'slot', 'dishName', 'button']
   }
 
   ngOnInit() {

@@ -4,7 +4,7 @@
      <div *ngIf="checkCustomer()" class="container mt-3">
         <div class="col-md order-md-1">
            <h4 class="mb-3">Billing Address</h4>
-           <form class="needs-validation" #userDetailsForm="ngForm" (ngSubmit)="updateUserDetails(userDetailsForm)">
+           <form class="needs-validation" name="form" #userDetailsForm="ngForm" (ngSubmit)="userDetailsForm.form.valid && updateUserDetails(userDetailsForm)" novalidate>
            <div class="row">
               <div class="col-md-6 mb-3">
                  <label for="firstName">First name</label>
@@ -36,10 +36,14 @@
               </div>
            </div>
            <hr>
+           <div class="form-group float-right">
+            <button class="btn btn-default">Register</button>
+            </div>
+            <!-- <div class="float-right">
+                <a class="btn btn-default" [routerLink]="['/checkout/result']">Next</a>
+             </div> -->
            </form>
-           <div class="float-right">
-              <a class="btn btn-default" [routerLink]="['/checkout/result']">Next</a>
-           </div>
+           
         </div>
      </div>
 

@@ -39,7 +39,7 @@ export class SidebarComponent implements OnInit {
   
 
     this.siteUrl = ['/']
-    this.staffUrl = ['/kitchen-view', '/staffHome', '/tablemanagement', '/tableManagement-create', '/kitchen-view', '/checkout']
+    this.staffUrl = ['/kitchen-view', '/staffHome', '/tablemanagement', '/tableManagement-create', '/kitchen-view', '/checkout', '/waiter-view']
     this.tableUrl = []
     this.noToolBarUrl = ['/tableLogin', '/staffLogin', '/tableLanding']
   }

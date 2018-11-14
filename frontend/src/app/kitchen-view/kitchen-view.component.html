@@ -8,7 +8,7 @@
 
 <div class="order-item-grid">
   <div class="order-item-container" *ngFor="let item of order$;let i=index">
-    <mat-card class="order-item-card" *ngIf="item.status!='ready' && item.status!='paid'" [style.background]="item.cardColor">
+    <mat-card class="order-item-card" *ngIf="item.status!='ready' && item.status!='paid' && item.status!='delivered'" [style.background]="item.cardColor">
       <mat-card-header [style.background]="item.typeColor" class="mathead">
           <a>{{item.menu_item.menu_item_type}}</a>
       </mat-card-header>

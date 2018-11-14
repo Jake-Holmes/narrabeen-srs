@@ -7,6 +7,8 @@ import { Location } from '@angular/common';
 import { MenuItem } from '../../shared/models/menuitem';
 import { TableAuthService } from "../../auth/table-auth.service";
 import { OrderService } from './../../order.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -15,17 +17,15 @@ import { OrderService } from './../../order.service';
   styleUrls: ['./billing-details.component.scss']
 })
 export class BillingDetailsComponent implements OnInit {
-  userDetails: User;
   products: MenuItem[];
   userDetail: CustomerDetail;
   qrCode = null;
   takeAwayCustomer = false;
 
   constructor(
-    private billingService: BillingService,
     private cartService: CartService,
-    private location: Location,
     private orderService: OrderService,
+    private router: Router,
     private tableAuth: TableAuthService
   ) {
     this.userDetail = new CustomerDetail();
@@ -37,23 +37,13 @@ export class BillingDetailsComponent implements OnInit {
 
   updateUserDetails(form: NgForm) {
     const data = form.value;
+    this.userDetail.firstName = data['firstName'];
+    this.userDetail.lastName = data['lastName'];
+    this.userDetail.emailId = data['email'];
+    this.userDetail.phoneNumber = data['phoneNumber'];
+    this.orderService.createCustomer(this.userDetail).subscribe(data => { console.log(data) });
 
-    data["emailId"] = this.userDetails.emailId;
-    let totalPrice = 0;
-    const products = [];
-    this.products.forEach(product => {
-      delete product["$key"];
-      totalPrice += product.base_price;
-      products.push(product);
-    });
-
-    data["products"] = products;
-
-    data["totalPrice"] = totalPrice;
-
-    data["billingDate"] = Date.now();
-
-    //this.billingService.createBillings(data);
+    this.router.navigateByUrl('/checkout/result');
   }
 
   checkCustomer() {

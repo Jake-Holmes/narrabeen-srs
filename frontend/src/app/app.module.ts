@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
+import { MatTableModule} from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -37,6 +38,10 @@ import { MaterialComponentsModule } from './material-components.module';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { WaiterViewComponent } from './waiter-view/waiter-view.component';
 
+// import { NoProductsFoundComponent } from "./shared/no-products-found/no-products-found.component";
+// import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { NoAccessComponent } from './shared/no-access/no-access.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +56,7 @@ import { WaiterViewComponent } from './waiter-view/waiter-view.component';
     MenuItemAdminComponent,
     ShoppingCartComponent,
     NoProductsFoundComponent,
+    NoAccessComponent,
     CartCalculatorComponent,
     CheckoutComponent,
     BillingDetailsComponent,
@@ -71,6 +77,7 @@ import { WaiterViewComponent } from './waiter-view/waiter-view.component';
     HttpModule,
     BrowserAnimationsModule,
     MaterialComponentsModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({

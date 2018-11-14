@@ -18,11 +18,14 @@ export class ResultComponent implements OnInit {
   date: number;
   totalPrice = 0;
   receiptNo: String; 
+  OrderName: String = "Test Test";
+  tableId: String = "7";
 
   constructor(
     private cartService: CartService,
     private location: Location,
-    private tableAuth: TableAuthService
+    private tableAuth: TableAuthService,
+    private orderService: OrderService
   ) {
     const products = this.cartService.getLocalCartProducts();
 
@@ -30,14 +33,13 @@ export class ResultComponent implements OnInit {
 
     products.forEach(product => {
       this.totalPrice += product.base_price;
-      console.log(product);
     });
-
+    this.totalPrice = +(this.totalPrice.toFixed(2));
     this.date = Date.now();
    }
 
   ngOnInit() {
-    this.receiptNo = Math.random().toString(36).substring(7);
+    this.receiptNo = Math.random().toString(36).slice(-8).toUpperCase();
   }
 
   checkCustomer() {
@@ -57,6 +59,16 @@ export class ResultComponent implements OnInit {
       return false;
     } else {
       return true;
+    }
+  }
+
+  ConfirmOrder() {
+    const products = this.cartService.getLocalCartProducts();
+
+    if (this.takeAwayCustomer == true) {
+      this.orderService.createTakeawayOrder(products).subscribe(data => { console.log(data) });
+    } else {
+      this.orderService.createOrder(products, this.qrCode).subscribe(data => { console.log(data) });
     }
   }
 }
