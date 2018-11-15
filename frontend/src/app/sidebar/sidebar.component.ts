@@ -57,7 +57,7 @@ export class SidebarComponent implements OnInit {
   };
 
   public showToolbar(): Boolean {
-    if (this.noToolBarUrl.indexOf(this.router.url) == 1 || this.noToolBarUrl.indexOf(this.router.url) == 0) {  //first check if toolbar is displayed.
+    if (this.noToolBarUrl.indexOf(this.router.url) === 1 || this.noToolBarUrl.indexOf(this.router.url) === 0) {  //first check if toolbar is displayed.
       return false;
     }
     if (this.setPrivilages(this.staffUrl, this.router.url)) { //if toolbar is displayed check for privilages then return false.
