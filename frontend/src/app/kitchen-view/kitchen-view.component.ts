@@ -110,30 +110,50 @@ export class KitchenViewComponent implements OnInit {
       }
     }*/
     /*this.order$[i].status.replace("OrderItemStatus.","") */
-    for (let i = 0; i < this.order$.length; i++) {
-      if (this.order$[i] === item) {
-        if(this.order$[i].status === 'confirmed') {
-          //this.order$[i].status = 'inprogress'; 
-          this.currStat='Ready';
-          // this.order$[i].cardColor = '#FFB74D';
-          this.changeStatus(item,i,'inprogress');
-          tick(10000);
-        } 
-        else if(this.order$[i].status === 'inprogress') {
-          //this.order$[i].status = 'ready'; 
-          this.currStat='Confirmed';
-          // this.order$[i].cardColor = '#9CCC65';
-          this.changeStatus(item,i,'ready');
-          tick(10000);
-        } 
-        else if(this.order$[i].status === 'ready') {
-          //this.order$[i].status = 'confirmed'; 
-          this.currStat='In Progress';
-          // this.order$[i].cardColor = '#CFD8DC';
-          this.changeStatus(item,i,'confirmed');
-          tick(10000);
-        }
-      }
+    // for (let i = 0; i < this.order$.length; i++) {
+    //   if (this.order$[i] === item) {
+    //     if(this.order$[i].status === 'confirmed') {
+    //       //this.order$[i].status = 'inprogress'; 
+    //       this.currStat='Ready';
+    //       // this.order$[i].cardColor = '#FFB74D';
+    //       this.changeStatus(item,i,'inprogress');
+    //       tick(10000);
+    //     } 
+    //     else if(this.order$[i].status === 'inprogress') {
+    //       //this.order$[i].status = 'ready'; 
+    //       this.currStat='Confirmed';
+    //       // this.order$[i].cardColor = '#9CCC65';
+    //       this.changeStatus(item,i,'ready');
+    //       tick(10000);
+    //     } 
+    //     else if(this.order$[i].status === 'ready') {
+    //       //this.order$[i].status = 'confirmed'; 
+    //       this.currStat='In Progress';
+    //       // this.order$[i].cardColor = '#CFD8DC';
+    //       this.changeStatus(item,i,'confirmed');
+    //       tick(10000);
+    //     }
+    //   }
+    // }
+
+    if (item.status === 'confirmed') {
+      //this.order$[i].status = 'inprogress'; 
+      this.currStat = 'Ready';
+      // this.order$[i].cardColor = '#FFB74D';
+      this.changeStatus(item, i, 'inprogress');
+      tick(10000);
+    } else if (item.status === 'inprogress') {
+      //this.order$[i].status = 'ready'; 
+      this.currStat = 'Confirmed';
+      // this.order$[i].cardColor = '#9CCC65';
+      this.changeStatus(item, i, 'ready');
+      tick(10000);
+    } else if (item.status === 'ready') {
+      //this.order$[i].status = 'confirmed'; 
+      this.currStat = 'In Progress';
+      // this.order$[i].cardColor = '#CFD8DC';
+      this.changeStatus(item, i, 'confirmed');
+      tick(10000);
     }
   }
 
@@ -170,7 +190,7 @@ export class KitchenViewComponent implements OnInit {
 
 
 
-  ngOnInit() {    
+  ngOnInit() {
     this.GetOrder();
   }
 
@@ -195,6 +215,13 @@ export class KitchenViewComponent implements OnInit {
             }
           }
           for (let i = 0; i < this.order$.length; i++) {
+            const status = this.order$[i].status;
+            const n = status.indexOf('.');
+
+            if (n !== -1) {
+              this.order$[i].status = status.substring(n + 1, status.length);
+            }
+
             if (this.order$[i].status === 'confirmed'){
               this.order$[i].cardColor = '#CFD8DC'
               this.currStat='In Progress'
