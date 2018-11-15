@@ -40,7 +40,7 @@ export class OrderService {
       lastname : userDetail.lastName
     }
 
-    return this.http.post(this.baseRoute + customerRoute, JSON.stringify(params), httpOptions);
+    return this.http.post<customerRes>(this.baseRoute + customerRoute, JSON.stringify(params), httpOptions);
   }
 
   createTakeawayOrder(menuitems: MenuItem[]) {
@@ -99,4 +99,12 @@ export class OrderService {
     const orderRoute = 'order/items?id=' + orderId + '&status=' + status;
     return this.http.put(this.baseRoute + orderRoute, {}, httpOptions);
   }
+}
+
+export interface customerRes {
+  id: string;
+  firstname: string,
+  lastname: string,
+  phone: string,
+  reservations: any[],
 }

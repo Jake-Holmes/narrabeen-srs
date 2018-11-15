@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { MenuItem } from '../../shared/models/menuitem';
 import { TableAuthService } from "../../auth/table-auth.service";
 import { OrderService } from './../../order.service';
-
+import { User, CustomerDetail } from "./../../shared/models/customer";
 
 @Component({
   selector: 'app-result',
@@ -20,7 +20,8 @@ export class ResultComponent implements OnInit {
   totalPrice = 0;
   receiptNo: String; 
   OrderName: String = "Test Test";
-  tableId: String = "7";
+  tableId: String = "1";
+  userDetail: CustomerDetail;
 
   constructor(
     private cartService: CartService,

@@ -42,7 +42,7 @@ export class BillingDetailsComponent implements OnInit {
     this.userDetail.emailId = data['email'];
     this.userDetail.phoneNumber = data['phoneNumber'];
     this.orderService.createCustomer(this.userDetail).subscribe(res => { 
-      console.log(data);
+      this.userDetail.$key = res.id;
     });
 
     this.router.navigateByUrl('/checkout/result');
