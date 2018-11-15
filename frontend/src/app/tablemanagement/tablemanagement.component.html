@@ -31,9 +31,8 @@
           </div>
           <!-- TODO Loop over Orders when the order component is ready instead of menu items only because it's useless atm -->
           <div *ngFor="let item of table.order?.order_items">
-            <h3></h3>
+              <app-menu-item-details  [item]="item.menu_item" [order-mode]="false" ></app-menu-item-details>
           </div>
-          <app-menu-item-details  [item]="item.menu_item" [order-mode]="false" ></app-menu-item-details>
       </div>
     </div>
     
