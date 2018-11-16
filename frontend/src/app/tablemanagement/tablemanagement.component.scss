@@ -1,16 +1,48 @@
-.table-status__true{
-    background-color: darkred;
-}
-.table-status__false{
+.table-status__true {
     background-color: darkgreen;
+}
+.table-status__false {
+    background-color: darkred;
 }
 .card {
     border: none;
     border-radius: 20px;
-    *{
+    * {
         color: white;
     }
-    h1{
+    h1 {
         font-weight: bold;
     }
 }
+.page-title {
+    padding-bottom: 25px;
+}
+.title-container{
+    h1 {
+        display: inline-block;
+    }
+    a {
+        float: right;
+    }
+}
+::ng-deep {
+    .card {
+        button.mat-raised-button {
+            display: none;
+        }
+        .menu-item-container {
+            margin-top: 0 !important;
+            img, button {
+                display: none;
+            }
+            p {
+                margin: 0;
+            }
+        }
+        h2 {
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+        }
+    }
+} 

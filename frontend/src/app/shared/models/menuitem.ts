@@ -9,5 +9,5 @@ export class MenuItem {
     menu_item_type: string;
     type: string;
     name: string;
-    index: number // Dont need, only for shopping cart
+    index: number; // Dont need, only for shopping cart
 }

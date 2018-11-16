@@ -19,7 +19,9 @@ $colors: (
   tertiary:   #f53d3d,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  Poultry:    #f53d3d,
+
 );
 
 
@@ -142,6 +144,16 @@ li {
   a{    
     font-size: 25px;
     font-family: 'Oswald', sans-serif;
+    margin: -10px 0 0;
+    padding: 0 0 0 0;
+    text-transform: uppercase;
+  }
+  
+
+
+  .mat-card-header a{    
+    font-size: 25px;
+    font-family: 'Oswald', sans-serif;
     align-content: center;
     align-items: center;
     text-align: justify;
@@ -162,7 +174,18 @@ li {
   .mathead{
     align-content: center;
     background-size: cover;
+    text-transform: uppercase;
+    text-align: center;
+    align-content: center;
+    text-align: center;
+    padding: 5px;
+  }
+
+  .mathead2{
+    align-content: center;
+    background-size: cover;
     background-color: #444;
+    color: #f4f4f4;
     text-transform: uppercase;
     text-align: center;
     align-content: center;
@@ -170,6 +193,8 @@ li {
     padding: 5px;
   }
   
+
+
   .order-item-grid {
     display: flex;
     flex-flow: row wrap;
@@ -178,12 +203,12 @@ li {
       align-content: center;
       text-align: center;
       padding: 0px;
-      width: 230px;
+      width: 250px;
       margin: 8px;
       .order-item-card-content{
         align-content: center;
         text-align: center;
-        padding: 5px;
+        padding: 0px;
       }
   
       // @media screen and (max-width: 700px) {

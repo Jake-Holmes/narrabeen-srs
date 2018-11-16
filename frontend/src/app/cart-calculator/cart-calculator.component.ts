@@ -23,6 +23,7 @@ export class CartCalculatorComponent implements OnInit, OnChanges {
       console.log(product)
       this.totalValue += product.base_price;
     });
+    this.totalValue = +(this.totalValue.toFixed(2));
   }
 
   ngOnChanges(changes: any) {
@@ -33,5 +34,6 @@ export class CartCalculatorComponent implements OnInit, OnChanges {
     products.forEach(product => {
       this.totalValue += product.base_price;
     });
+    this.totalValue = +(this.totalValue.toFixed(2));
   }
 }

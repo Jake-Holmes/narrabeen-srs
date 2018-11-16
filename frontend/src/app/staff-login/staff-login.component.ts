@@ -26,6 +26,7 @@ export class StaffLoginComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required]
     });
+    this.clearAuth();
   }
 
   isFieldInvalid(field: string) { // Determines if field is valid.
@@ -51,4 +52,8 @@ export class StaffLoginComponent implements OnInit {
     };  // Set form submit attempt as true.
   }
 
+  public clearAuth() {
+    this.authService.clearAuth();
+    return true;
+  }
 }

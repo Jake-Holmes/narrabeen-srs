@@ -1,3 +1,60 @@
-<p>
-  billing-details works!
-</p>
+<div class="container">
+  <div class="board">
+     <app-checkout-navbar></app-checkout-navbar>
+     <div *ngIf="checkCustomer()" class="container mt-3">
+        <div class="col-md order-md-1">
+           <h4 class="mb-3">Billing Address</h4>
+           <form class="needs-validation" name="form" #userDetailsForm="ngForm" (ngSubmit)="userDetailsForm.form.valid && updateUserDetails(userDetailsForm)" novalidate>
+           <div class="row">
+              <div class="col-md-6 mb-3">
+                 <label for="firstName">First name</label>
+                 <input type="text" class="form-control" id="firstName" [(ngModel)]="userDetail.firstName" name="firstName" required>
+                 <div class="invalid-feedback">
+                    Valid first name is required.
+                 </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                 <label for="lastName">Last name</label>
+                 <input type="text" class="form-control" id="lastName" [(ngModel)]="userDetail.lastName" name="lastName" required>
+                 <div class="invalid-feedback">
+                    Valid last name is required.
+                 </div>
+              </div>
+           </div>
+           <div class="mb-3">
+              <label for="phoneNumber">Phone Number</label>
+              <input type="text" class="form-control" id="phoneNumber" placeholder="+61 XXX XXX XXX" [(ngModel)]="userDetail.phoneNmber" name="phoneNumber" required>
+              <div class="invalid-feedback">
+                 Please enter a valid phone number for takeaway updates.
+              </div>
+           </div>
+           <div class="mb-3">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" [(ngModel)]="userDetail.emailId" name="email" required>
+              <div class="invalid-feedback">
+                 Please enter a valid email address for takeaway updates.
+              </div>
+           </div>
+           <hr>
+           <div class="form-group float-right">
+            <button class="btn btn-default">Register</button>
+            </div>
+           </form>
+           
+        </div>
+     </div>
+
+
+
+     <div *ngIf="checkTable()" class="container mt-3">
+        <form class="needs-validation" #userDetailsForm="ngForm" (ngSubmit)="updateUserDetails(userDetailsForm)">
+            <div class="row">
+                <mat-card><mat-card-title>Are you sure you wish to confirm your order for Table 1?</mat-card-title></mat-card>
+            </div>
+          </form>
+        <div class="float-right">
+            <a class="btn btn-default" [routerLink]="['/checkout/result']">Next</a>
+        </div>
+    </div>
+  </div>
+</div>

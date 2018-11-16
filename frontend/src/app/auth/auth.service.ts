@@ -19,20 +19,30 @@ export class AuthService {
 
   public async login(user: string, password: string): Promise<Boolean> {
 
-    let formData: FormData = new FormData();
-    //formData.append('username', 'narrabeen-admin');
+    const formData: FormData = new FormData();
     formData.append('username', user);
     formData.append('authType', 'secret');
-    //formData.append('clientSecret', 'password123');
     formData.append('clientSecret', password);
 
     try {
       this.authInfo = await this.loginRequest(formData);
       console.log(this.authInfo.sessionId);
       return true;
-    } catch(err) {
+    } catch (err) {
       return false;
     }
+  }
+
+  public async authguard(): Promise<Boolean> {
+    if (this.authInfo.uuid.length !== 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public clearAuth() {
+    this.authInfo = new AuthInfo();
   }
 
   private async loginRequest(formData: FormData): Promise<AuthInfo> {

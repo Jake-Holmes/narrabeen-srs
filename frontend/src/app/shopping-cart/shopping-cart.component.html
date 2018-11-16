@@ -1,9 +1,9 @@
 <br>
 <div class="container" *ngIf="cartProducts.length > 0">
   <div class="row">
-    <div class="col-8">
+    <div class="col-md-8">
       <div class="row">
-        <div class="col-4" *ngFor="let product of cartProducts">
+        <div class="col-md-4" *ngFor="let product of cartProducts">
           <div class="item">
             <div class="mb-r">
 
@@ -12,7 +12,7 @@
                 <a [routerLink]="['/menu-item', product.id ]">
 
                   <div class="view overlay hm-white-slight">
-                    <img [src]="product.image" class="img-fluid" alt="" width="360px" height="640px">
+                    <img src="https://jakeholmes.me:5000/images/{{product.image}}" class="img-fluid" alt="" width="360px" height="640px">
                     <a>
                       <div class="mask waves-effect waves-light" mdbRippleRadius></div>
                     </a>
@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-md-4">
       <app-cart-calculator [products]="cartProducts"></app-cart-calculator>
     </div>
   </div>

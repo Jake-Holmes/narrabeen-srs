@@ -1,0 +1,13 @@
+.board {
+    margin: 60px auto;
+    height: 800px auto;
+    background: #fff;
+  }
+
+  mat-card {
+    width: calc(100% - 70px);
+    height: calc(100% - 70px);
+    display: block;
+    margin-left:auto;
+    margin-right:auto;  
+}
